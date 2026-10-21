@@ -117,7 +117,8 @@
   function card(rec) {
     const main = rec.slot === "main";
     const path = rec.type === "path";
-    const label = [main ? null : "also", rec.type, rec.anchor ? `from ${rec.anchor}` : null].filter(Boolean).join(" · ");
+    const label = [main ? null : "also", rec.second_look ? "second look" : null, rec.type, rec.anchor ? `from ${rec.anchor}` : null]
+      .filter(Boolean).join(" · ");
     const name = el("h3");
     rec.artists.forEach((a, i) => {
       if (i) name.append(el("span", { className: "arrow", textContent: " → " }));
