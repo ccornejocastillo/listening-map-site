@@ -1,13 +1,13 @@
 {
-  "version": 3,
-  "generated_at": "2026-10-21T20:28:58Z",
+  "version": 4,
+  "generated_at": "2026-10-21T20:48:35Z",
   "window": {
-    "start": "2026-10-14T20:28:58Z",
-    "end": "2026-10-21T20:28:58Z"
+    "start": "2026-10-14T20:48:35Z",
+    "end": "2026-10-21T20:48:35Z"
   },
   "stats": {
-    "tracks": 61,
-    "artists": 25,
+    "tracks": 66,
+    "artists": 28,
     "merged": 0
   },
   "batch": {
@@ -39,31 +39,80 @@
     "weeks": [
       {
         "start": "2026-09-07",
-        "plays": 0
+        "weight": 0,
+        "top": []
       },
       {
         "start": "2026-09-14",
-        "plays": 0
+        "weight": 0,
+        "top": []
       },
       {
         "start": "2026-09-21",
-        "plays": 0
+        "weight": 0,
+        "top": []
       },
       {
         "start": "2026-09-28",
-        "plays": 0
+        "weight": 0,
+        "top": []
       },
       {
         "start": "2026-10-05",
-        "plays": 0
+        "weight": 0,
+        "top": []
       },
       {
         "start": "2026-10-12",
-        "plays": 36
+        "weight": 1,
+        "top": [
+          {
+            "artist": "Tokyo Tea Room",
+            "weight": 3
+          },
+          {
+            "artist": "Bersuit Vergarabat",
+            "weight": 1
+          },
+          {
+            "artist": "Pearl Jam",
+            "weight": 1
+          },
+          {
+            "artist": "Grupo Fantasia",
+            "weight": 1
+          },
+          {
+            "artist": "AKHÅSHA",
+            "weight": 1
+          }
+        ]
       },
       {
         "start": "2026-10-19",
-        "plays": 25
+        "weight": 3,
+        "top": [
+          {
+            "artist": "Tokyo Tea Room",
+            "weight": 2
+          },
+          {
+            "artist": "Bersuit Vergarabat",
+            "weight": 2
+          },
+          {
+            "artist": "Heroes Del Silencio",
+            "weight": 2
+          },
+          {
+            "artist": "System Of A Down",
+            "weight": 1
+          },
+          {
+            "artist": "Men I Trust",
+            "weight": 1
+          }
+        ]
       }
     ],
     "branches": [
