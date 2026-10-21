@@ -14,6 +14,7 @@
     --secondary: #9A9A9A;
     --border: #262626;
     --accent: #4D7CFF;
+    --path: #FF6A3D;
   }
   * { box-sizing: border-box; }
   body {
@@ -26,13 +27,29 @@
   main { max-width: 880px; margin: 0 auto; padding: 48px 16px; }
   .dates { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--secondary); letter-spacing: .04em; text-transform: uppercase; min-height: 1.5em; }
   h1 { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: clamp(36px, 7vw, 56px); line-height: 1.05; margin: 8px 0 32px; }
+  h2 { font-family: "Space Grotesk", sans-serif; font-weight: 500; font-size: 22px; margin: 0 0 16px; }
+  section { margin-top: 56px; }
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .stat { display: flex; flex-direction: column; gap: 4px; padding: 20px 0; }
   .stat + .stat { border-left: 1px solid var(--border); padding-left: 20px; }
   .num { font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 32px; }
-  .label { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); text-transform: uppercase; letter-spacing: .04em; }
+  .label, .type { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); text-transform: uppercase; letter-spacing: .04em; }
+  .summary { font-size: 18px; max-width: 640px; margin: 0; }
+  .card { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 24px 0; border-top: 1px solid var(--border); }
+  .card .type { color: var(--accent); }
+  .card.path .type, .card.path .arrow { color: var(--path); }
+  .card h3 { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15; margin: 8px 0 12px; }
+  .card.also h3 { font-size: 20px; }
+  .card p { margin: 0; color: var(--text); }
+  .embeds { display: flex; flex-direction: column; gap: 8px; }
+  iframe { width: 100%; border: 0; border-radius: 12px; display: block; }
+  .playlist { margin-top: 32px; }
+  .playlist h2 { font-size: 18px; }
   .error { margin-top: 24px; color: var(--secondary); }
   footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--border); font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); min-height: 1.5em; }
+  @media (max-width: 720px) {
+    .card { grid-template-columns: 1fr; }
+  }
   @media (max-width: 560px) {
     .stats { grid-template-columns: 1fr; }
     .stat + .stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--border); }
@@ -50,19 +67,68 @@
       <div class="stat"><span class="num" id="merged">—</span><span class="label">recommendations merged</span></div>
     </div>
   </header>
+
+  <section id="this-week" hidden>
+    <h2>This week</h2>
+    <p class="summary" id="summary"></p>
+  </section>
+
+  <section id="recommendation" hidden>
+    <h2>Your recommendation</h2>
+    <div id="cards"></div>
+    <div class="playlist" id="playlist" hidden>
+      <h2>Listen to this batch</h2>
+    </div>
+  </section>
+
   <p class="error" id="error" hidden>Couldn't load data.</p>
   <noscript><p class="error">This page needs JavaScript to show the data.</p></noscript>
   <footer id="updated"></footer>
 </main>
 <script>
-  // data.json is written by the backend (listening-map); see the schema in its docs/design.md
+  // data.json is written by the backend (listening-map); see the schema in its docs/design.md.
+  // Keys from later phases may be missing: every section hides itself when it has no data.
   const TZ = "America/Santiago";
   const day = new Intl.DateTimeFormat("en-US", { timeZone: TZ, month: "short", day: "numeric" });
   const year = new Intl.DateTimeFormat("en-US", { timeZone: TZ, year: "numeric" });
   const time = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "2-digit", minute: "2-digit" });
+  const weekday = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", weekday: "short", month: "short", day: "numeric" });
 
   function show(id, value) {
     document.getElementById(id).textContent = value ?? "—";
+  }
+
+  function el(tag, props = {}, children = []) {
+    const node = Object.assign(document.createElement(tag), props);
+    node.append(...children);
+    return node;
+  }
+
+  function embed(kind, id, height) {
+    return el("iframe", {
+      title: `Spotify ${kind}`,
+      src: `https://open.spotify.com/embed/${kind}/${encodeURIComponent(id)}?utm_source=generator&theme=0`,
+      height,
+      allow: "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture",
+      loading: "lazy",
+    });
+  }
+
+  function card(rec) {
+    const main = rec.slot === "main";
+    const path = rec.type === "path";
+    const label = [main ? null : "also", rec.type, rec.anchor ? `from ${rec.anchor}` : null].filter(Boolean).join(" · ");
+    const name = el("h3");
+    rec.artists.forEach((a, i) => {
+      if (i) name.append(el("span", { className: "arrow", textContent: " → " }));
+      name.append(a.artist);
+    });
+    // A path shows a compact player per step; otherwise the main one is full size and the optional one compact
+    const height = main && !path ? 352 : 152;
+    return el("article", { className: ["card", main ? "" : "also", path ? "path" : ""].join(" ").trim() }, [
+      el("div", {}, [el("div", { className: "type", textContent: label }), name, el("p", { textContent: rec.reason })]),
+      el("div", { className: "embeds" }, rec.artists.map(a => embed("artist", a.artist_id, height))),
+    ]);
   }
 
   fetch("data.json", { cache: "no-cache" })
@@ -78,7 +144,27 @@
       show("tracks", data.stats?.tracks);
       show("artists", data.stats?.artists);
       show("merged", data.stats?.merged);
-      show("updated", `Last updated ${day.format(updated)}, ${year.format(updated)}, ${time.format(updated)} (Santiago)`);
+
+      if (data.summary) {
+        show("summary", data.summary);
+        document.getElementById("this-week").hidden = false;
+      }
+
+      const recs = data.recommendations ?? [];
+      if (recs.length) {
+        document.getElementById("cards").append(...recs.map(card));
+        document.getElementById("recommendation").hidden = false;
+        if (data.playlist_id) {
+          const playlist = document.getElementById("playlist");
+          playlist.append(embed("playlist", data.playlist_id, 352));
+          playlist.hidden = false;
+        }
+      }
+
+      let footer = `Last updated ${day.format(updated)}, ${year.format(updated)}, ${time.format(updated)} (Santiago)`;
+      if (data.pending) footer += " · New recommendations pending";
+      else if (data.next_batch) footer += ` · Next batch ${weekday.format(new Date(data.next_batch + "T12:00:00Z"))}`;
+      show("updated", footer);
     })
     .catch(() => {
       document.getElementById("error").hidden = false;
