@@ -1,13 +1,13 @@
 {
-  "version": 2,
-  "generated_at": "2026-10-21T20:16:36Z",
+  "version": 3,
+  "generated_at": "2026-10-21T20:23:22Z",
   "window": {
-    "start": "2026-10-14T20:16:36Z",
-    "end": "2026-10-21T20:16:36Z"
+    "start": "2026-10-14T20:23:22Z",
+    "end": "2026-10-21T20:23:22Z"
   },
   "stats": {
-    "tracks": 58,
-    "artists": 22,
+    "tracks": 59,
+    "artists": 23,
     "merged": 0
   },
   "batch": {
@@ -32,5 +32,54 @@
     }
   ],
   "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
-  "next_batch": "2026-10-22"
+  "next_batch": "2026-10-22",
+  "graph": {
+    "start": "2026-09-07",
+    "today": "2026-10-21",
+    "weeks": [
+      {
+        "start": "2026-09-07",
+        "plays": 0
+      },
+      {
+        "start": "2026-09-14",
+        "plays": 0
+      },
+      {
+        "start": "2026-09-21",
+        "plays": 0
+      },
+      {
+        "start": "2026-09-28",
+        "plays": 0
+      },
+      {
+        "start": "2026-10-05",
+        "plays": 0
+      },
+      {
+        "start": "2026-10-12",
+        "plays": 36
+      },
+      {
+        "start": "2026-10-19",
+        "plays": 23
+      }
+    ],
+    "branches": [
+      {
+        "type": "roots",
+        "artists": [
+          "Cocteau Twins"
+        ],
+        "created": "2026-10-21",
+        "end": null,
+        "status": "open"
+      }
+    ]
+  },
+  "stuck": {
+    "merged": [],
+    "tried": []
+  }
 }
