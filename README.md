@@ -20,7 +20,7 @@ data/data.json        written by the backend; don't edit it by hand
 
 ## Data contract
 
-The schema of `data/data.json` is documented in the backend's `docs/design.md` ("The `data.json` contract"). Its `version` goes up when the backend adds keys; the current one is 3. The two repos deploy separately, so the frontend must tolerate keys that don't exist yet: every section stays hidden until its data is there.
+The schema of `data/data.json` is documented in the backend's `docs/design.md` ("The `data.json` contract"). Its `version` goes up when the backend adds keys; the current one is 4. The two repos deploy separately, so the frontend must tolerate keys that don't exist yet: every section stays hidden until its data is there.
 
 | Section | Keys it reads |
 | --- | --- |
@@ -44,14 +44,16 @@ Main pieces:
 
 - `card(rec)`: a recommendation. The label is `also` (optional slot), `second look` if it's one, the type and the anchor. A path joins its artists with an orange `→`.
 - `embed(kind, id, height)`: a Spotify embed (`artist` or `playlist`) with the dark theme. Heights: main 352 px, optional and each step of a path 152 px, playlist 352 px. Visitors without a Spotify session only hear previews.
-- `drawGraph(graph, container)`: the branch graph, drawn as SVG at the container's real width (so its text stays readable on phones) and redrawn on resize.
+- `drawGraph(graph, container)`: the branch graph, drawn as SVG at the container's real width (so its text stays readable on phones) and redrawn on resize. `strandRuns` turns the weekly tops into strands, and `assignLanes` places strands and branches in lanes, counting their labels' width.
 - `stuckItem(s)`: an entry in "What stuck".
 
 ## Branch graph
 
-- `main` is your usual rotation: a white line with one node per week (hover shows that week's plays).
-- Each recommendation branches off the day it arrived, in its own lane; a lane is reused once the branch above it has ended.
-- **Merged:** the branch rejoins `main` with a thick ring, and `main` gets thicker after each merge.
+- `main` is your usual rotation: a white band, flat through each week at that week's weight (0 to 3: no plays, lighter, usual, heavier), with a node per week (hover says which). `data.json` carries weights, never play counts, so the page can't show them.
+- Each recommendation branches off the day it arrived, in its own lane right below `main`.
+- Your top artists run below the branches as strands: one per run of consecutive weeks an artist spent in that week's top 5, gray, as thick as its weight.
+- Lanes are reused once what was in them, label included, has ended.
+- **Merged:** the branch rejoins `main` with a thick ring. If that artist shows up in your top afterwards, its strand is tinted blue.
 - **Tried:** ends in a gray dot. **Paused:** dashed, ends in an open gray circle.
 - **Open / second look:** ends in an open blue circle, a little past today, so a branch dropping off `main` today doesn't run over it.
 - **Path:** orange, with one dot per step.
@@ -69,6 +71,8 @@ Colors are CSS variables in `:root` (`assets/css/main.css`) and the graph uses t
 | `--border` | `#262626` | Dividers |
 | `--accent` | `#4D7CFF` | Recommendation labels, branches, open |
 | `--path` | `#FF6A3D` | Paths |
+
+Strands use three grays by weight, `#575757`, `#6E6E6E` and `#8A8A8A` (`STRAND` in `main.js`); the band's half thickness by week weight is in `BAND`.
 
 Fonts, from Google Fonts: Space Grotesk (headings), IBM Plex Sans (body) and IBM Plex Mono (numbers and labels). Below 720 px the cards and "What stuck" stack; below 560 px the three header numbers do too.
 

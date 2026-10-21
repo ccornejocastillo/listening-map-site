@@ -44,11 +44,16 @@ function card(rec) {
   ]);
 }
 
-// Git-style branch graph: main is your rotation, each recommendation branches off the day it arrived
+// Git-style branch graph. main is your rotation, drawn as a band as thick as how much you listened each week;
+// right below it, each recommendation branches off the day it arrived; further down, your top artists run as strands.
+// data.json only carries weights from 0 to 3, never play counts.
 const SVG = "http://www.w3.org/2000/svg";
 const COLORS = { text: "#F2F2F2", secondary: "#9A9A9A", accent: "#4D7CFF", path: "#FF6A3D", bg: "#000000" };
 const shortDay = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "short", day: "numeric" });
 const toDate = s => new Date(s + "T12:00:00Z");
+const BAND = [1, 4, 7, 10];  // half the band's thickness, by week weight
+const WEEK_LABELS = ["no plays tracked", "a lighter week", "a usual week", "a heavier week"];
+const STRAND = { 1: { width: 1.5, color: "#575757" }, 2: { width: 3, color: "#6E6E6E" }, 3: { width: 5, color: "#8A8A8A" } };
 
 function svg(tag, attrs, parent) {
   const node = document.createElementNS(SVG, tag);
@@ -57,63 +62,135 @@ function svg(tag, attrs, parent) {
   return node;
 }
 
+// Each run of consecutive weeks an artist spent in your top is one strand
+function strandRuns(weeks) {
+  const runs = [], open = new Map();
+  weeks.forEach((w, i) => {
+    const here = new Map((w.top ?? []).map(t => [t.artist, t.weight]));
+    for (const [artist, run] of open) {
+      if (!here.has(artist)) { runs.push(run); open.delete(artist); }
+    }
+    for (const [artist, weight] of here) {
+      const run = open.get(artist) ?? { artist, from: i, to: i, weight: 0 };
+      run.to = i;
+      run.weight = Math.max(run.weight, weight);
+      open.set(artist, run);
+    }
+  });
+  return [...runs, ...open.values()].sort((a, b) => a.from - b.from || b.weight - a.weight);
+}
+
+// Labels near the right edge go to the left of their line, so they aren't cut off
+const CHAR_W = 6.7;  // IBM Plex Mono at 11px
+const nearEdge = (x0, width) => x0 > width * 0.6;
+
+function label(root, text, x0, y, width) {
+  const left = nearEdge(x0, width);
+  svg("text", { x: left ? x0 - 6 : x0 + 18, y: y - 6, "text-anchor": left ? "end" : "start" }, root).textContent = text;
+}
+
+// Greedy lanes: an item takes the first lane whose last item, label included, ended before it starts
+function assignLanes(items, width) {
+  const lanes = [];
+  for (const it of items) {
+    const textW = it.text.length * CHAR_W;
+    const from = nearEdge(it.x0, width) ? it.x0 - 6 - textW : it.x0;
+    const to = Math.max(it.x1, nearEdge(it.x0, width) ? it.x0 : it.x0 + 18 + textW);
+    let lane = lanes.findIndex(end => end + 16 < from);
+    if (lane < 0) lane = lanes.push(0) - 1;
+    lanes[lane] = to;
+    it.lane = lane;
+  }
+  return lanes.length;
+}
+
 function drawGraph(g, container) {
   container.replaceChildren();
   const width = container.clientWidth;
-  const left = 8, right = 20, mainY = 16, laneH = 30;
+  const left = 8, right = 20, mainY = 18, strandH = 24, laneH = 30;
   const start = toDate(g.start), span = g.weeks.length * 7;
   const x = d => left + ((toDate(d) - start) / 864e5 / span) * (width - left - right);
+  const weekW = x(g.weeks[1]?.start ?? g.today) - x(g.weeks[0].start);
   const minSpan = 28;
+  const today = x(g.today);
+  const last = g.weeks.length - 1;
 
-  // One lane per branch, reused once the branch above it has ended
-  const lanes = [];
-  const placed = g.branches.map(b => {
+  // Strands, with their drops off the band spread a little when several start the same week
+  const stuck = new Set(g.branches.filter(b => b.status === "merged").flatMap(b => b.artists));
+  const startsAt = {};
+  const strands = strandRuns(g.weeks).map(r => {
+    const k = startsAt[r.from] = (startsAt[r.from] ?? -1) + 1;
+    const x0 = x(g.weeks[r.from].start) + 6 + 6 * k;
+    const x1 = Math.max(r.to === last ? today : x(g.weeks[r.to].start) + weekW * 0.85, x0 + minSpan);
+    return { ...r, x0, x1, text: r.artist };
+  });
+  const strandLanes = assignLanes(strands, width);
+
+  const branches = g.branches.map(b => {
     const x0 = x(b.created < g.start ? g.start : b.created);
     // Open branches end a little past today, so a branch dropping off main today doesn't run over their marker
-    const x1 = Math.max(b.end ? x(b.end) : x(g.today) + 12, x0 + minSpan);
-    let lane = lanes.findIndex(end => end + 24 < x0);
-    if (lane < 0) lane = lanes.push(0) - 1;
-    lanes[lane] = x1 + 18;
-    return { ...b, x0, x1, y: mainY + laneH * (lane + 1) };
+    const x1 = Math.max(b.end ? x(b.end) : today + 12, x0 + minSpan);
+    return { ...b, x0, x1, text: b.artists.join(" → ") };
   });
-  const height = mainY + laneH * (lanes.length + 1) + 8;
-  const root = svg("svg", { width, height, role: "img", "aria-label": "Recommendations branching off your usual rotation" }, container);
+  const branchLanes = assignLanes(branches, width);
+  const branchY = lane => mainY + 4 + laneH * (lane + 1);
+  const strandTop = branchY(branchLanes - 1) + 10;
+  const strandY = lane => strandTop + strandH * (lane + 1);
+  const height = strandY(strandLanes - 1) + 30;
+  const root = svg("svg", {
+    width, height, role: "img",
+    "aria-label": "Your listening as a band, your top artists as strands below it, and recommendations branching off it",
+  }, container);
 
-  // main gets thicker after each merge
-  const merges = placed.filter(b => b.status === "merged").map(b => b.x1 + 16).sort((a, b) => a - b);
-  const stops = [x(g.start), ...merges, x(g.today)];
-  stops.slice(0, -1).forEach((sx, i) => svg("line", {
-    x1: sx, y1: mainY, x2: stops[i + 1], y2: mainY, stroke: COLORS.text, "stroke-width": Math.min(2 + 1.5 * i, 7), "stroke-linecap": "round",
-  }, root));
+  // The band: flat through each week at that week's thickness, with a short step into the next one
+  const pts = [];
   g.weeks.forEach((w, i) => {
-    const node = svg("circle", { cx: x(w.start), cy: mainY, r: 4, fill: COLORS.text }, root);
-    svg("title", {}, node).textContent = `Week of ${shortDay.format(toDate(w.start))}: ${w.plays} plays`;
+    const h = BAND[w.weight ?? 0];
+    const x0 = x(w.start) + (i ? 6 : 0), x1 = i === last ? today : x(g.weeks[i + 1].start) - 6;
+    pts.push([x0, h], [x1, h]);
+  });
+  const outline = [...pts.map(([px, h]) => `${px},${mainY - h}`), ...[...pts].reverse().map(([px, h]) => `${px},${mainY + h}`)];
+  svg("polygon", { points: outline.join(" "), fill: COLORS.text }, root);
+  g.weeks.forEach((w, i) => {
+    const empty = !w.weight;
+    const node = svg("circle", { cx: x(w.start), cy: mainY, r: empty ? 3 : 2.5, fill: empty ? COLORS.text : COLORS.bg }, root);
+    svg("title", {}, node).textContent = `Week of ${shortDay.format(toDate(w.start))}: ${WEEK_LABELS[w.weight ?? 0]}`;
     if (i % (width < 480 ? 2 : 1) === 0) {
       svg("text", { x: x(w.start), y: height - 2, "text-anchor": i ? "middle" : "start" }, root).textContent = shortDay.format(toDate(w.start));
     }
   });
 
-  for (const b of placed) {
+  for (const s of strands) {
+    const y = strandY(s.lane);
+    const style = STRAND[s.weight];
+    svg("path", {
+      d: `M ${s.x0} ${mainY} C ${s.x0} ${y}, ${s.x0} ${y}, ${s.x0 + 14} ${y} L ${s.x1} ${y}`,
+      fill: "none", "stroke-linecap": "round", "stroke-width": style.width,
+      // A recommendation that merged and now runs in your top is tinted blue
+      stroke: stuck.has(s.artist) ? COLORS.accent : style.color, "stroke-opacity": stuck.has(s.artist) ? 0.55 : 1,
+    }, root);
+    label(root, s.artist, s.x0, y, width);
+  }
+
+  for (const b of branches) {
+    const y = branchY(b.lane);
     const color = b.type === "path" ? COLORS.path : COLORS.accent;
     const merged = b.status === "merged";
-    let d = `M ${b.x0} ${mainY} C ${b.x0} ${b.y}, ${b.x0} ${b.y}, ${b.x0 + 14} ${b.y} L ${b.x1} ${b.y}`;
-    if (merged) d += ` C ${b.x1 + 16} ${b.y}, ${b.x1 + 16} ${b.y}, ${b.x1 + 16} ${mainY}`;
+    let d = `M ${b.x0} ${mainY} C ${b.x0} ${y}, ${b.x0} ${y}, ${b.x0 + 14} ${y} L ${b.x1} ${y}`;
+    if (merged) d += ` C ${b.x1 + 16} ${y}, ${b.x1 + 16} ${y}, ${b.x1 + 16} ${mainY}`;
     svg("path", {
       d, fill: "none", stroke: color, "stroke-width": 2, "stroke-dasharray": b.status === "paused" ? "4 4" : "none",
     }, root);
-    // Labels of branches near the right edge go to the left of the branch, so they aren't cut off
-    const nearEdge = b.x0 > width * 0.6;
-    svg("text", { x: nearEdge ? b.x0 - 6 : b.x0 + 18, y: b.y - 6, "text-anchor": nearEdge ? "end" : "start" }, root)
-      .textContent = b.artists.join(" → ");
+    label(root, b.artists.join(" → "), b.x0, y, width);
     if (b.type === "path") {
       b.artists.forEach((_, i) => svg("circle", {
-        cx: b.x0 + 14 + ((b.x1 - b.x0 - 14) * (i + 1)) / (b.artists.length + 1), cy: b.y, r: 3.5, fill: COLORS.path,
+        cx: b.x0 + 14 + ((b.x1 - b.x0 - 14) * (i + 1)) / (b.artists.length + 1), cy: y, r: 3.5, fill: COLORS.path,
       }, root));
     }
     if (merged) svg("circle", { cx: b.x1 + 16, cy: mainY, r: 7, fill: COLORS.bg, stroke: COLORS.text, "stroke-width": 3 }, root);
-    else if (b.status === "tried") svg("circle", { cx: b.x1, cy: b.y, r: 4, fill: COLORS.secondary }, root);
-    else if (b.status === "paused") svg("circle", { cx: b.x1, cy: b.y, r: 4, fill: COLORS.bg, stroke: COLORS.secondary, "stroke-width": 1.5 }, root);
-    else svg("circle", { cx: b.x1, cy: b.y, r: 5, fill: COLORS.bg, stroke: color, "stroke-width": 2 }, root);
+    else if (b.status === "tried") svg("circle", { cx: b.x1, cy: y, r: 4, fill: COLORS.secondary }, root);
+    else if (b.status === "paused") svg("circle", { cx: b.x1, cy: y, r: 4, fill: COLORS.bg, stroke: COLORS.secondary, "stroke-width": 1.5 }, root);
+    else svg("circle", { cx: b.x1, cy: y, r: 5, fill: COLORS.bg, stroke: color, "stroke-width": 2 }, root);
   }
 }
 
