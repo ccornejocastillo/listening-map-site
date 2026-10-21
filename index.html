@@ -45,10 +45,20 @@
   iframe { width: 100%; border: 0; border-radius: 12px; display: block; }
   .playlist { margin-top: 32px; }
   .playlist h2 { font-size: 18px; }
+  .graph { width: 100%; }
+  .graph svg { display: block; overflow: visible; }
+  .graph text { font-family: "IBM Plex Mono", monospace; font-size: 11px; fill: var(--secondary); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .stuck { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .stuck h3 { font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: 12px; color: var(--secondary); text-transform: uppercase; letter-spacing: .04em; margin: 0 0 8px; }
+  .stuck ul { list-style: none; margin: 0; padding: 0; }
+  .stuck li { padding: 10px 0; border-top: 1px solid var(--border); }
+  .stuck .meta { display: block; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); }
   .error { margin-top: 24px; color: var(--secondary); }
   footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--border); font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); min-height: 1.5em; }
   @media (max-width: 720px) {
-    .card { grid-template-columns: 1fr; }
+    .card, .stuck { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
     .stats { grid-template-columns: 1fr; }
@@ -73,11 +83,31 @@
     <p class="summary" id="summary"></p>
   </section>
 
+  <section id="weeks" hidden>
+    <h2>Last 7 weeks</h2>
+    <div class="graph" id="graph"></div>
+    <div class="legend">
+      <span><svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="none" stroke="#F2F2F2" stroke-width="2.5"/></svg>merged</span>
+      <span><svg width="14" height="14"><circle cx="7" cy="7" r="3.5" fill="#9A9A9A"/></svg>tried</span>
+      <span><svg width="22" height="14"><line x1="1" y1="7" x2="13" y2="7" stroke="#4D7CFF" stroke-width="2" stroke-dasharray="3 3"/><circle cx="17" cy="7" r="3.5" fill="#000" stroke="#9A9A9A" stroke-width="1.5"/></svg>paused</span>
+      <span><svg width="14" height="14"><circle cx="7" cy="7" r="4" fill="#000" stroke="#4D7CFF" stroke-width="2"/></svg>open</span>
+      <span><svg width="14" height="14"><circle cx="7" cy="7" r="3.5" fill="#FF6A3D"/></svg>path step</span>
+    </div>
+  </section>
+
   <section id="recommendation" hidden>
     <h2>Your recommendation</h2>
     <div id="cards"></div>
     <div class="playlist" id="playlist" hidden>
       <h2>Listen to this batch</h2>
+    </div>
+  </section>
+
+  <section id="stuck" hidden>
+    <h2>What stuck</h2>
+    <div class="stuck">
+      <div><h3>Merged</h3><ul id="merged-list"></ul></div>
+      <div><h3>Tried, didn't stick</h3><ul id="tried-list"></ul></div>
     </div>
   </section>
 
@@ -132,6 +162,87 @@
     ]);
   }
 
+  // Git-style branch graph: main is your rotation, each recommendation branches off the day it arrived
+  const SVG = "http://www.w3.org/2000/svg";
+  const COLORS = { text: "#F2F2F2", secondary: "#9A9A9A", accent: "#4D7CFF", path: "#FF6A3D", bg: "#000000" };
+  const shortDay = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "short", day: "numeric" });
+  const toDate = s => new Date(s + "T12:00:00Z");
+
+  function svg(tag, attrs, parent) {
+    const node = document.createElementNS(SVG, tag);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+    if (parent) parent.append(node);
+    return node;
+  }
+
+  function drawGraph(g, container) {
+    container.replaceChildren();
+    const width = container.clientWidth;
+    const left = 8, right = 20, mainY = 16, laneH = 30;
+    const start = toDate(g.start), span = g.weeks.length * 7;
+    const x = d => left + ((toDate(d) - start) / 864e5 / span) * (width - left - right);
+    const minSpan = 28;
+
+    // One lane per branch, reused once the branch above it has ended
+    const lanes = [];
+    const placed = g.branches.map(b => {
+      const x0 = x(b.created < g.start ? g.start : b.created);
+      // Open branches end a little past today, so a branch dropping off main today doesn't run over their marker
+      const x1 = Math.max(b.end ? x(b.end) : x(g.today) + 12, x0 + minSpan);
+      let lane = lanes.findIndex(end => end + 24 < x0);
+      if (lane < 0) lane = lanes.push(0) - 1;
+      lanes[lane] = x1 + 18;
+      return { ...b, x0, x1, y: mainY + laneH * (lane + 1) };
+    });
+    const height = mainY + laneH * (lanes.length + 1) + 8;
+    const root = svg("svg", { width, height, role: "img", "aria-label": "Recommendations branching off your usual rotation" }, container);
+
+    // main gets thicker after each merge
+    const merges = placed.filter(b => b.status === "merged").map(b => b.x1 + 16).sort((a, b) => a - b);
+    const stops = [x(g.start), ...merges, x(g.today)];
+    stops.slice(0, -1).forEach((sx, i) => svg("line", {
+      x1: sx, y1: mainY, x2: stops[i + 1], y2: mainY, stroke: COLORS.text, "stroke-width": Math.min(2 + 1.5 * i, 7), "stroke-linecap": "round",
+    }, root));
+    g.weeks.forEach((w, i) => {
+      const node = svg("circle", { cx: x(w.start), cy: mainY, r: 4, fill: COLORS.text }, root);
+      svg("title", {}, node).textContent = `Week of ${shortDay.format(toDate(w.start))}: ${w.plays} plays`;
+      if (i % (width < 480 ? 2 : 1) === 0) {
+        svg("text", { x: x(w.start), y: height - 2, "text-anchor": i ? "middle" : "start" }, root).textContent = shortDay.format(toDate(w.start));
+      }
+    });
+
+    for (const b of placed) {
+      const color = b.type === "path" ? COLORS.path : COLORS.accent;
+      const merged = b.status === "merged";
+      let d = `M ${b.x0} ${mainY} C ${b.x0} ${b.y}, ${b.x0} ${b.y}, ${b.x0 + 14} ${b.y} L ${b.x1} ${b.y}`;
+      if (merged) d += ` C ${b.x1 + 16} ${b.y}, ${b.x1 + 16} ${b.y}, ${b.x1 + 16} ${mainY}`;
+      svg("path", {
+        d, fill: "none", stroke: color, "stroke-width": 2, "stroke-dasharray": b.status === "paused" ? "4 4" : "none",
+      }, root);
+      // Labels of branches near the right edge go to the left of the branch, so they aren't cut off
+      const nearEdge = b.x0 > width * 0.6;
+      svg("text", { x: nearEdge ? b.x0 - 6 : b.x0 + 18, y: b.y - 6, "text-anchor": nearEdge ? "end" : "start" }, root)
+        .textContent = b.artists.join(" → ");
+      if (b.type === "path") {
+        b.artists.forEach((_, i) => svg("circle", {
+          cx: b.x0 + 14 + ((b.x1 - b.x0 - 14) * (i + 1)) / (b.artists.length + 1), cy: b.y, r: 3.5, fill: COLORS.path,
+        }, root));
+      }
+      if (merged) svg("circle", { cx: b.x1 + 16, cy: mainY, r: 7, fill: COLORS.bg, stroke: COLORS.text, "stroke-width": 3 }, root);
+      else if (b.status === "tried") svg("circle", { cx: b.x1, cy: b.y, r: 4, fill: COLORS.secondary }, root);
+      else if (b.status === "paused") svg("circle", { cx: b.x1, cy: b.y, r: 4, fill: COLORS.bg, stroke: COLORS.secondary, "stroke-width": 1.5 }, root);
+      else svg("circle", { cx: b.x1, cy: b.y, r: 5, fill: COLORS.bg, stroke: color, "stroke-width": 2 }, root);
+    }
+  }
+
+  function stuckItem(s) {
+    const when = shortDay.format(toDate(s.date));
+    return el("li", {}, [
+      s.artists.join(" → "),
+      el("span", { className: "meta", textContent: [s.type, s.anchor ? `from ${s.anchor}` : null, when].filter(Boolean).join(" · ") }),
+    ]);
+  }
+
   fetch("data.json", { cache: "no-cache" })
     .then(r => {
       if (!r.ok) throw new Error(r.status);
@@ -149,6 +260,26 @@
       if (data.summary) {
         show("summary", data.summary);
         document.getElementById("this-week").hidden = false;
+      }
+
+      if (data.graph) {
+        const container = document.getElementById("graph");
+        document.getElementById("weeks").hidden = false;
+        drawGraph(data.graph, container);
+        let lastWidth = container.clientWidth;
+        window.addEventListener("resize", () => {
+          if (container.clientWidth !== lastWidth) {
+            lastWidth = container.clientWidth;
+            drawGraph(data.graph, container);
+          }
+        });
+      }
+
+      const merged = data.stuck?.merged ?? [], tried = data.stuck?.tried ?? [];
+      if (merged.length || tried.length) {
+        document.getElementById("merged-list").append(...(merged.length ? merged.map(stuckItem) : [el("li", { className: "meta", textContent: "Nothing yet" })]));
+        document.getElementById("tried-list").append(...(tried.length ? tried.map(stuckItem) : [el("li", { className: "meta", textContent: "Nothing yet" })]));
+        document.getElementById("stuck").hidden = false;
       }
 
       const recs = data.recommendations ?? [];
