@@ -1,13 +1,36 @@
 {
-  "version": 1,
-  "generated_at": "2026-10-21T20:01:48Z",
+  "version": 2,
+  "generated_at": "2026-10-21T20:06:53Z",
   "window": {
-    "start": "2026-10-14T20:01:48Z",
-    "end": "2026-10-21T20:01:48Z"
+    "start": "2026-10-14T20:06:53Z",
+    "end": "2026-10-21T20:06:53Z"
   },
   "stats": {
     "tracks": 55,
     "artists": 20,
     "merged": 0
-  }
+  },
+  "batch": {
+    "id": "2026-10-19",
+    "kind": "monday"
+  },
+  "summary": "You spent most of the last seven days immersed in the dream pop sounds of Tokyo Tea Room, who made up over half of your total plays. Alongside this primary focus, you mixed in alternative rock, grunge, and Latin rock from artists like Bersuit Vergarabat, Pearl Jam, and Heroes Del Silencio. Your listening balanced relaxed indie atmospheres with heavier guitar-driven tracks.",
+  "pending": false,
+  "recommendations": [
+    {
+      "type": "roots",
+      "slot": "main",
+      "anchor": "Tokyo Tea Room",
+      "reason": "Since you lean heavily on Tokyo Tea Room for dreamy, atmospheric textures, this foundational group will show you where a lot of that ethereal sound originated. It fits your current heavy rotation by offering a similarly immersive experience.",
+      "artists": [
+        {
+          "artist": "Cocteau Twins",
+          "artist_id": "5Wabl1lPdNOeIn0SQ5A1mp",
+          "spotify_url": "https://open.spotify.com/artist/5Wabl1lPdNOeIn0SQ5A1mp"
+        }
+      ]
+    }
+  ],
+  "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
+  "next_batch": "2026-10-22"
 }
