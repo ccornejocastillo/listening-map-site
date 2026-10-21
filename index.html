@@ -24,14 +24,15 @@
     line-height: 1.5;
   }
   main { max-width: 880px; margin: 0 auto; padding: 48px 16px; }
-  .dates { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--secondary); letter-spacing: .04em; text-transform: uppercase; }
+  .dates { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--secondary); letter-spacing: .04em; text-transform: uppercase; min-height: 1.5em; }
   h1 { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: clamp(36px, 7vw, 56px); line-height: 1.05; margin: 8px 0 32px; }
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .stat { display: flex; flex-direction: column; gap: 4px; padding: 20px 0; }
   .stat + .stat { border-left: 1px solid var(--border); padding-left: 20px; }
   .num { font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 32px; }
   .label { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); text-transform: uppercase; letter-spacing: .04em; }
-  footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--border); font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); }
+  .error { margin-top: 24px; color: var(--secondary); }
+  footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--border); font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); min-height: 1.5em; }
   @media (max-width: 560px) {
     .stats { grid-template-columns: 1fr; }
     .stat + .stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--border); }
@@ -41,15 +42,47 @@
 <body>
 <main>
   <header>
-    <div class="dates">Oct 14 – Oct 21, 2026</div>
+    <div class="dates" id="dates"></div>
     <h1>Listening map</h1>
     <div class="stats">
-      <div class="stat"><span class="num">55</span><span class="label">tracks played</span></div>
-      <div class="stat"><span class="num">20</span><span class="label">artists</span></div>
-      <div class="stat"><span class="num">0</span><span class="label">recommendations merged</span></div>
+      <div class="stat"><span class="num" id="tracks">—</span><span class="label">tracks played</span></div>
+      <div class="stat"><span class="num" id="artists">—</span><span class="label">artists</span></div>
+      <div class="stat"><span class="num" id="merged">—</span><span class="label">recommendations merged</span></div>
     </div>
   </header>
-  <footer>Last updated Oct 21, 2026, 16:09 (Santiago)</footer>
+  <p class="error" id="error" hidden>Couldn't load data.</p>
+  <noscript><p class="error">This page needs JavaScript to show the data.</p></noscript>
+  <footer id="updated"></footer>
 </main>
+<script>
+  // data.json is written by the backend (listening-map); see the schema in its docs/design.md
+  const TZ = "America/Santiago";
+  const day = new Intl.DateTimeFormat("en-US", { timeZone: TZ, month: "short", day: "numeric" });
+  const year = new Intl.DateTimeFormat("en-US", { timeZone: TZ, year: "numeric" });
+  const time = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "2-digit", minute: "2-digit" });
+
+  function show(id, value) {
+    document.getElementById(id).textContent = value ?? "—";
+  }
+
+  fetch("data.json", { cache: "no-cache" })
+    .then(r => {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })
+    .then(data => {
+      const start = new Date(data.window.start);
+      const end = new Date(data.window.end);
+      const updated = new Date(data.generated_at);
+      show("dates", `${day.format(start)} – ${day.format(end)}, ${year.format(end)}`);
+      show("tracks", data.stats?.tracks);
+      show("artists", data.stats?.artists);
+      show("merged", data.stats?.merged);
+      show("updated", `Last updated ${day.format(updated)}, ${year.format(updated)}, ${time.format(updated)} (Santiago)`);
+    })
+    .catch(() => {
+      document.getElementById("error").hidden = false;
+    });
+</script>
 </body>
 </html>
