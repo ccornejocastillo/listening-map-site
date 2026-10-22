@@ -26,16 +26,25 @@ function embed(kind, id, height) {
   });
 }
 
+// A path's artists read as a journey ("Mudhoney, then Dinosaur Jr."), never with an arrow,
+// which looked like "artist → song"
+const THEN = ", then ";
+const steps = names => names.join(THEN);
+
+function stepNames(container, artists, link) {
+  artists.forEach((a, i) => {
+    if (i) container.append(el("span", { className: "then", textContent: THEN }));
+    container.append(link ? el("a", { href: a.spotify_url, textContent: a.artist }) : a.artist);
+  });
+  return container;
+}
+
 function card(rec) {
   const main = rec.slot === "main";
   const path = rec.type === "path";
   const label = [main ? null : "also", rec.second_look ? "second look" : null, rec.type, rec.anchor ? `from ${rec.anchor}` : null]
     .filter(Boolean).join(" · ");
-  const name = el("h3");
-  rec.artists.forEach((a, i) => {
-    if (i) name.append(el("span", { className: "arrow", textContent: " → " }));
-    name.append(a.artist);
-  });
+  const name = stepNames(el("h3"), rec.artists, false);
   // A path shows a compact player per step; otherwise the main one is full size and the optional one compact
   const height = main && !path ? 352 : 152;
   return el("article", { className: ["card", main ? "" : "also", path ? "path" : ""].join(" ").trim() }, [
@@ -48,9 +57,10 @@ function card(rec) {
 // right below it, each recommendation branches off the day it arrived; further down, your top artists run as strands.
 // data.json only carries weights from 0 to 3, never play counts.
 const SVG = "http://www.w3.org/2000/svg";
-const COLORS = { text: "#F2F2F2", secondary: "#9A9A9A", accent: "#4D7CFF", path: "#FF6A3D", bg: "#000000" };
+const COLORS = { text: "#F2F2F2", secondary: "#9A9A9A", accent: "#4D7CFF", path: "#B8936E", bg: "#000000" };
 const shortDay = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "short", day: "numeric" });
 const toDate = s => new Date(s + "T12:00:00Z");
+const STEP_W = 110;  // room per step on a path's branch
 const BAND = [1, 4, 7, 10];  // half the band's thickness, by week weight
 const WEEK_LABELS = ["no plays tracked", "a lighter week", "a usual week", "a heavier week"];
 const STRAND = { 1: { width: 1.5, color: "#575757" }, 2: { width: 3, color: "#6E6E6E" }, 3: { width: 5, color: "#8A8A8A" } };
@@ -129,8 +139,13 @@ function drawGraph(g, container) {
   const branches = g.branches.map(b => {
     const x0 = x(b.created < g.start ? g.start : b.created);
     // Open branches end a little past today, so a branch dropping off main today doesn't run over their marker
-    const x1 = Math.max(b.end ? x(b.end) : today + 12, x0 + minSpan);
-    return { ...b, x0, x1, text: b.artists.join(" → ") };
+    let x1 = Math.max(b.end ? x(b.end) : today + 12, x0 + minSpan);
+    if (b.type === "path") {
+      // Room for a name over each step: up to STEP_W per step, less near the right edge
+      const room = Math.max(width - 8 - (x0 + 14), 30 * b.artists.length);
+      x1 = Math.max(x1, x0 + 14 + Math.min(STEP_W * b.artists.length, room));
+    }
+    return { ...b, x0, x1, text: b.type === "path" ? "" : b.artists.join(", ") };
   });
   const branchLanes = assignLanes(branches, width);
   const branchY = lane => mainY + 4 + laneH * (lane + 1);
@@ -184,11 +199,20 @@ function drawGraph(g, container) {
       d, fill: "none", stroke: color, "stroke-width": extra ? 1.25 : 2, "stroke-opacity": extra ? 0.5 : 1,
       "stroke-dasharray": b.status === "paused" ? "4 4" : "none",
     }, root);
-    label(root, b.artists.join(" → "), b.x0, y, width);
     if (b.type === "path") {
-      b.artists.forEach((_, i) => svg("circle", {
-        cx: b.x0 + 14 + ((b.x1 - b.x0 - 14) * (i + 1)) / (b.artists.length + 1), cy: y, r: 3.5, fill: COLORS.path,
-      }, root));
+      const gap = (b.x1 - b.x0 - 14) / (b.artists.length + 1);
+      b.artists.forEach((artist, i) => {
+        const cx = b.x0 + 14 + gap * (i + 1);
+        svg("circle", { cx, cy: y, r: 3.5, fill: COLORS.path, "fill-opacity": extra ? 0.6 : 1 }, root);
+        // Names alternate above and below the line when the steps are too close for them side by side
+        const below = gap < 85 && i % 2 === 1;
+        const overflow = cx + (artist.length * CHAR_W) / 2 > width - 2;
+        svg("text", {
+          x: overflow ? width - 2 : cx, y: below ? y + 16 : y - 8, "text-anchor": overflow ? "end" : "middle",
+        }, root).textContent = artist;
+      });
+    } else {
+      label(root, b.artists.join(", "), b.x0, y, width);
     }
     const fade = { "stroke-opacity": extra ? 0.6 : 1 };
     if (merged) svg("circle", { cx: b.x1 + 16, cy: mainY, r: 7, fill: COLORS.bg, stroke: COLORS.text, "stroke-width": 3 }, root);
@@ -201,7 +225,7 @@ function drawGraph(g, container) {
 // A playlist extra: compact, no player of its own (its tracks are in the batch playlist)
 function extraItem(rec) {
   return el("li", {}, [
-    el("a", { href: rec.artists[0].spotify_url, textContent: rec.artists.map(a => a.artist).join(" → ") }),
+    stepNames(el("div", { className: "name" }), rec.artists, true),
     el("span", { className: "meta", textContent: [rec.type, rec.anchor ? `from ${rec.anchor}` : null].filter(Boolean).join(" · ") }),
     el("p", { textContent: rec.reason }),
   ]);
@@ -210,7 +234,7 @@ function extraItem(rec) {
 function stuckItem(s) {
   const when = shortDay.format(toDate(s.date));
   return el("li", {}, [
-    s.artists.join(" → "),
+    steps(s.artists),
     el("span", {
       className: "meta",
       textContent: [s.type, s.anchor ? `from ${s.anchor}` : null, s.slot === "extra" ? "via playlist" : null, when].filter(Boolean).join(" · "),

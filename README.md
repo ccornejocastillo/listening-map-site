@@ -42,7 +42,7 @@ Timestamps come as UTC ISO strings and are formatted in `America/Santiago`. Plai
 
 Main pieces:
 
-- `card(rec)`: a recommendation. The label is `also` (optional slot), `second look` if it's one, the type and the anchor. A path joins its artists with an orange `→`.
+- `card(rec)`: a recommendation. The label is `also` (optional slot), `second look` if it's one, the type and the anchor. A path's artists read as a journey, "Mudhoney, then Dinosaur Jr." (`stepNames`), never with an arrow, which looked like "artist → song".
 - `embed(kind, id, height)`: a Spotify embed (`artist` or `playlist`) with the dark theme. Heights: main 352 px, optional and each step of a path 152 px, playlist 352 px. Visitors without a Spotify session only hear previews.
 - `drawGraph(graph, container)`: the branch graph, drawn as SVG at the container's real width (so its text stays readable on phones) and redrawn on resize. `strandRuns` turns the weekly tops into strands, and `assignLanes` places strands and branches in lanes, counting their labels' width.
 - `extraItem(rec)`: a playlist extra in "Also in this playlist": name linked to Spotify, type and anchor, reason. No player of its own; its tracks are in the batch playlist.
@@ -58,7 +58,7 @@ Main pieces:
 - **Playlist extras:** thinner, fainter branches (and end markers) than the recommendations.
 - **Tried:** ends in a gray dot. **Paused:** dashed, ends in an open gray circle.
 - **Open / second look:** ends in an open blue circle, a little past today, so a branch dropping off `main` today doesn't run over it.
-- **Path:** orange, with one dot per step.
+- **Path:** sand-colored (`--path`), with a dot per step and each artist's name over its dot; no label at its start, the legend explains it. The branch gets up to `STEP_W` px per step even when it's new; near the right edge, names alternate above and below the line.
 - Labels of branches near the right edge go to the left of the branch, so they aren't cut off.
 
 ## Style
@@ -72,7 +72,7 @@ Colors are CSS variables in `:root` (`assets/css/main.css`) and the graph uses t
 | `--secondary` | `#9A9A9A` | Labels, dates, tried and paused |
 | `--border` | `#262626` | Dividers |
 | `--accent` | `#4D7CFF` | Recommendation labels, branches, open |
-| `--path` | `#FF6A3D` | Paths |
+| `--path` | `#B8936E` | Paths (a muted sand, so a path doesn't outweigh the main recommendation) |
 
 Strands use three grays by weight, `#575757`, `#6E6E6E` and `#8A8A8A` (`STRAND` in `main.js`); the band's half thickness by week weight is in `BAND`.
 
