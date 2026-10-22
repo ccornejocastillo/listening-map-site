@@ -15,7 +15,7 @@ data/data.json        written by the backend; don't edit it by hand
 ## Who edits what
 
 - `index.html` and everything in `assets/` are edited here by hand.
-- `data/data.json` is written by the backend workflows (`track.yml` daily at 07:00 UTC, `recommend.yml` at 12:00 UTC) as `github-actions[bot]`, so any hand edit is overwritten on the next run. Since the bot commits to `main` every day, run `git pull` before committing here.
+- `data/data.json` is written by the backend workflows (`track.yml` at 03:23 and 21:37 UTC, `recommend.yml` at 04:47 UTC; 00:23, 18:37 and 01:47 in Santiago) as `github-actions[bot]`, so any hand edit is overwritten on the next run. Since the bot commits to `main` every day, run `git pull` before committing here.
 - `data/data.json` is public and holds aggregates only, never individual plays.
 
 ## Data contract
