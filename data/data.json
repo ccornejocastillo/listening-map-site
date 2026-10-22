@@ -1,13 +1,13 @@
 {
-  "version": 5,
-  "generated_at": "2026-10-22T14:32:44Z",
+  "version": 6,
+  "generated_at": "2026-10-22T14:42:13Z",
   "window": {
-    "start": "2026-10-15T14:32:44Z",
-    "end": "2026-10-22T14:32:44Z"
+    "start": "2026-10-15T14:42:13Z",
+    "end": "2026-10-22T14:42:13Z"
   },
   "stats": {
-    "tracks": 80,
-    "artists": 34,
+    "tracks": 81,
+    "artists": 35,
     "merged": 0
   },
   "batch": {
@@ -99,23 +99,28 @@
         "top": [
           {
             "artist": "Tokyo Tea Room",
-            "weight": 3
+            "weight": 3,
+            "favorite": false
           },
           {
             "artist": "Bersuit Vergarabat",
-            "weight": 1
+            "weight": 1,
+            "favorite": true
           },
           {
             "artist": "Pearl Jam",
-            "weight": 1
+            "weight": 1,
+            "favorite": true
           },
           {
             "artist": "Grupo Fantasia",
-            "weight": 1
+            "weight": 1,
+            "favorite": false
           },
           {
             "artist": "AKHÅSHA",
-            "weight": 1
+            "weight": 1,
+            "favorite": false
           }
         ]
       },
@@ -125,23 +130,28 @@
         "top": [
           {
             "artist": "Tokyo Tea Room",
-            "weight": 1
+            "weight": 1,
+            "favorite": false
           },
           {
             "artist": "Bersuit Vergarabat",
-            "weight": 1
+            "weight": 1,
+            "favorite": true
           },
           {
             "artist": "Heroes Del Silencio",
-            "weight": 1
+            "weight": 1,
+            "favorite": false
           },
           {
             "artist": "Alice In Chains",
-            "weight": 1
+            "weight": 1,
+            "favorite": true
           },
           {
             "artist": "Linkin Park",
-            "weight": 1
+            "weight": 1,
+            "favorite": true
           }
         ]
       }
