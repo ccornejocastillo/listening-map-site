@@ -64,6 +64,9 @@ const STEP_W = 110;  // room per step on a path's branch
 const BAND = [1, 4, 7, 10];  // half the band's thickness, by week weight
 const WEEK_LABELS = ["no plays tracked", "a lighter week", "a usual week", "a heavier week"];
 const STRAND = { 1: { width: 1.5, color: "#575757" }, 2: { width: 3, color: "#6E6E6E" }, 3: { width: 5, color: "#8A8A8A" } };
+// Favorites (an artist with a liked song) get a star before their name: a text glyph, not an emoji
+const STAR = "★";
+const STAR_COLOR = "#D9D9D9";
 
 function svg(tag, attrs, parent) {
   const node = document.createElementNS(SVG, tag);
@@ -76,14 +79,15 @@ function svg(tag, attrs, parent) {
 function strandRuns(weeks) {
   const runs = [], open = new Map();
   weeks.forEach((w, i) => {
-    const here = new Map((w.top ?? []).map(t => [t.artist, t.weight]));
+    const here = new Map((w.top ?? []).map(t => [t.artist, t]));
     for (const [artist, run] of open) {
       if (!here.has(artist)) { runs.push(run); open.delete(artist); }
     }
-    for (const [artist, weight] of here) {
-      const run = open.get(artist) ?? { artist, from: i, to: i, weight: 0 };
+    for (const [artist, t] of here) {
+      const run = open.get(artist) ?? { artist, from: i, to: i, weight: 0, favorite: false };
       run.to = i;
-      run.weight = Math.max(run.weight, weight);
+      run.weight = Math.max(run.weight, t.weight);
+      run.favorite = run.favorite || Boolean(t.favorite);
       open.set(artist, run);
     }
   });
@@ -94,9 +98,11 @@ function strandRuns(weeks) {
 const CHAR_W = 6.7;  // IBM Plex Mono at 11px
 const nearEdge = (x0, width) => x0 > width * 0.6;
 
-function label(root, text, x0, y, width) {
+function label(root, text, x0, y, width, star = false) {
   const left = nearEdge(x0, width);
-  svg("text", { x: left ? x0 - 6 : x0 + 18, y: y - 6, "text-anchor": left ? "end" : "start" }, root).textContent = text;
+  const node = svg("text", { x: left ? x0 - 6 : x0 + 18, y: y - 6, "text-anchor": left ? "end" : "start" }, root);
+  if (star) svg("tspan", { style: `fill: ${STAR_COLOR}` }, node).textContent = `${STAR} `;
+  node.append(text);
 }
 
 // Greedy lanes: an item takes the first lane whose last item, label included, ended before it starts
@@ -132,7 +138,7 @@ function drawGraph(g, container) {
     const k = startsAt[r.from] = (startsAt[r.from] ?? -1) + 1;
     const x0 = x(g.weeks[r.from].start) + 6 + 6 * k;
     const x1 = Math.max(r.to === last ? today : x(g.weeks[r.to].start) + weekW * 0.85, x0 + minSpan);
-    return { ...r, x0, x1, text: r.artist };
+    return { ...r, x0, x1, text: r.favorite ? `${STAR} ${r.artist}` : r.artist };
   });
   const strandLanes = assignLanes(strands, width);
 
@@ -184,7 +190,7 @@ function drawGraph(g, container) {
       // A recommendation that merged and now runs in your top is tinted blue
       stroke: stuck.has(s.artist) ? COLORS.accent : style.color, "stroke-opacity": stuck.has(s.artist) ? 0.55 : 1,
     }, root);
-    label(root, s.artist, s.x0, y, width);
+    label(root, s.artist, s.x0, y, width, s.favorite);
   }
 
   for (const b of branches) {

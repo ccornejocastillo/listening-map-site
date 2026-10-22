@@ -20,7 +20,7 @@ data/data.json        written by the backend; don't edit it by hand
 
 ## Data contract
 
-The schema of `data/data.json` is documented in the backend's `docs/design.md` ("The `data.json` contract"). Its `version` goes up when the backend adds keys; the current one is 5. The two repos deploy separately, so the frontend must tolerate keys that don't exist yet: every section stays hidden until its data is there.
+The schema of `data/data.json` is documented in the backend's `docs/design.md` ("The `data.json` contract"). Its `version` goes up when the backend adds keys; the current one is 6. The two repos deploy separately, so the frontend must tolerate keys that don't exist yet: every section stays hidden until its data is there.
 
 | Section | Keys it reads |
 | --- | --- |
@@ -52,7 +52,7 @@ Main pieces:
 
 - `main` is your usual rotation: a white band, flat through each week at that week's weight (0 to 3: no plays, lighter, usual, heavier), with a node per week (hover says which). `data.json` carries weights, never play counts, so the page can't show them.
 - Each recommendation branches off the day it arrived, in its own lane right below `main`.
-- Your top artists run below the branches as strands: one per run of consecutive weeks an artist spent in that week's top 5, gray, as thick as its weight.
+- Your top artists run below the branches as strands: one per run of consecutive weeks an artist spent in that week's top 5, gray, as thick as its weight. Favorites (`favorite`: the artist has a liked song) get a ★ before their name (`STAR`, a text glyph, not an emoji); the strand stays the same gray.
 - Lanes are reused once what was in them, label included, has ended.
 - **Merged:** the branch rejoins `main` with a thick ring. If that artist shows up in your top afterwards, its strand is tinted blue.
 - **Playlist extras:** thinner, fainter branches (and end markers) than the recommendations.
