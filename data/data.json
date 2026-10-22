@@ -1,13 +1,13 @@
 {
   "version": 5,
-  "generated_at": "2026-10-22T14:19:29Z",
+  "generated_at": "2026-10-22T14:32:44Z",
   "window": {
-    "start": "2026-10-15T14:19:29Z",
-    "end": "2026-10-22T14:19:29Z"
+    "start": "2026-10-15T14:32:44Z",
+    "end": "2026-10-22T14:32:44Z"
   },
   "stats": {
-    "tracks": 79,
-    "artists": 35,
+    "tracks": 80,
+    "artists": 34,
     "merged": 0
   },
   "batch": {
@@ -136,11 +136,11 @@
             "weight": 1
           },
           {
-            "artist": "Linkin Park",
+            "artist": "Alice In Chains",
             "weight": 1
           },
           {
-            "artist": "TOOL",
+            "artist": "Linkin Park",
             "weight": 1
           }
         ]
