@@ -1,13 +1,13 @@
 {
   "version": 4,
-  "generated_at": "2026-10-21T20:48:35Z",
+  "generated_at": "2026-10-22T12:52:10Z",
   "window": {
-    "start": "2026-10-14T20:48:35Z",
-    "end": "2026-10-21T20:48:35Z"
+    "start": "2026-10-15T12:52:10Z",
+    "end": "2026-10-22T12:52:10Z"
   },
   "stats": {
-    "tracks": 66,
-    "artists": 28,
+    "tracks": 73,
+    "artists": 31,
     "merged": 0
   },
   "batch": {
@@ -32,10 +32,10 @@
     }
   ],
   "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
-  "next_batch": "2026-10-22",
+  "next_batch": "2026-10-26",
   "graph": {
     "start": "2026-09-07",
-    "today": "2026-10-21",
+    "today": "2026-10-22",
     "weeks": [
       {
         "start": "2026-09-07",
@@ -94,22 +94,22 @@
         "top": [
           {
             "artist": "Tokyo Tea Room",
-            "weight": 2
-          },
-          {
-            "artist": "Bersuit Vergarabat",
-            "weight": 2
-          },
-          {
-            "artist": "Heroes Del Silencio",
-            "weight": 2
-          },
-          {
-            "artist": "System Of A Down",
             "weight": 1
           },
           {
-            "artist": "Men I Trust",
+            "artist": "Bersuit Vergarabat",
+            "weight": 1
+          },
+          {
+            "artist": "Heroes Del Silencio",
+            "weight": 1
+          },
+          {
+            "artist": "Linkin Park",
+            "weight": 1
+          },
+          {
+            "artist": "TOOL",
             "weight": 1
           }
         ]
