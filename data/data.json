@@ -1,9 +1,9 @@
 {
   "version": 5,
-  "generated_at": "2026-10-22T13:53:21Z",
+  "generated_at": "2026-10-22T13:56:56Z",
   "window": {
-    "start": "2026-10-15T13:53:21Z",
-    "end": "2026-10-22T13:53:21Z"
+    "start": "2026-10-15T13:56:56Z",
+    "end": "2026-10-22T13:56:56Z"
   },
   "stats": {
     "tracks": 74,
@@ -11,22 +11,53 @@
     "merged": 0
   },
   "batch": {
-    "id": "2026-10-19",
-    "kind": "monday"
+    "id": "2026-10-22",
+    "kind": "thursday"
   },
-  "summary": "You spent most of the last seven days immersed in the dream pop sounds of Tokyo Tea Room, who made up over half of your total plays. Alongside this primary focus, you mixed in alternative rock, grunge, and Latin rock from artists like Bersuit Vergarabat, Pearl Jam, and Heroes Del Silencio. Your listening balanced relaxed indie atmospheres with heavier guitar-driven tracks.",
+  "summary": "You spent the last few days focused heavily on Tokyo Tea Room, complemented by grunge and alternative rock.",
   "pending": false,
   "recommendations": [
     {
       "type": "roots",
       "slot": "main",
       "anchor": "Tokyo Tea Room",
-      "reason": "Since you lean heavily on Tokyo Tea Room for dreamy, atmospheric textures, this foundational group will show you where a lot of that ethereal sound originated. It fits your current heavy rotation by offering a similarly immersive experience.",
+      "reason": "Since you lean into dreamy, atmospheric vocals and guitars, exploring their foundational influences makes sense. The Cure established the moody, melodic blueprint that modern dream pop relies upon.",
       "artists": [
         {
-          "artist": "Cocteau Twins",
-          "artist_id": "5Wabl1lPdNOeIn0SQ5A1mp",
-          "spotify_url": "https://open.spotify.com/artist/5Wabl1lPdNOeIn0SQ5A1mp"
+          "artist": "The Cure",
+          "artist_id": "7bu3H8JO7d0UbMoVzbo70s",
+          "spotify_url": "https://open.spotify.com/artist/7bu3H8JO7d0UbMoVzbo70s"
+        }
+      ]
+    },
+    {
+      "type": "discovery",
+      "slot": "extra",
+      "anchor": "Tokyo Tea Room",
+      "reason": "This project shares the hazy guitars and gentle melodies found in your most played tracks of the week. It fits your preference for lush, atmospheric indie pop.",
+      "artists": [
+        {
+          "artist": "Fazerdaze",
+          "artist_id": "2awB7Ol181cocZcLLNBBAh",
+          "spotify_url": "https://open.spotify.com/artist/2awB7Ol181cocZcLLNBBAh"
+        }
+      ]
+    },
+    {
+      "type": "path",
+      "slot": "extra",
+      "anchor": "Pearl Jam",
+      "reason": "Starting from your alternative rock rotation, this path moves through early grunge grit into melodic noise rock. It bridges the heavier guitar work you listened to with a fuzzier indie sensibility.",
+      "artists": [
+        {
+          "artist": "Mudhoney",
+          "artist_id": "7LuYiSXiWs86rwWJjEEgB9",
+          "spotify_url": "https://open.spotify.com/artist/7LuYiSXiWs86rwWJjEEgB9"
+        },
+        {
+          "artist": "Dinosaur Jr.",
+          "artist_id": "267VY6GX5LyU5c9M85ECZQ",
+          "spotify_url": "https://open.spotify.com/artist/267VY6GX5LyU5c9M85ECZQ"
         }
       ]
     }
@@ -123,6 +154,37 @@
           "Cocteau Twins"
         ],
         "created": "2026-10-21",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "main",
+        "artists": [
+          "The Cure"
+        ],
+        "created": "2026-10-22",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "extra",
+        "artists": [
+          "Fazerdaze"
+        ],
+        "created": "2026-10-22",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "path",
+        "slot": "extra",
+        "artists": [
+          "Mudhoney",
+          "Dinosaur Jr."
+        ],
+        "created": "2026-10-22",
         "end": null,
         "status": "open"
       }
