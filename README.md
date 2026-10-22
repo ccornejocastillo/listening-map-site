@@ -20,14 +20,14 @@ data/data.json        written by the backend; don't edit it by hand
 
 ## Data contract
 
-The schema of `data/data.json` is documented in the backend's `docs/design.md` ("The `data.json` contract"). Its `version` goes up when the backend adds keys; the current one is 4. The two repos deploy separately, so the frontend must tolerate keys that don't exist yet: every section stays hidden until its data is there.
+The schema of `data/data.json` is documented in the backend's `docs/design.md` ("The `data.json` contract"). Its `version` goes up when the backend adds keys; the current one is 5. The two repos deploy separately, so the frontend must tolerate keys that don't exist yet: every section stays hidden until its data is there.
 
 | Section | Keys it reads |
 | --- | --- |
 | Header: dates and the three numbers | `window`, `stats` |
 | This week | `summary` |
 | Last 7 weeks (branch graph) | `graph` |
-| Your recommendation | `recommendations` |
+| Your recommendation, and "Also in this playlist" for the extras | `recommendations` (`slot` `main`/`optional` as cards, `extra` as the list) |
 | Listen to this batch | `playlist_id` |
 | What stuck | `stuck` |
 | Footer | `generated_at`, `pending`, `next_batch` |
@@ -45,7 +45,8 @@ Main pieces:
 - `card(rec)`: a recommendation. The label is `also` (optional slot), `second look` if it's one, the type and the anchor. A path joins its artists with an orange `→`.
 - `embed(kind, id, height)`: a Spotify embed (`artist` or `playlist`) with the dark theme. Heights: main 352 px, optional and each step of a path 152 px, playlist 352 px. Visitors without a Spotify session only hear previews.
 - `drawGraph(graph, container)`: the branch graph, drawn as SVG at the container's real width (so its text stays readable on phones) and redrawn on resize. `strandRuns` turns the weekly tops into strands, and `assignLanes` places strands and branches in lanes, counting their labels' width.
-- `stuckItem(s)`: an entry in "What stuck".
+- `extraItem(rec)`: a playlist extra in "Also in this playlist": name linked to Spotify, type and anchor, reason. No player of its own; its tracks are in the batch playlist.
+- `stuckItem(s)`: an entry in "What stuck", marked "via playlist" for an extra.
 
 ## Branch graph
 
@@ -54,6 +55,7 @@ Main pieces:
 - Your top artists run below the branches as strands: one per run of consecutive weeks an artist spent in that week's top 5, gray, as thick as its weight.
 - Lanes are reused once what was in them, label included, has ended.
 - **Merged:** the branch rejoins `main` with a thick ring. If that artist shows up in your top afterwards, its strand is tinted blue.
+- **Playlist extras:** thinner, fainter branches (and end markers) than the recommendations.
 - **Tried:** ends in a gray dot. **Paused:** dashed, ends in an open gray circle.
 - **Open / second look:** ends in an open blue circle, a little past today, so a branch dropping off `main` today doesn't run over it.
 - **Path:** orange, with one dot per step.

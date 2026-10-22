@@ -176,10 +176,13 @@ function drawGraph(g, container) {
     const y = branchY(b.lane);
     const color = b.type === "path" ? COLORS.path : COLORS.accent;
     const merged = b.status === "merged";
+    // Playlist extras are thinner and fainter than the recommendations themselves
+    const extra = b.slot === "extra";
     let d = `M ${b.x0} ${mainY} C ${b.x0} ${y}, ${b.x0} ${y}, ${b.x0 + 14} ${y} L ${b.x1} ${y}`;
     if (merged) d += ` C ${b.x1 + 16} ${y}, ${b.x1 + 16} ${y}, ${b.x1 + 16} ${mainY}`;
     svg("path", {
-      d, fill: "none", stroke: color, "stroke-width": 2, "stroke-dasharray": b.status === "paused" ? "4 4" : "none",
+      d, fill: "none", stroke: color, "stroke-width": extra ? 1.25 : 2, "stroke-opacity": extra ? 0.5 : 1,
+      "stroke-dasharray": b.status === "paused" ? "4 4" : "none",
     }, root);
     label(root, b.artists.join(" → "), b.x0, y, width);
     if (b.type === "path") {
@@ -187,18 +190,31 @@ function drawGraph(g, container) {
         cx: b.x0 + 14 + ((b.x1 - b.x0 - 14) * (i + 1)) / (b.artists.length + 1), cy: y, r: 3.5, fill: COLORS.path,
       }, root));
     }
+    const fade = { "stroke-opacity": extra ? 0.6 : 1 };
     if (merged) svg("circle", { cx: b.x1 + 16, cy: mainY, r: 7, fill: COLORS.bg, stroke: COLORS.text, "stroke-width": 3 }, root);
     else if (b.status === "tried") svg("circle", { cx: b.x1, cy: y, r: 4, fill: COLORS.secondary }, root);
     else if (b.status === "paused") svg("circle", { cx: b.x1, cy: y, r: 4, fill: COLORS.bg, stroke: COLORS.secondary, "stroke-width": 1.5 }, root);
-    else svg("circle", { cx: b.x1, cy: y, r: 5, fill: COLORS.bg, stroke: color, "stroke-width": 2 }, root);
+    else svg("circle", { cx: b.x1, cy: y, r: extra ? 4 : 5, fill: COLORS.bg, stroke: color, "stroke-width": extra ? 1.5 : 2, ...fade }, root);
   }
+}
+
+// A playlist extra: compact, no player of its own (its tracks are in the batch playlist)
+function extraItem(rec) {
+  return el("li", {}, [
+    el("a", { href: rec.artists[0].spotify_url, textContent: rec.artists.map(a => a.artist).join(" → ") }),
+    el("span", { className: "meta", textContent: [rec.type, rec.anchor ? `from ${rec.anchor}` : null].filter(Boolean).join(" · ") }),
+    el("p", { textContent: rec.reason }),
+  ]);
 }
 
 function stuckItem(s) {
   const when = shortDay.format(toDate(s.date));
   return el("li", {}, [
     s.artists.join(" → "),
-    el("span", { className: "meta", textContent: [s.type, s.anchor ? `from ${s.anchor}` : null, when].filter(Boolean).join(" · ") }),
+    el("span", {
+      className: "meta",
+      textContent: [s.type, s.anchor ? `from ${s.anchor}` : null, s.slot === "extra" ? "via playlist" : null, when].filter(Boolean).join(" · "),
+    }),
   ]);
 }
 
@@ -241,10 +257,15 @@ fetch("data/data.json", { cache: "no-cache" })
       document.getElementById("stuck").hidden = false;
     }
 
-    const recs = data.recommendations ?? [];
+    const recs = (data.recommendations ?? []).filter(r => r.slot !== "extra");
+    const extras = (data.recommendations ?? []).filter(r => r.slot === "extra");
     if (recs.length) {
       document.getElementById("cards").append(...recs.map(card));
       document.getElementById("recommendation").hidden = false;
+      if (extras.length) {
+        document.getElementById("extras-list").append(...extras.map(extraItem));
+        document.getElementById("extras").hidden = false;
+      }
       if (data.playlist_id) {
         const playlist = document.getElementById("playlist");
         playlist.append(embed("playlist", data.playlist_id, 352));
