@@ -1,13 +1,13 @@
 {
-  "version": 4,
-  "generated_at": "2026-10-22T12:52:10Z",
+  "version": 5,
+  "generated_at": "2026-10-22T13:53:21Z",
   "window": {
-    "start": "2026-10-15T12:52:10Z",
-    "end": "2026-10-22T12:52:10Z"
+    "start": "2026-10-15T13:53:21Z",
+    "end": "2026-10-22T13:53:21Z"
   },
   "stats": {
-    "tracks": 73,
-    "artists": 31,
+    "tracks": 74,
+    "artists": 32,
     "merged": 0
   },
   "batch": {
@@ -118,6 +118,7 @@
     "branches": [
       {
         "type": "roots",
+        "slot": "main",
         "artists": [
           "Cocteau Twins"
         ],
