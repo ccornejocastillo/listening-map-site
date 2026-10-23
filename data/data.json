@@ -1,12 +1,12 @@
 {
   "version": 7,
-  "generated_at": "2026-10-23T09:36:46Z",
+  "generated_at": "2026-10-23T13:27:07Z",
   "window": {
-    "start": "2026-10-16T09:36:46Z",
-    "end": "2026-10-23T09:36:46Z"
+    "start": "2026-10-16T13:27:07Z",
+    "end": "2026-10-23T13:27:07Z"
   },
   "stats": {
-    "tracks": 76,
+    "tracks": 82,
     "artists": 39,
     "merged": 0
   },
@@ -129,6 +129,11 @@
         "weight": 3,
         "top": [
           {
+            "artist": "Como Asesinar a Felipes",
+            "weight": 2,
+            "favorite": true
+          },
+          {
             "artist": "Fazerdaze",
             "weight": 2,
             "favorite": false
@@ -147,11 +152,6 @@
             "artist": "Pearl Jam",
             "weight": 1,
             "favorite": true
-          },
-          {
-            "artist": "Ases Falsos",
-            "weight": 1,
-            "favorite": false
           }
         ]
       }
