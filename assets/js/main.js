@@ -57,10 +57,10 @@ function card(rec) {
 // right below it, each recommendation branches off the day it arrived; further down, your top artists run as strands.
 // data.json only carries weights from 0 to 3, never play counts.
 const SVG = "http://www.w3.org/2000/svg";
-const COLORS = { text: "#F2F2F2", secondary: "#9A9A9A", accent: "#4D7CFF", path: "#B8936E", bg: "#000000" };
+const COLORS = { text: "#F2F2F2", secondary: "#9A9A9A", accent: "#4D7CFF", bg: "#000000" };
 const shortDay = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "short", day: "numeric" });
 const toDate = s => new Date(s + "T12:00:00Z");
-const STEP_W = 110;  // room per step on a path's branch
+const REC_IN_TOP_W = 4;  // a recommendation in your top: solid and thick, unlike the dotted ones you only tried
 const BAND = [1, 4, 7, 10];  // half the band's thickness, by week weight
 const WEEK_LABELS = ["no plays tracked", "a lighter week", "a usual week", "a heavier week"];
 const STRAND = { 1: { width: 1.5, color: "#575757" }, 2: { width: 3, color: "#6E6E6E" }, 3: { width: 5, color: "#8A8A8A" } };
@@ -131,37 +131,52 @@ function drawGraph(g, container) {
   const today = x(g.today);
   const last = g.weeks.length - 1;
 
-  // Strands, with their drops off the band spread a little when several start the same week
-  const stuck = new Set(g.branches.filter(b => b.status === "merged").flatMap(b => b.artists));
+  // Recommendations are drawn per artist (a path's artists too), and only the ones you've played.
+  // Older data.json has plain names: draw them all.
+  const recs = g.branches.flatMap(b => b.artists
+    .map(a => (typeof a === "string" ? { name: a, played: true } : a))
+    .filter(a => a.played)
+    .map(a => ({ name: a.name, created: b.created < g.start ? g.start : b.created, end: b.end, status: b.status })));
+  const recByName = new Map(recs.map(r => [r.name, r]));
+  const weekOf = d => Math.floor((toDate(d) - start) / 864e5 / 7);
+
+  // Strands, with their drops off the band spread a little when several start the same week.
+  // A played recommendation in your top since it arrived runs here as a blue strand instead of as a branch.
   const startsAt = {};
   const strands = strandRuns(g.weeks).map(r => {
     const k = startsAt[r.from] = (startsAt[r.from] ?? -1) + 1;
     const x0 = x(g.weeks[r.from].start) + 6 + 6 * k;
     const x1 = Math.max(r.to === last ? today : x(g.weeks[r.to].start) + weekW * 0.85, x0 + minSpan);
-    return { ...r, x0, x1, text: r.favorite ? `${STAR} ${r.artist}` : r.artist };
+    const rec = recByName.get(r.artist);
+    return {
+      ...r, x0, x1, rec: rec && r.to >= weekOf(rec.created) ? rec : null,
+      text: r.favorite ? `${STAR} ${r.artist}` : r.artist,
+    };
   });
   const strandLanes = assignLanes(strands, width);
+  const inTop = new Set(strands.filter(s => s.rec).map(s => s.artist));
 
-  const branches = g.branches.map(b => {
-    const x0 = x(b.created < g.start ? g.start : b.created);
+  // The other played recommendations branch off main, dotted: you tried them, they're not in your top
+  const branches = recs.filter(r => !inTop.has(r.name)).map(r => {
+    const x0 = x(r.created);
     // Open branches end a little past today, so a branch dropping off main today doesn't run over their marker
-    let x1 = Math.max(b.end ? x(b.end) : today + 12, x0 + minSpan);
-    if (b.type === "path") {
-      // Room for a name over each step: up to STEP_W per step, less near the right edge
-      const room = Math.max(width - 8 - (x0 + 14), 30 * b.artists.length);
-      x1 = Math.max(x1, x0 + 14 + Math.min(STEP_W * b.artists.length, room));
-    }
-    return { ...b, x0, x1, text: b.type === "path" ? "" : b.artists.join(", ") };
+    const x1 = Math.max(r.end ? x(r.end) : today + 12, x0 + minSpan);
+    return { ...r, x0, x1, text: r.name };
   });
   const branchLanes = assignLanes(branches, width);
   const branchY = lane => mainY + 4 + laneH * (lane + 1);
-  const strandTop = branchY(branchLanes - 1) + 10;
+  const strandTop = branchLanes ? branchY(branchLanes - 1) + 10 : mainY + 10;
   const strandY = lane => strandTop + strandH * (lane + 1);
-  const height = strandY(strandLanes - 1) + 30;
+  const height = (strandLanes ? strandY(strandLanes - 1) : strandTop) + 30;
   const root = svg("svg", {
     width, height, role: "img",
-    "aria-label": "Your listening as a band, your top artists as strands below it, and recommendations branching off it",
+    "aria-label": "Your listening as a band, your top artists as strands below it, and the recommendations you've played",
   }, container);
+  // Layers, back to front: the lines start under the band so they seem to come out of it, without tips over it;
+  // the band and its week nodes; then markers and labels
+  const lines = svg("g", {}, root);
+  const band = svg("g", {}, root);
+  const marks = svg("g", {}, root);
 
   // The band: flat through each week at that week's thickness, with a short step into the next one
   const pts = [];
@@ -171,60 +186,44 @@ function drawGraph(g, container) {
     pts.push([x0, h], [x1, h]);
   });
   const outline = [...pts.map(([px, h]) => `${px},${mainY - h}`), ...[...pts].reverse().map(([px, h]) => `${px},${mainY + h}`)];
-  svg("polygon", { points: outline.join(" "), fill: COLORS.text }, root);
+  svg("polygon", { points: outline.join(" "), fill: COLORS.text }, band);
   g.weeks.forEach((w, i) => {
     const empty = !w.weight;
-    const node = svg("circle", { cx: x(w.start), cy: mainY, r: empty ? 3 : 2.5, fill: empty ? COLORS.text : COLORS.bg }, root);
+    const node = svg("circle", { cx: x(w.start), cy: mainY, r: empty ? 3 : 2.5, fill: empty ? COLORS.text : COLORS.bg }, band);
     svg("title", {}, node).textContent = `Week of ${shortDay.format(toDate(w.start))}: ${WEEK_LABELS[w.weight ?? 0]}`;
     if (i % (width < 480 ? 2 : 1) === 0) {
-      svg("text", { x: x(w.start), y: height - 2, "text-anchor": i ? "middle" : "start" }, root).textContent = shortDay.format(toDate(w.start));
+      svg("text", { x: x(w.start), y: height - 2, "text-anchor": i ? "middle" : "start" }, marks).textContent = shortDay.format(toDate(w.start));
     }
   });
+
+  // How a recommendation ends: merged rejoins main with a ring, tried ends in a gray dot
+  const ending = (rec, xEnd, y, open) => {
+    if (rec.status === "merged") svg("circle", { cx: x(rec.end), cy: mainY, r: 7, fill: COLORS.bg, stroke: COLORS.text, "stroke-width": 3 }, marks);
+    else if (rec.status === "tried") svg("circle", { cx: xEnd, cy: y, r: 4, fill: COLORS.secondary }, marks);
+    else open();
+  };
 
   for (const s of strands) {
     const y = strandY(s.lane);
     const style = STRAND[s.weight];
     svg("path", {
       d: `M ${s.x0} ${mainY} C ${s.x0} ${y}, ${s.x0} ${y}, ${s.x0 + 14} ${y} L ${s.x1} ${y}`,
-      fill: "none", "stroke-linecap": "round", "stroke-width": style.width,
-      // A recommendation that merged and now runs in your top is tinted blue
-      stroke: stuck.has(s.artist) ? COLORS.accent : style.color, "stroke-opacity": stuck.has(s.artist) ? 0.55 : 1,
-    }, root);
-    label(root, s.artist, s.x0, y, width, s.favorite);
+      fill: "none", "stroke-linecap": "round",
+      stroke: s.rec ? COLORS.accent : style.color, "stroke-width": s.rec ? REC_IN_TOP_W : style.width,
+    }, lines);
+    label(marks, s.artist, s.x0, y, width, s.favorite);
+    if (s.rec) ending(s.rec, s.x1, y, () => svg("circle", { cx: s.x1 + 5, cy: y, r: 5, fill: COLORS.accent }, marks));
   }
 
   for (const b of branches) {
     const y = branchY(b.lane);
-    const color = b.type === "path" ? COLORS.path : COLORS.accent;
-    const merged = b.status === "merged";
-    // Playlist extras are thinner and fainter than the recommendations themselves
-    const extra = b.slot === "extra";
     let d = `M ${b.x0} ${mainY} C ${b.x0} ${y}, ${b.x0} ${y}, ${b.x0 + 14} ${y} L ${b.x1} ${y}`;
-    if (merged) d += ` C ${b.x1 + 16} ${y}, ${b.x1 + 16} ${y}, ${b.x1 + 16} ${mainY}`;
-    svg("path", {
-      d, fill: "none", stroke: color, "stroke-width": extra ? 1.25 : 2, "stroke-opacity": extra ? 0.5 : 1,
-      "stroke-dasharray": b.status === "paused" ? "4 4" : "none",
-    }, root);
-    if (b.type === "path") {
-      const gap = (b.x1 - b.x0 - 14) / (b.artists.length + 1);
-      b.artists.forEach((artist, i) => {
-        const cx = b.x0 + 14 + gap * (i + 1);
-        svg("circle", { cx, cy: y, r: 3.5, fill: COLORS.path, "fill-opacity": extra ? 0.6 : 1 }, root);
-        // Names alternate above and below the line when the steps are too close for them side by side
-        const below = gap < 85 && i % 2 === 1;
-        const overflow = cx + (artist.length * CHAR_W) / 2 > width - 2;
-        svg("text", {
-          x: overflow ? width - 2 : cx, y: below ? y + 16 : y - 8, "text-anchor": overflow ? "end" : "middle",
-        }, root).textContent = artist;
-      });
-    } else {
-      label(root, b.artists.join(", "), b.x0, y, width);
-    }
-    const fade = { "stroke-opacity": extra ? 0.6 : 1 };
-    if (merged) svg("circle", { cx: b.x1 + 16, cy: mainY, r: 7, fill: COLORS.bg, stroke: COLORS.text, "stroke-width": 3 }, root);
-    else if (b.status === "tried") svg("circle", { cx: b.x1, cy: y, r: 4, fill: COLORS.secondary }, root);
-    else if (b.status === "paused") svg("circle", { cx: b.x1, cy: y, r: 4, fill: COLORS.bg, stroke: COLORS.secondary, "stroke-width": 1.5 }, root);
-    else svg("circle", { cx: b.x1, cy: y, r: extra ? 4 : 5, fill: COLORS.bg, stroke: color, "stroke-width": extra ? 1.5 : 2, ...fade }, root);
+    if (b.status === "merged") d += ` C ${b.x1 + 16} ${y}, ${b.x1 + 16} ${y}, ${b.x1 + 16} ${mainY}`;
+    svg("path", { d, fill: "none", stroke: COLORS.accent, "stroke-width": 1.5, "stroke-dasharray": "3 4" }, lines);
+    label(marks, b.name, b.x0, y, width);
+    ending(b, b.x1, y, () => svg("circle", {
+      cx: b.x1 + 3, cy: y, r: 3.5, fill: COLORS.bg, stroke: COLORS.accent, "stroke-width": 1.5,
+    }, marks));
   }
 }
 

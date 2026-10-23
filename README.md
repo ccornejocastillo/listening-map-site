@@ -20,7 +20,7 @@ data/data.json        written by the backend; don't edit it by hand
 
 ## Data contract
 
-The schema of `data/data.json` is documented in the backend's `docs/design.md` ("The `data.json` contract"). Its `version` goes up when the backend adds keys; the current one is 6. The two repos deploy separately, so the frontend must tolerate keys that don't exist yet: every section stays hidden until its data is there.
+The schema of `data/data.json` is documented in the backend's `docs/design.md` ("The `data.json` contract"). Its `version` goes up when the backend adds keys; the current one is 7. The two repos deploy separately, so the frontend must tolerate keys that don't exist yet: every section stays hidden until its data is there.
 
 | Section | Keys it reads |
 | --- | --- |
@@ -51,15 +51,13 @@ Main pieces:
 ## Branch graph
 
 - `main` is your usual rotation: a white band, flat through each week at that week's weight (0 to 3: no plays, lighter, usual, heavier), with a node per week (hover says which). `data.json` carries weights, never play counts, so the page can't show them.
-- Each recommendation branches off the day it arrived, in its own lane right below `main`.
-- Your top artists run below the branches as strands: one per run of consecutive weeks an artist spent in that week's top 5, gray, as thick as its weight. Favorites (`favorite`: the artist has a liked song) get a ★ before their name (`STAR`, a text glyph, not an emoji); the strand stays the same gray.
-- Lanes are reused once what was in them, label included, has ended.
-- **Merged:** the branch rejoins `main` with a thick ring. If that artist shows up in your top afterwards, its strand is tinted blue.
-- **Playlist extras:** thinner, fainter branches (and end markers) than the recommendations.
-- **Tried:** ends in a gray dot. **Paused:** dashed, ends in an open gray circle.
-- **Open / second look:** ends in an open blue circle, a little past today, so a branch dropping off `main` today doesn't run over it.
-- **Path:** sand-colored (`--path`), with a dot per step and each artist's name over its dot; no label at its start, the legend explains it. The branch gets up to `STEP_W` px per step even when it's new; near the right edge, names alternate above and below the line.
-- Labels of branches near the right edge go to the left of the branch, so they aren't cut off.
+- Your top artists run below as strands: one per run of consecutive weeks an artist spent in that week's top 5, gray, as thick as its weight. Favorites (`favorite`: the artist has a liked song) get a ★ before their name (`STAR`, a text glyph, not an emoji); the strand stays the same gray.
+- Recommendations are drawn per artist (a path's artists too, each on its own) and only the ones with `played`; older `data.json` with plain names draws them all.
+- **Tried a bit:** a thin dotted blue branch off `main` from the day it arrived, ending in a small open circle a little past today (so a branch dropping off `main` today doesn't run over it).
+- **In your top:** a recommendation whose artist is in your top since it arrived is drawn as that strand, solid blue and `REC_IN_TOP_W` thick, ending in a filled dot, and not as a branch.
+- **Merged:** a thick ring on `main` the day it merged. **Tried:** ends in a gray dot.
+- Three layers: lines (`lines`) under the band (`band`), then markers and labels (`marks`), so lines come out from under `main` with no tips over it.
+- Lanes are reused once what was in them, label included, has ended. Labels near the right edge go to the left of their line, so they aren't cut off.
 
 ## Style
 
@@ -72,7 +70,7 @@ Colors are CSS variables in `:root` (`assets/css/main.css`) and the graph uses t
 | `--secondary` | `#9A9A9A` | Labels, dates, tried and paused |
 | `--border` | `#262626` | Dividers |
 | `--accent` | `#4D7CFF` | Recommendation labels, branches, open |
-| `--path` | `#B8936E` | Paths (a muted sand, so a path doesn't outweigh the main recommendation) |
+| `--path` | `#B8936E` | Path cards (a muted sand, so a path doesn't outweigh the main recommendation) |
 
 Strands use three grays by weight, `#575757`, `#6E6E6E` and `#8A8A8A` (`STRAND` in `main.js`); the band's half thickness by week weight is in `BAND`.
 
