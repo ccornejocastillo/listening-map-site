@@ -1,13 +1,13 @@
 {
   "version": 6,
-  "generated_at": "2026-10-22T14:51:22Z",
+  "generated_at": "2026-10-23T00:08:35Z",
   "window": {
-    "start": "2026-10-15T14:51:22Z",
-    "end": "2026-10-22T14:51:22Z"
+    "start": "2026-10-16T00:08:35Z",
+    "end": "2026-10-23T00:08:35Z"
   },
   "stats": {
-    "tracks": 79,
-    "artists": 35,
+    "tracks": 73,
+    "artists": 39,
     "merged": 0
   },
   "batch": {
@@ -129,27 +129,27 @@
         "weight": 3,
         "top": [
           {
+            "artist": "Fazerdaze",
+            "weight": 2,
+            "favorite": false
+          },
+          {
+            "artist": "TOOL",
+            "weight": 1,
+            "favorite": true
+          },
+          {
+            "artist": "Ases Falsos",
+            "weight": 1,
+            "favorite": false
+          },
+          {
             "artist": "Tokyo Tea Room",
             "weight": 1,
             "favorite": false
           },
           {
             "artist": "Bersuit Vergarabat",
-            "weight": 1,
-            "favorite": true
-          },
-          {
-            "artist": "Heroes Del Silencio",
-            "weight": 1,
-            "favorite": false
-          },
-          {
-            "artist": "Alice In Chains",
-            "weight": 1,
-            "favorite": true
-          },
-          {
-            "artist": "Linkin Park",
             "weight": 1,
             "favorite": true
           }
