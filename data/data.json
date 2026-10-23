@@ -1,13 +1,13 @@
 {
   "version": 7,
-  "generated_at": "2026-10-23T13:27:07Z",
+  "generated_at": "2026-10-23T23:58:20Z",
   "window": {
-    "start": "2026-10-16T13:27:07Z",
-    "end": "2026-10-23T13:27:07Z"
+    "start": "2026-10-16T23:58:20Z",
+    "end": "2026-10-23T23:58:20Z"
   },
   "stats": {
-    "tracks": 82,
-    "artists": 39,
+    "tracks": 90,
+    "artists": 40,
     "merged": 0
   },
   "batch": {
@@ -130,13 +130,18 @@
         "top": [
           {
             "artist": "Como Asesinar a Felipes",
-            "weight": 2,
+            "weight": 1,
             "favorite": true
           },
           {
             "artist": "Fazerdaze",
-            "weight": 2,
+            "weight": 1,
             "favorite": false
+          },
+          {
+            "artist": "Tame Impala",
+            "weight": 1,
+            "favorite": true
           },
           {
             "artist": "Bersuit Vergarabat",
@@ -145,11 +150,6 @@
           },
           {
             "artist": "TOOL",
-            "weight": 1,
-            "favorite": true
-          },
-          {
-            "artist": "Pearl Jam",
             "weight": 1,
             "favorite": true
           }
