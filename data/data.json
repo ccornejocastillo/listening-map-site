@@ -1,13 +1,13 @@
 {
   "version": 7,
-  "generated_at": "2026-10-25T09:26:20Z",
+  "generated_at": "2026-10-25T23:31:17Z",
   "window": {
-    "start": "2026-10-18T09:26:20Z",
-    "end": "2026-10-25T09:26:20Z"
+    "start": "2026-10-18T23:31:17Z",
+    "end": "2026-10-25T23:31:17Z"
   },
   "stats": {
-    "tracks": 131,
-    "artists": 48,
+    "tracks": 128,
+    "artists": 46,
     "merged": 0
   },
   "batch": {
