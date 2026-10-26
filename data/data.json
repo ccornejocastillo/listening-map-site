@@ -1,9 +1,9 @@
 {
   "version": 7,
-  "generated_at": "2026-10-26T09:07:35Z",
+  "generated_at": "2026-10-26T10:33:05Z",
   "window": {
-    "start": "2026-10-19T09:07:35Z",
-    "end": "2026-10-26T09:07:35Z"
+    "start": "2026-10-19T10:33:05Z",
+    "end": "2026-10-26T10:33:05Z"
   },
   "stats": {
     "tracks": 128,
@@ -11,53 +11,35 @@
     "merged": 0
   },
   "batch": {
-    "id": "2026-10-22",
-    "kind": "thursday"
+    "id": "2026-10-26",
+    "kind": "monday"
   },
-  "summary": "You spent the last few days focused heavily on Tokyo Tea Room, complemented by grunge and alternative rock.",
+  "summary": "You spent the last week listening to a balanced mix of rock, alternative, and hip hop. Bersuit Vergarabat led your rotation with heavy plays, followed closely by Como Asesinar a Felipes and Fazerdaze. Your recent sessions also featured a steady amount of Pearl Jam, Tame Impala, and Radiohead.",
   "pending": false,
   "recommendations": [
     {
       "type": "roots",
       "slot": "main",
-      "anchor": "Tokyo Tea Room",
-      "reason": "Since you lean into dreamy, atmospheric vocals and guitars, exploring their foundational influences makes sense. The Cure established the moody, melodic blueprint that modern dream pop relies upon.",
+      "anchor": "Alice In Chains",
+      "reason": "Since you frequently listen to Alice In Chains, checking out the Melvins gives you a direct look at the heavier, sludgier side of the Pacific Northwest sound that helped shape your favorite tracks.",
       "artists": [
         {
-          "artist": "The Cure",
-          "artist_id": "7bu3H8JO7d0UbMoVzbo70s",
-          "spotify_url": "https://open.spotify.com/artist/7bu3H8JO7d0UbMoVzbo70s"
+          "artist": "Melvins",
+          "artist_id": "6aVjo0xHSiuW5hkasoYSR3",
+          "spotify_url": "https://open.spotify.com/artist/6aVjo0xHSiuW5hkasoYSR3"
         }
       ]
     },
     {
       "type": "discovery",
       "slot": "extra",
-      "anchor": "Tokyo Tea Room",
-      "reason": "This project shares the hazy guitars and gentle melodies found in your most played tracks of the week. It fits your preference for lush, atmospheric indie pop.",
+      "anchor": "Fazerdaze",
+      "reason": "You have been playing a good deal of Fazerdaze and Tokyo Tea Room lately. Alvvays offers a similar blend of hazy guitars and sharp melodic songwriting that fits right into your current rotation.",
       "artists": [
         {
-          "artist": "Fazerdaze",
-          "artist_id": "2awB7Ol181cocZcLLNBBAh",
-          "spotify_url": "https://open.spotify.com/artist/2awB7Ol181cocZcLLNBBAh"
-        }
-      ]
-    },
-    {
-      "type": "path",
-      "slot": "extra",
-      "anchor": "Pearl Jam",
-      "reason": "Starting from your alternative rock rotation, this path moves through early grunge grit into melodic noise rock. It bridges the heavier guitar work you listened to with a fuzzier indie sensibility.",
-      "artists": [
-        {
-          "artist": "Mudhoney",
-          "artist_id": "7LuYiSXiWs86rwWJjEEgB9",
-          "spotify_url": "https://open.spotify.com/artist/7LuYiSXiWs86rwWJjEEgB9"
-        },
-        {
-          "artist": "Dinosaur Jr.",
-          "artist_id": "267VY6GX5LyU5c9M85ECZQ",
-          "spotify_url": "https://open.spotify.com/artist/267VY6GX5LyU5c9M85ECZQ"
+          "artist": "Alvvays",
+          "artist_id": "3kzwYV3OCB010YfXMF0Avt",
+          "spotify_url": "https://open.spotify.com/artist/3kzwYV3OCB010YfXMF0Avt"
         }
       ]
     }
@@ -210,6 +192,32 @@
           }
         ],
         "created": "2026-10-22",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Melvins",
+            "played": false
+          }
+        ],
+        "created": "2026-10-26",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Alvvays",
+            "played": false
+          }
+        ],
+        "created": "2026-10-26",
         "end": null,
         "status": "open"
       }
