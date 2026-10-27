@@ -57,7 +57,8 @@ Main pieces:
 - **In your top:** a recommendation whose artist is in your top since it arrived is drawn as that strand, solid blue and `REC_IN_TOP_W` thick, ending in a filled dot, and not as a branch.
 - **Merged:** a thick ring on `main` the day it merged. **Tried:** ends in a gray dot.
 - Three layers: lines (`lines`) under the band (`band`), then markers and labels (`marks`), so lines come out from under `main` with no tips over it.
-- Lanes are reused once what was in them, label included, has ended. Labels near the right edge go to the left of their line, so they aren't cut off.
+- `main` sits in the middle: `assignLanes` puts each line in the free lane closest to `main`, above or below (on a tie, the side with fewer lanes, then alternating), branches first so recommendations are nearest to it. A lane is reused once what was in it, label included, has ended.
+- A label goes to the right of where its line starts; only when it wouldn't fit before the edge, to the left (`nearEdge`).
 
 ## Style
 

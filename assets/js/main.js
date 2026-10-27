@@ -94,36 +94,50 @@ function strandRuns(weeks) {
   return [...runs, ...open.values()].sort((a, b) => a.from - b.from || b.weight - a.weight);
 }
 
-// Labels near the right edge go to the left of their line, so they aren't cut off
+// A label goes to the right of where its line starts; only when it wouldn't fit there, to the left
 const CHAR_W = 6.7;  // IBM Plex Mono at 11px
-const nearEdge = (x0, width) => x0 > width * 0.6;
+const labelWidth = (text, star) => (text.length + (star ? 2 : 0)) * CHAR_W;
+const nearEdge = (x0, width, textW) => x0 + 18 + textW > width - 4;
 
 function label(root, text, x0, y, width, star = false) {
-  const left = nearEdge(x0, width);
+  const left = nearEdge(x0, width, labelWidth(text, star));
   const node = svg("text", { x: left ? x0 - 6 : x0 + 18, y: y - 6, "text-anchor": left ? "end" : "start" }, root);
   if (star) svg("tspan", { style: `fill: ${STAR_COLOR}` }, node).textContent = `${STAR} `;
   node.append(text);
 }
 
-// Greedy lanes: an item takes the first lane whose last item, label included, ended before it starts
+// Lanes on both sides of main: an item takes the free lane closest to main, above or below, whichever is
+// closer (on a tie, the side with fewer lanes, then alternating). A lane is free once its last item, label
+// included, has ended. Items placed first get the inner lanes.
 function assignLanes(items, width) {
-  const lanes = [];
+  const sides = { [-1]: [], [1]: [] };
+  let turn = 1;
   for (const it of items) {
     const textW = it.text.length * CHAR_W;
-    const from = nearEdge(it.x0, width) ? it.x0 - 6 - textW : it.x0;
-    const to = Math.max(it.x1, nearEdge(it.x0, width) ? it.x0 : it.x0 + 18 + textW);
-    let lane = lanes.findIndex(end => end + 16 < from);
-    if (lane < 0) lane = lanes.push(0) - 1;
-    lanes[lane] = to;
-    it.lane = lane;
+    const left = nearEdge(it.x0, width, textW);
+    const from = left ? it.x0 - 6 - textW : it.x0;
+    const to = Math.max(it.x1, left ? it.x0 : it.x0 + 18 + textW);
+    const free = side => {
+      const i = sides[side].findIndex(end => end + 16 < from);
+      return i < 0 ? sides[side].length : i;
+    };
+    const up = free(-1), down = free(1);
+    let side;
+    if (up !== down) side = up < down ? -1 : 1;
+    else if (sides[-1].length !== sides[1].length) side = sides[-1].length < sides[1].length ? -1 : 1;
+    else side = turn;
+    turn = -side;
+    it.side = side;
+    it.lane = side === -1 ? up : down;
+    sides[side][it.lane] = to;
   }
-  return lanes.length;
+  return { up: sides[-1].length, down: sides[1].length };
 }
 
 function drawGraph(g, container) {
   container.replaceChildren();
   const width = container.clientWidth;
-  const left = 8, right = 20, mainY = 18, strandH = 24, laneH = 30;
+  const left = 8, right = 20, laneH = 26, firstLane = 30, labelRoom = 18;
   const start = toDate(g.start), span = g.weeks.length * 7;
   const x = d => left + ((toDate(d) - start) / 864e5 / span) * (width - left - right);
   const weekW = x(g.weeks[1]?.start ?? g.today) - x(g.weeks[0].start);
@@ -153,7 +167,7 @@ function drawGraph(g, container) {
       text: r.favorite ? `${STAR} ${r.artist}` : r.artist,
     };
   });
-  const strandLanes = assignLanes(strands, width);
+  // The lanes are assigned after the branches are built, below
   const inTop = new Set(strands.filter(s => s.rec).map(s => s.artist));
 
   // The other played recommendations branch off main, dotted: you tried them, they're not in your top
@@ -163,11 +177,12 @@ function drawGraph(g, container) {
     const x1 = Math.max(r.end ? x(r.end) : today + 12, x0 + minSpan);
     return { ...r, x0, x1, text: r.name };
   });
-  const branchLanes = assignLanes(branches, width);
-  const branchY = lane => mainY + 4 + laneH * (lane + 1);
-  const strandTop = branchLanes ? branchY(branchLanes - 1) + 10 : mainY + 10;
-  const strandY = lane => strandTop + strandH * (lane + 1);
-  const height = (strandLanes ? strandY(strandLanes - 1) : strandTop) + 30;
+  // One set of lanes on both sides of main: branches first, so the recommendations sit closest to it
+  const lanes = assignLanes([...branches, ...strands], width);
+  const extent = n => (n ? firstLane + laneH * (n - 1) + labelRoom : 12);
+  const mainY = extent(lanes.up) + 4;
+  const laneY = it => mainY + it.side * (firstLane + laneH * it.lane);
+  const height = mainY + extent(lanes.down) + 18;
   const root = svg("svg", {
     width, height, role: "img",
     "aria-label": "Your listening as a band, your top artists as strands below it, and the recommendations you've played",
@@ -204,7 +219,7 @@ function drawGraph(g, container) {
   };
 
   for (const s of strands) {
-    const y = strandY(s.lane);
+    const y = laneY(s);
     const style = STRAND[s.weight];
     svg("path", {
       d: `M ${s.x0} ${mainY} C ${s.x0} ${y}, ${s.x0} ${y}, ${s.x0 + 14} ${y} L ${s.x1} ${y}`,
@@ -216,7 +231,7 @@ function drawGraph(g, container) {
   }
 
   for (const b of branches) {
-    const y = branchY(b.lane);
+    const y = laneY(b);
     let d = `M ${b.x0} ${mainY} C ${b.x0} ${y}, ${b.x0} ${y}, ${b.x0 + 14} ${y} L ${b.x1} ${y}`;
     if (b.status === "merged") d += ` C ${b.x1 + 16} ${y}, ${b.x1 + 16} ${y}, ${b.x1 + 16} ${mainY}`;
     svg("path", { d, fill: "none", stroke: COLORS.accent, "stroke-width": 1.5, "stroke-dasharray": "3 4" }, lines);
