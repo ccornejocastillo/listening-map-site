@@ -1,13 +1,13 @@
 {
   "version": 7,
-  "generated_at": "2026-10-26T10:33:05Z",
+  "generated_at": "2026-10-27T00:46:26Z",
   "window": {
-    "start": "2026-10-19T10:33:05Z",
-    "end": "2026-10-26T10:33:05Z"
+    "start": "2026-10-20T00:46:26Z",
+    "end": "2026-10-27T00:46:26Z"
   },
   "stats": {
-    "tracks": 128,
-    "artists": 46,
+    "tracks": 155,
+    "artists": 52,
     "merged": 0
   },
   "batch": {
@@ -103,7 +103,7 @@
       },
       {
         "start": "2026-10-19",
-        "weight": 3,
+        "weight": 2,
         "top": [
           {
             "artist": "Bersuit Vergarabat",
@@ -134,8 +134,34 @@
       },
       {
         "start": "2026-10-26",
-        "weight": 0,
-        "top": []
+        "weight": 3,
+        "top": [
+          {
+            "artist": "Melvins",
+            "weight": 3,
+            "favorite": false
+          },
+          {
+            "artist": "Téfiret",
+            "weight": 1,
+            "favorite": false
+          },
+          {
+            "artist": "Como Asesinar a Felipes",
+            "weight": 1,
+            "favorite": true
+          },
+          {
+            "artist": "Soundgarden",
+            "weight": 1,
+            "favorite": true
+          },
+          {
+            "artist": "TOOL",
+            "weight": 1,
+            "favorite": true
+          }
+        ]
       }
     ],
     "branches": [
@@ -201,7 +227,7 @@
         "artists": [
           {
             "name": "Melvins",
-            "played": false
+            "played": true
           }
         ],
         "created": "2026-10-26",
