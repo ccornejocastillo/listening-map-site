@@ -1,13 +1,13 @@
 {
   "version": 7,
-  "generated_at": "2026-10-27T10:04:01Z",
+  "generated_at": "2026-10-28T00:43:04Z",
   "window": {
-    "start": "2026-10-20T10:04:01Z",
-    "end": "2026-10-27T10:04:01Z"
+    "start": "2026-10-21T00:43:04Z",
+    "end": "2026-10-28T00:43:04Z"
   },
   "stats": {
-    "tracks": 155,
-    "artists": 52,
+    "tracks": 181,
+    "artists": 59,
     "merged": 0
   },
   "batch": {
@@ -103,7 +103,7 @@
       },
       {
         "start": "2026-10-19",
-        "weight": 3,
+        "weight": 2,
         "top": [
           {
             "artist": "Bersuit Vergarabat",
@@ -134,7 +134,7 @@
       },
       {
         "start": "2026-10-26",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
             "artist": "Melvins",
@@ -142,22 +142,22 @@
             "favorite": false
           },
           {
-            "artist": "Téfiret",
-            "weight": 1,
+            "artist": "Car Seat Headrest",
+            "weight": 2,
             "favorite": false
           },
           {
-            "artist": "Como Asesinar a Felipes",
-            "weight": 1,
-            "favorite": true
-          },
-          {
-            "artist": "Soundgarden",
+            "artist": "LCD Soundsystem",
             "weight": 1,
             "favorite": true
           },
           {
             "artist": "TOOL",
+            "weight": 1,
+            "favorite": true
+          },
+          {
+            "artist": "Soundgarden",
             "weight": 1,
             "favorite": true
           }
