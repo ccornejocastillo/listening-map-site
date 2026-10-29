@@ -1,9 +1,9 @@
 {
   "version": 8,
-  "generated_at": "2026-10-29T11:07:55Z",
+  "generated_at": "2026-10-29T13:25:01Z",
   "window": {
-    "start": "2026-10-22T11:07:55Z",
-    "end": "2026-10-29T11:07:55Z"
+    "start": "2026-10-22T13:25:01Z",
+    "end": "2026-10-29T13:25:01Z"
   },
   "stats": {
     "tracks": 157,
@@ -20,19 +20,45 @@
     "id": "2026-10-29",
     "kind": "thursday"
   },
-  "summary": "You listened to a mix of Bersuit Vergarabat, Melvins, Car Seat Headrest, and heavy doses of alternative and rock over the last seven days.",
+  "summary": "You spent the last week listening to a heavy mix of alternative rock, grunge, and experimental hip-hop, led by Bersuit Vergarabat and Melvins.",
   "pending": false,
   "recommendations": [
     {
       "type": "roots",
       "slot": "main",
       "anchor": "Melvins",
-      "reason": "Since you have been listening to a lot of Melvins lately, this is the foundational sludge and doom metal that shaped their sound. It matches the heavy, distorted guitar work you already enjoy.",
+      "reason": "Since you frequently listen to Melvins, this foundational band offers the slowed-down, heavy riffing that shaped sludge metal.",
       "artists": [
         {
           "artist": "Black Sabbath",
           "artist_id": "5M52tdBnJaKSvOpJGz8mfZ",
           "spotify_url": "https://open.spotify.com/artist/5M52tdBnJaKSvOpJGz8mfZ"
+        }
+      ]
+    },
+    {
+      "type": "discovery",
+      "slot": "extra",
+      "anchor": "Como Asesinar a Felipes",
+      "reason": "Given your appreciation for Como Asesinar a Felipes, this group blends aggressive hip-hop structures with a dark, abrasive sonic aesthetic.",
+      "artists": [
+        {
+          "artist": "Ho99o9",
+          "artist_id": "5KuuNGYTUTokLerXMNYCGL",
+          "spotify_url": "https://open.spotify.com/artist/5KuuNGYTUTokLerXMNYCGL"
+        }
+      ]
+    },
+    {
+      "type": "heirs",
+      "slot": "extra",
+      "anchor": "TOOL",
+      "reason": "This project carries forward the intricate rhythms and heavy, atmospheric tension found in your long-time favorite TOOL.",
+      "artists": [
+        {
+          "artist": "Soen",
+          "artist_id": "38uWD5h115pdz278q4rwZW",
+          "spotify_url": "https://open.spotify.com/artist/38uWD5h115pdz278q4rwZW"
         }
       ]
     }
@@ -246,6 +272,32 @@
         "artists": [
           {
             "name": "Black Sabbath",
+            "played": false
+          }
+        ],
+        "created": "2026-10-29",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Ho99o9",
+            "played": false
+          }
+        ],
+        "created": "2026-10-29",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "heirs",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Soen",
             "played": false
           }
         ],
