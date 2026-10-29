@@ -1,9 +1,9 @@
 {
   "version": 8,
-  "generated_at": "2026-10-29T10:10:56Z",
+  "generated_at": "2026-10-29T11:07:55Z",
   "window": {
-    "start": "2026-10-22T10:10:56Z",
-    "end": "2026-10-29T10:10:56Z"
+    "start": "2026-10-22T11:07:55Z",
+    "end": "2026-10-29T11:07:55Z"
   },
   "stats": {
     "tracks": 157,
@@ -17,35 +17,22 @@
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-10-26",
-    "kind": "monday"
+    "id": "2026-10-29",
+    "kind": "thursday"
   },
-  "summary": "You spent the last week listening to a balanced mix of rock, alternative, and hip hop. Bersuit Vergarabat led your rotation with heavy plays, followed closely by Como Asesinar a Felipes and Fazerdaze. Your recent sessions also featured a steady amount of Pearl Jam, Tame Impala, and Radiohead.",
+  "summary": "You listened to a mix of Bersuit Vergarabat, Melvins, Car Seat Headrest, and heavy doses of alternative and rock over the last seven days.",
   "pending": false,
   "recommendations": [
     {
       "type": "roots",
       "slot": "main",
-      "anchor": "Alice In Chains",
-      "reason": "Since you frequently listen to Alice In Chains, checking out the Melvins gives you a direct look at the heavier, sludgier side of the Pacific Northwest sound that helped shape your favorite tracks.",
+      "anchor": "Melvins",
+      "reason": "Since you have been listening to a lot of Melvins lately, this is the foundational sludge and doom metal that shaped their sound. It matches the heavy, distorted guitar work you already enjoy.",
       "artists": [
         {
-          "artist": "Melvins",
-          "artist_id": "6aVjo0xHSiuW5hkasoYSR3",
-          "spotify_url": "https://open.spotify.com/artist/6aVjo0xHSiuW5hkasoYSR3"
-        }
-      ]
-    },
-    {
-      "type": "discovery",
-      "slot": "extra",
-      "anchor": "Fazerdaze",
-      "reason": "You have been playing a good deal of Fazerdaze and Tokyo Tea Room lately. Alvvays offers a similar blend of hazy guitars and sharp melodic songwriting that fits right into your current rotation.",
-      "artists": [
-        {
-          "artist": "Alvvays",
-          "artist_id": "3kzwYV3OCB010YfXMF0Avt",
-          "spotify_url": "https://open.spotify.com/artist/3kzwYV3OCB010YfXMF0Avt"
+          "artist": "Black Sabbath",
+          "artist_id": "5M52tdBnJaKSvOpJGz8mfZ",
+          "spotify_url": "https://open.spotify.com/artist/5M52tdBnJaKSvOpJGz8mfZ"
         }
       ]
     }
@@ -250,6 +237,19 @@
           }
         ],
         "created": "2026-10-26",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Black Sabbath",
+            "played": false
+          }
+        ],
+        "created": "2026-10-29",
         "end": null,
         "status": "open"
       }
