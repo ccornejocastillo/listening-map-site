@@ -1,14 +1,20 @@
 {
-  "version": 7,
-  "generated_at": "2026-10-29T01:12:37Z",
+  "version": 8,
+  "generated_at": "2026-10-29T03:06:40Z",
   "window": {
-    "start": "2026-10-22T01:12:37Z",
-    "end": "2026-10-29T01:12:37Z"
+    "start": "2026-10-22T03:06:40Z",
+    "end": "2026-10-29T03:06:40Z"
   },
   "stats": {
     "tracks": 157,
     "artists": 48,
     "merged": 0
+  },
+  "totals": {
+    "tracks": 231,
+    "artists": 65,
+    "merged": 0,
+    "since": "2026-10-14"
   },
   "batch": {
     "id": "2026-10-26",
@@ -45,10 +51,10 @@
     }
   ],
   "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
-  "next_batch": "2026-10-29",
+  "next_batch": "2026-11-02",
   "graph": {
     "start": "2026-09-14",
-    "today": "2026-10-28",
+    "today": "2026-10-29",
     "weeks": [
       {
         "start": "2026-09-14",
@@ -103,7 +109,7 @@
       },
       {
         "start": "2026-10-19",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
             "artist": "Bersuit Vergarabat",
