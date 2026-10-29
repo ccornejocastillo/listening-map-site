@@ -272,9 +272,22 @@ fetch("data/data.json", { cache: "no-cache" })
     const end = new Date(data.window.end);
     const updated = new Date(data.generated_at);
     show("dates", `${day.format(start)} – ${day.format(end)}, ${year.format(end)}`);
-    show("tracks", data.stats?.tracks);
-    show("artists", data.stats?.artists);
-    show("merged", data.stats?.merged);
+    // With totals (data.json v8+), the big number is the total since the first play and the last 7 days go below;
+    // without them, the last 7 days as before
+    if (data.totals) {
+      const since = `since ${shortDay.format(toDate(data.totals.since))}`;
+      for (const key of ["tracks", "artists", "merged"]) {
+        show(key, data.totals[key]);
+        document.querySelector(`#${key} + .label .since`).textContent = since;
+        const recent = document.getElementById(`${key}-recent`);
+        recent.replaceChildren(el("b", { textContent: data.stats?.[key] ?? "—" }), " in the last 7 days");
+        recent.hidden = false;
+      }
+    } else {
+      show("tracks", data.stats?.tracks);
+      show("artists", data.stats?.artists);
+      show("merged", data.stats?.merged);
+    }
 
     if (data.summary) {
       show("summary", data.summary);

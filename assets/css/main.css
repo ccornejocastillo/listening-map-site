@@ -22,6 +22,9 @@ section { margin-top: 56px; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .stat { display: flex; flex-direction: column; gap: 4px; padding: 20px 0; }
 .stat + .stat { border-left: 1px solid var(--border); padding-left: 20px; }
+.since { display: block; }
+.recent { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); margin-top: 6px; }
+.recent b { color: var(--text); font-weight: 400; }
 .num { font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 32px; }
 .label, .type { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); text-transform: uppercase; letter-spacing: .04em; }
 .summary { font-size: 18px; max-width: 640px; margin: 0; }
