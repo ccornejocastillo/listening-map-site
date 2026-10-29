@@ -1,13 +1,13 @@
 {
   "version": 7,
-  "generated_at": "2026-10-28T10:50:44Z",
+  "generated_at": "2026-10-29T01:12:37Z",
   "window": {
-    "start": "2026-10-21T10:50:44Z",
-    "end": "2026-10-28T10:50:44Z"
+    "start": "2026-10-22T01:12:37Z",
+    "end": "2026-10-29T01:12:37Z"
   },
   "stats": {
-    "tracks": 181,
-    "artists": 59,
+    "tracks": 157,
+    "artists": 48,
     "merged": 0
   },
   "batch": {
@@ -103,7 +103,7 @@
       },
       {
         "start": "2026-10-19",
-        "weight": 3,
+        "weight": 2,
         "top": [
           {
             "artist": "Bersuit Vergarabat",
@@ -147,17 +147,17 @@
             "favorite": false
           },
           {
+            "artist": "Dope Smoker",
+            "weight": 2,
+            "favorite": false
+          },
+          {
             "artist": "LCD Soundsystem",
             "weight": 1,
             "favorite": true
           },
           {
             "artist": "TOOL",
-            "weight": 1,
-            "favorite": true
-          },
-          {
-            "artist": "Soundgarden",
             "weight": 1,
             "favorite": true
           }
