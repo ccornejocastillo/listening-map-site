@@ -1,13 +1,13 @@
 {
   "version": 8,
-  "generated_at": "2026-10-31T01:00:41Z",
+  "generated_at": "2026-10-31T09:48:41Z",
   "window": {
-    "start": "2026-10-24T01:00:41Z",
-    "end": "2026-10-31T01:00:41Z"
+    "start": "2026-10-24T09:48:41Z",
+    "end": "2026-10-31T09:48:41Z"
   },
   "stats": {
-    "tracks": 166,
-    "artists": 39,
+    "tracks": 161,
+    "artists": 36,
     "merged": 0
   },
   "totals": {
@@ -67,7 +67,7 @@
   "next_batch": "2026-11-02",
   "graph": {
     "start": "2026-09-14",
-    "today": "2026-10-30",
+    "today": "2026-10-31",
     "weeks": [
       {
         "start": "2026-09-14",
