@@ -1,18 +1,18 @@
 {
   "version": 8,
-  "generated_at": "2026-10-30T11:03:01Z",
+  "generated_at": "2026-10-31T01:00:41Z",
   "window": {
-    "start": "2026-10-23T11:03:01Z",
-    "end": "2026-10-30T11:03:01Z"
+    "start": "2026-10-24T01:00:41Z",
+    "end": "2026-10-31T01:00:41Z"
   },
   "stats": {
-    "tracks": 148,
+    "tracks": 166,
     "artists": 39,
     "merged": 0
   },
   "totals": {
-    "tracks": 257,
-    "artists": 67,
+    "tracks": 290,
+    "artists": 68,
     "merged": 0,
     "since": "2026-10-14"
   },
@@ -122,7 +122,7 @@
       },
       {
         "start": "2026-10-19",
-        "weight": 3,
+        "weight": 2,
         "top": [
           {
             "artist": "Bersuit Vergarabat",
@@ -156,8 +156,13 @@
         "weight": 3,
         "top": [
           {
+            "artist": "Soen",
+            "weight": 2,
+            "favorite": true
+          },
+          {
             "artist": "Melvins",
-            "weight": 3,
+            "weight": 2,
             "favorite": false
           },
           {
@@ -167,18 +172,13 @@
           },
           {
             "artist": "Car Seat Headrest",
-            "weight": 2,
+            "weight": 1,
             "favorite": false
           },
           {
             "artist": "Black Sabbath",
             "weight": 1,
             "favorite": false
-          },
-          {
-            "artist": "LCD Soundsystem",
-            "weight": 1,
-            "favorite": true
           }
         ]
       }
@@ -208,7 +208,7 @@
         ],
         "created": "2026-10-22",
         "end": null,
-        "status": "open"
+        "status": "second look"
       },
       {
         "type": "discovery",
@@ -298,7 +298,7 @@
         "artists": [
           {
             "name": "Soen",
-            "played": false
+            "played": true
           }
         ],
         "created": "2026-10-29",
