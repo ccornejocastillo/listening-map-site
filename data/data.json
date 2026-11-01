@@ -1,9 +1,9 @@
 {
   "version": 8,
-  "generated_at": "2026-11-01T00:24:45Z",
+  "generated_at": "2026-11-01T10:38:30Z",
   "window": {
-    "start": "2026-10-25T00:24:45Z",
-    "end": "2026-11-01T00:24:45Z"
+    "start": "2026-10-25T10:38:30Z",
+    "end": "2026-11-01T10:38:30Z"
   },
   "stats": {
     "tracks": 127,
@@ -67,7 +67,7 @@
   "next_batch": "2026-11-02",
   "graph": {
     "start": "2026-09-14",
-    "today": "2026-10-31",
+    "today": "2026-11-01",
     "weeks": [
       {
         "start": "2026-09-14",
@@ -122,7 +122,7 @@
       },
       {
         "start": "2026-10-19",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
             "artist": "Bersuit Vergarabat",
