@@ -1,17 +1,17 @@
 {
   "version": 8,
-  "generated_at": "2026-10-31T10:37:10Z",
+  "generated_at": "2026-11-01T00:24:45Z",
   "window": {
-    "start": "2026-10-24T10:37:10Z",
-    "end": "2026-10-31T10:37:10Z"
+    "start": "2026-10-25T00:24:45Z",
+    "end": "2026-11-01T00:24:45Z"
   },
   "stats": {
-    "tracks": 161,
-    "artists": 36,
+    "tracks": 127,
+    "artists": 28,
     "merged": 0
   },
   "totals": {
-    "tracks": 290,
+    "tracks": 291,
     "artists": 68,
     "merged": 0,
     "since": "2026-10-14"
