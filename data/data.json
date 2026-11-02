@@ -1,18 +1,18 @@
 {
   "version": 8,
-  "generated_at": "2026-11-02T01:00:24Z",
+  "generated_at": "2026-11-02T11:25:41Z",
   "window": {
-    "start": "2026-10-26T01:00:24Z",
-    "end": "2026-11-02T01:00:24Z"
+    "start": "2026-10-26T11:25:41Z",
+    "end": "2026-11-02T11:25:41Z"
   },
   "stats": {
-    "tracks": 127,
-    "artists": 28,
+    "tracks": 129,
+    "artists": 29,
     "merged": 0
   },
   "totals": {
-    "tracks": 291,
-    "artists": 68,
+    "tracks": 293,
+    "artists": 69,
     "merged": 0,
     "since": "2026-10-14"
   },
@@ -64,16 +64,11 @@
     }
   ],
   "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
-  "next_batch": "2026-11-02",
+  "next_batch": "2026-11-05",
   "graph": {
-    "start": "2026-09-14",
-    "today": "2026-11-01",
+    "start": "2026-09-21",
+    "today": "2026-11-02",
     "weeks": [
-      {
-        "start": "2026-09-14",
-        "weight": 0,
-        "top": []
-      },
       {
         "start": "2026-09-21",
         "weight": 0,
@@ -181,6 +176,11 @@
             "favorite": false
           }
         ]
+      },
+      {
+        "start": "2026-11-02",
+        "weight": 0,
+        "top": []
       }
     ],
     "branches": [
