@@ -1,12 +1,12 @@
 {
   "version": 8,
-  "generated_at": "2026-11-02T11:25:41Z",
+  "generated_at": "2026-11-02T12:53:48Z",
   "window": {
-    "start": "2026-10-26T11:25:41Z",
-    "end": "2026-11-02T11:25:41Z"
+    "start": "2026-10-26T12:53:48Z",
+    "end": "2026-11-02T12:53:48Z"
   },
   "stats": {
-    "tracks": 129,
+    "tracks": 125,
     "artists": 29,
     "merged": 0
   },
@@ -17,50 +17,38 @@
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-10-29",
-    "kind": "thursday"
+    "id": "2026-11-02",
+    "kind": "monday"
   },
-  "summary": "You spent the last week listening to a heavy mix of alternative rock, grunge, and experimental hip-hop, led by Bersuit Vergarabat and Melvins.",
+  "summary": "You spent the last seven days immersed in a heavy mix of progressive metal, doom, and alternative rock. Soen and Melvins anchored most of your listening time, accompanied by steady plays of Dope Smoker and Car Seat Headrest. You also touched on classic rock and electronic textures throughout the week.",
   "pending": false,
   "recommendations": [
     {
       "type": "roots",
       "slot": "main",
-      "anchor": "Melvins",
-      "reason": "Since you frequently listen to Melvins, this foundational band offers the slowed-down, heavy riffing that shaped sludge metal.",
-      "artists": [
-        {
-          "artist": "Black Sabbath",
-          "artist_id": "5M52tdBnJaKSvOpJGz8mfZ",
-          "spotify_url": "https://open.spotify.com/artist/5M52tdBnJaKSvOpJGz8mfZ"
-        }
-      ]
-    },
-    {
-      "type": "discovery",
-      "slot": "extra",
-      "anchor": "Como Asesinar a Felipes",
-      "reason": "Given your appreciation for Como Asesinar a Felipes, this group blends aggressive hip-hop structures with a dark, abrasive sonic aesthetic.",
-      "artists": [
-        {
-          "artist": "Ho99o9",
-          "artist_id": "5KuuNGYTUTokLerXMNYCGL",
-          "spotify_url": "https://open.spotify.com/artist/5KuuNGYTUTokLerXMNYCGL"
-        }
-      ]
-    },
-    {
-      "type": "heirs",
-      "slot": "extra",
       "anchor": "TOOL",
-      "reason": "This project carries forward the intricate rhythms and heavy, atmospheric tension found in your long-time favorite TOOL.",
+      "reason": "Since you frequently listen to complex and heavy progressive arrangements, looking back at this foundational band provides context for the intricate structures you enjoy today. They pioneered the use of odd time signatures and heavy textures in rock.",
       "artists": [
         {
-          "artist": "Soen",
-          "artist_id": "38uWD5h115pdz278q4rwZW",
-          "spotify_url": "https://open.spotify.com/artist/38uWD5h115pdz278q4rwZW"
+          "artist": "King Crimson",
+          "artist_id": "7M1FPw29m5FbicYzS2xdpi",
+          "spotify_url": "https://open.spotify.com/artist/7M1FPw29m5FbicYzS2xdpi"
         }
       ]
+    },
+    {
+      "type": "roots",
+      "slot": "optional",
+      "anchor": "Tokyo Tea Room",
+      "reason": "If you want to hear where the melancholic atmosphere of your favorite moody records originated, their mid-eighties output showcases the definitive template for dark, spacious guitar arrangements.",
+      "artists": [
+        {
+          "artist": "The Cure",
+          "artist_id": "7bu3H8JO7d0UbMoVzbo70s",
+          "spotify_url": "https://open.spotify.com/artist/7bu3H8JO7d0UbMoVzbo70s"
+        }
+      ],
+      "second_look": true
     }
   ],
   "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
@@ -302,6 +290,19 @@
           }
         ],
         "created": "2026-10-29",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "King Crimson",
+            "played": false
+          }
+        ],
+        "created": "2026-11-02",
         "end": null,
         "status": "open"
       }
