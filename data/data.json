@@ -1,18 +1,18 @@
 {
   "version": 8,
-  "generated_at": "2026-11-02T12:53:48Z",
+  "generated_at": "2026-11-03T03:02:54Z",
   "window": {
-    "start": "2026-10-26T12:53:48Z",
-    "end": "2026-11-02T12:53:48Z"
+    "start": "2026-10-27T03:02:54Z",
+    "end": "2026-11-03T03:02:54Z"
   },
   "stats": {
-    "tracks": 125,
-    "artists": 29,
+    "tracks": 131,
+    "artists": 27,
     "merged": 0
   },
   "totals": {
-    "tracks": 293,
-    "artists": 69,
+    "tracks": 322,
+    "artists": 71,
     "merged": 0,
     "since": "2026-10-14"
   },
@@ -55,7 +55,7 @@
   "next_batch": "2026-11-05",
   "graph": {
     "start": "2026-09-21",
-    "today": "2026-11-02",
+    "today": "2026-11-03",
     "weeks": [
       {
         "start": "2026-09-21",
@@ -167,8 +167,24 @@
       },
       {
         "start": "2026-11-02",
-        "weight": 0,
-        "top": []
+        "weight": 2,
+        "top": [
+          {
+            "artist": "Pearl Jam",
+            "weight": 3,
+            "favorite": true
+          },
+          {
+            "artist": "King Crimson",
+            "weight": 3,
+            "favorite": false
+          },
+          {
+            "artist": "The Cure",
+            "weight": 2,
+            "favorite": false
+          }
+        ]
       }
     ],
     "branches": [
@@ -191,12 +207,12 @@
         "artists": [
           {
             "name": "The Cure",
-            "played": false
+            "played": true
           }
         ],
         "created": "2026-10-22",
         "end": null,
-        "status": "second look"
+        "status": "open"
       },
       {
         "type": "discovery",
@@ -299,7 +315,7 @@
         "artists": [
           {
             "name": "King Crimson",
-            "played": false
+            "played": true
           }
         ],
         "created": "2026-11-02",
