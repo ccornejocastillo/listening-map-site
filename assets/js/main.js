@@ -75,7 +75,8 @@ function svg(tag, attrs, parent) {
   return node;
 }
 
-// Each run of consecutive weeks an artist spent in your top is one strand
+// One strand per artist: each run of consecutive weeks it spent in your top is a segment of it,
+// so an artist who leaves your top and comes back keeps a single line
 function strandRuns(weeks) {
   const runs = [], open = new Map();
   weeks.forEach((w, i) => {
@@ -91,7 +92,18 @@ function strandRuns(weeks) {
       open.set(artist, run);
     }
   });
-  return [...runs, ...open.values()].sort((a, b) => a.from - b.from || b.weight - a.weight);
+  const byArtist = new Map();
+  for (const r of [...runs, ...open.values()].sort((a, b) => a.from - b.from)) {
+    const s = byArtist.get(r.artist);
+    if (!s) byArtist.set(r.artist, { ...r, segments: [{ from: r.from, to: r.to, weight: r.weight }] });
+    else {
+      s.segments.push({ from: r.from, to: r.to, weight: r.weight });
+      s.to = r.to;
+      s.weight = Math.max(s.weight, r.weight);
+      s.favorite = s.favorite || r.favorite;
+    }
+  }
+  return [...byArtist.values()].sort((a, b) => a.from - b.from || b.weight - a.weight);
 }
 
 // A label goes to the right of where its line starts; only when it wouldn't fit there, to the left
@@ -160,10 +172,14 @@ function drawGraph(g, container) {
   const strands = strandRuns(g.weeks).map(r => {
     const k = startsAt[r.from] = (startsAt[r.from] ?? -1) + 1;
     const x0 = x(g.weeks[r.from].start) + 6 + 6 * k;
-    const x1 = Math.max(r.to === last ? today : x(g.weeks[r.to].start) + weekW * 0.85, x0 + minSpan);
+    const segEnd = seg => (seg.to === last ? today : x(g.weeks[seg.to].start) + weekW * 0.85);
+    const x1 = Math.max(segEnd(r.segments[r.segments.length - 1]), x0 + minSpan);
+    const segs = r.segments.map((seg, i) => ({
+      ...seg, x0: i ? x(g.weeks[seg.from].start) + 6 : x0, x1: i === r.segments.length - 1 ? x1 : segEnd(seg),
+    }));
     const rec = recByName.get(r.artist);
     return {
-      ...r, x0, x1, rec: rec && r.to >= weekOf(rec.created) ? rec : null,
+      ...r, x0, x1, segs, rec: rec && r.to >= weekOf(rec.created) ? rec : null,
       text: r.favorite ? `${STAR} ${r.artist}` : r.artist,
     };
   });
@@ -220,12 +236,21 @@ function drawGraph(g, container) {
 
   for (const s of strands) {
     const y = laneY(s);
-    const style = STRAND[s.weight];
-    svg("path", {
-      d: `M ${s.x0} ${mainY} C ${s.x0} ${y}, ${s.x0} ${y}, ${s.x0 + 14} ${y} L ${s.x1} ${y}`,
-      fill: "none", "stroke-linecap": "round",
-      stroke: s.rec ? COLORS.accent : style.color, "stroke-width": s.rec ? REC_IN_TOP_W : style.width,
-    }, lines);
+    // Solid while in your top, at that stretch's weight; a faint dotted line for the weeks it was out
+    s.segs.forEach((seg, i) => {
+      const style = STRAND[seg.weight];
+      const d = i === 0
+        ? `M ${seg.x0} ${mainY} C ${seg.x0} ${y}, ${seg.x0} ${y}, ${seg.x0 + 14} ${y} L ${seg.x1} ${y}`
+        : `M ${seg.x0} ${y} L ${seg.x1} ${y}`;
+      svg("path", {
+        d, fill: "none", "stroke-linecap": "round",
+        stroke: s.rec ? COLORS.accent : style.color, "stroke-width": s.rec ? REC_IN_TOP_W : style.width,
+      }, lines);
+      if (i) svg("path", {
+        d: `M ${s.segs[i - 1].x1 + 4} ${y} L ${seg.x0 - 4} ${y}`, fill: "none", stroke: COLORS.secondary,
+        "stroke-width": 1, "stroke-dasharray": "1 4", "stroke-linecap": "round", "stroke-opacity": 0.6,
+      }, lines);
+    });
     label(marks, s.artist, s.x0, y, width, s.favorite);
     if (s.rec) ending(s.rec, s.x1, y, () => svg("circle", { cx: s.x1 + 5, cy: y, r: 5, fill: COLORS.accent }, marks));
   }

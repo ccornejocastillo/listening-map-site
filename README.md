@@ -51,7 +51,7 @@ Main pieces:
 ## Branch graph
 
 - `main` is your usual rotation: a white band, flat through each week at that week's weight (0 to 3: no plays, lighter, usual, heavier), with a node per week (hover says which). `data.json` carries weights, never play counts, so the page can't show them.
-- Your top artists run below as strands: one per run of consecutive weeks an artist spent in that week's top 5, gray, as thick as its weight. Favorites (`favorite`: the artist has a liked song) get a ★ before their name (`STAR`, a text glyph, not an emoji); the strand stays the same gray.
+- Your top artists run below as strands: one line per artist (`strandRuns` groups its runs of consecutive weeks in the top 5 into segments), gray, each segment as thick as its weight, with a faint dotted stretch for the weeks it was out of the top. Favorites (`favorite`: the artist has a liked song) get a ★ before their name (`STAR`, a text glyph, not an emoji); the strand stays the same gray.
 - Recommendations are drawn per artist (a path's artists too, each on its own) and only the ones with `played`; older `data.json` with plain names draws them all.
 - **Tried a bit:** a thin dotted blue branch off `main` from the day it arrived, ending in a small open circle a little past today (so a branch dropping off `main` today doesn't run over it).
 - **In your top:** a recommendation whose artist is in your top since it arrived is drawn as that strand, solid blue and `REC_IN_TOP_W` thick, ending in a filled dot, and not as a branch.
