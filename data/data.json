@@ -1,9 +1,9 @@
 {
-  "version": 8,
-  "generated_at": "2026-11-04T12:36:40Z",
+  "version": 9,
+  "generated_at": "2026-11-04T13:16:30Z",
   "window": {
-    "start": "2026-10-28T12:36:40Z",
-    "end": "2026-11-04T12:36:40Z"
+    "start": "2026-10-28T13:16:30Z",
+    "end": "2026-11-04T13:16:30Z"
   },
   "stats": {
     "tracks": 123,
@@ -204,7 +204,8 @@
         "artists": [
           {
             "name": "Cocteau Twins",
-            "played": true
+            "played": true,
+            "last_played": "2026-10-21"
           }
         ],
         "created": "2026-10-21",
@@ -217,7 +218,8 @@
         "artists": [
           {
             "name": "The Cure",
-            "played": true
+            "played": true,
+            "last_played": "2026-11-02"
           }
         ],
         "created": "2026-10-22",
@@ -230,7 +232,8 @@
         "artists": [
           {
             "name": "Fazerdaze",
-            "played": true
+            "played": true,
+            "last_played": "2026-11-03"
           }
         ],
         "created": "2026-10-22",
@@ -243,11 +246,13 @@
         "artists": [
           {
             "name": "Mudhoney",
-            "played": false
+            "played": false,
+            "last_played": null
           },
           {
             "name": "Dinosaur Jr.",
-            "played": true
+            "played": true,
+            "last_played": "2026-10-22"
           }
         ],
         "created": "2026-10-22",
@@ -260,7 +265,8 @@
         "artists": [
           {
             "name": "Melvins",
-            "played": true
+            "played": true,
+            "last_played": "2026-10-29"
           }
         ],
         "created": "2026-10-26",
@@ -273,7 +279,8 @@
         "artists": [
           {
             "name": "Alvvays",
-            "played": false
+            "played": false,
+            "last_played": null
           }
         ],
         "created": "2026-10-26",
@@ -286,7 +293,8 @@
         "artists": [
           {
             "name": "Black Sabbath",
-            "played": true
+            "played": true,
+            "last_played": "2026-10-29"
           }
         ],
         "created": "2026-10-29",
@@ -299,7 +307,8 @@
         "artists": [
           {
             "name": "Ho99o9",
-            "played": false
+            "played": false,
+            "last_played": null
           }
         ],
         "created": "2026-10-29",
@@ -312,7 +321,8 @@
         "artists": [
           {
             "name": "Soen",
-            "played": true
+            "played": true,
+            "last_played": "2026-10-30"
           }
         ],
         "created": "2026-10-29",
@@ -325,7 +335,8 @@
         "artists": [
           {
             "name": "King Crimson",
-            "played": true
+            "played": true,
+            "last_played": "2026-11-02"
           }
         ],
         "created": "2026-11-02",
