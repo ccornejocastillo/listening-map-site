@@ -1,9 +1,9 @@
 {
   "version": 9,
-  "generated_at": "2026-11-04T16:13:40Z",
+  "generated_at": "2026-11-04T16:35:14Z",
   "window": {
-    "start": "2026-10-28T16:13:40Z",
-    "end": "2026-11-04T16:13:40Z"
+    "start": "2026-10-28T16:35:14Z",
+    "end": "2026-11-04T16:35:14Z"
   },
   "stats": {
     "tracks": 138,
@@ -17,38 +17,37 @@
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-11-02",
-    "kind": "monday"
+    "id": "2026-11-04",
+    "kind": "wednesday"
   },
-  "summary": "You spent the last seven days immersed in a heavy mix of progressive metal, doom, and alternative rock. Soen and Melvins anchored most of your listening time, accompanied by steady plays of Dope Smoker and Car Seat Headrest. You also touched on classic rock and electronic textures throughout the week.",
+  "summary": "You spent the last week immersed in a heavy rotation of Soen, Dope Smoker, Men I Trust, and Pearl Jam, blending progressive rock with grunge and dream pop.",
   "pending": false,
   "recommendations": [
     {
-      "type": "roots",
+      "type": "discovery",
       "slot": "main",
-      "anchor": "TOOL",
-      "reason": "Since you frequently listen to complex and heavy progressive arrangements, looking back at this foundational band provides context for the intricate structures you enjoy today. They pioneered the use of odd time signatures and heavy textures in rock.",
+      "anchor": "Men I Trust",
+      "reason": "Since you have been listening closely to Men I Trust and Tokyo Tea Room, Beach House offers a similar lush dream pop atmosphere with steady, hypnotic basslines.",
       "artists": [
         {
-          "artist": "King Crimson",
-          "artist_id": "7M1FPw29m5FbicYzS2xdpi",
-          "spotify_url": "https://open.spotify.com/artist/7M1FPw29m5FbicYzS2xdpi"
+          "artist": "Beach House",
+          "artist_id": "56ZTgzPBDge0OvCGgMO3OY",
+          "spotify_url": "https://open.spotify.com/artist/56ZTgzPBDge0OvCGgMO3OY"
         }
       ]
     },
     {
-      "type": "roots",
-      "slot": "optional",
-      "anchor": "Tokyo Tea Room",
-      "reason": "If you want to hear where the melancholic atmosphere of your favorite moody records originated, their mid-eighties output showcases the definitive template for dark, spacious guitar arrangements.",
+      "type": "heirs",
+      "slot": "extra",
+      "anchor": "TOOL",
+      "reason": "Building on your heavy rotation of Soen and deep affinity for TOOL, Karnivool delivers complex progressive rock structures and immense emotional weight.",
       "artists": [
         {
-          "artist": "The Cure",
-          "artist_id": "7bu3H8JO7d0UbMoVzbo70s",
-          "spotify_url": "https://open.spotify.com/artist/7bu3H8JO7d0UbMoVzbo70s"
+          "artist": "Karnivool",
+          "artist_id": "6rX8AFY10dsJkJsv23Z9Um",
+          "spotify_url": "https://open.spotify.com/artist/6rX8AFY10dsJkJsv23Z9Um"
         }
-      ],
-      "second_look": true
+      ]
     }
   ],
   "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
@@ -340,6 +339,34 @@
           }
         ],
         "created": "2026-11-02",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Beach House",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-04",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "heirs",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Karnivool",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-04",
         "end": null,
         "status": "open"
       }
