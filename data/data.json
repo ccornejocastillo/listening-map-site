@@ -1,17 +1,17 @@
 {
   "version": 9,
-  "generated_at": "2026-11-04T13:16:30Z",
+  "generated_at": "2026-11-04T16:13:40Z",
   "window": {
-    "start": "2026-10-28T13:16:30Z",
-    "end": "2026-11-04T13:16:30Z"
+    "start": "2026-10-28T16:13:40Z",
+    "end": "2026-11-04T16:13:40Z"
   },
   "stats": {
-    "tracks": 123,
-    "artists": 14,
+    "tracks": 138,
+    "artists": 16,
     "merged": 1
   },
   "totals": {
-    "tracks": 344,
+    "tracks": 359,
     "artists": 71,
     "merged": 1,
     "since": "2026-10-14"
@@ -52,7 +52,7 @@
     }
   ],
   "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
-  "next_batch": "2026-11-05",
+  "next_batch": "2026-11-06",
   "graph": {
     "start": "2026-09-21",
     "today": "2026-11-04",
@@ -136,7 +136,7 @@
       },
       {
         "start": "2026-10-26",
-        "weight": 3,
+        "weight": 2,
         "top": [
           {
             "artist": "Soen",
@@ -167,32 +167,32 @@
       },
       {
         "start": "2026-11-02",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
             "artist": "Pearl Jam",
-            "weight": 3,
-            "favorite": true
-          },
-          {
-            "artist": "King Crimson",
-            "weight": 3,
-            "favorite": false
-          },
-          {
-            "artist": "Men I Trust",
-            "weight": 3,
-            "favorite": true
-          },
-          {
-            "artist": "Soundgarden",
             "weight": 2,
             "favorite": true
           },
           {
-            "artist": "The Cure",
-            "weight": 1,
+            "artist": "King Crimson",
+            "weight": 2,
             "favorite": false
+          },
+          {
+            "artist": "Men I Trust",
+            "weight": 2,
+            "favorite": true
+          },
+          {
+            "artist": "Radiohead",
+            "weight": 2,
+            "favorite": true
+          },
+          {
+            "artist": "Soundgarden",
+            "weight": 1,
+            "favorite": true
           }
         ]
       }
