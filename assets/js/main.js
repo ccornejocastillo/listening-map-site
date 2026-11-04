@@ -154,6 +154,7 @@ function drawGraph(g, container) {
   const x = d => left + ((toDate(d) - start) / 864e5 / span) * (width - left - right);
   const weekW = x(g.weeks[1]?.start ?? g.today) - x(g.weeks[0].start);
   const minSpan = 28;
+  const dayW = x(g.weeks[0].start) < x(g.today) ? (x(g.today) - x(g.start)) / ((toDate(g.today) - start) / 864e5) : 0;
   const today = x(g.today);
   const last = g.weeks.length - 1;
 
@@ -162,7 +163,9 @@ function drawGraph(g, container) {
   const recs = g.branches.flatMap(b => b.artists
     .map(a => (typeof a === "string" ? { name: a, played: true } : a))
     .filter(a => a.played)
-    .map(a => ({ name: a.name, created: b.created < g.start ? g.start : b.created, end: b.end, status: b.status })));
+    .map(a => ({
+      name: a.name, created: b.created < g.start ? g.start : b.created, end: b.end, status: b.status, last: a.last_played,
+    })));
   const recByName = new Map(recs.map(r => [r.name, r]));
   const weekOf = d => Math.floor((toDate(d) - start) / 864e5 / 7);
 
@@ -179,7 +182,9 @@ function drawGraph(g, container) {
     }));
     const rec = recByName.get(r.artist);
     return {
-      ...r, x0, x1, segs, rec: rec && r.to >= weekOf(rec.created) ? rec : null,
+      ...r, x0, segs, rec: rec && r.to >= weekOf(rec.created) ? rec : null,
+      // A merged recommendation keeps its lane until the day it merged, where its line ends in the ring
+      x1: rec && rec.status === "merged" && rec.end && r.to >= weekOf(rec.created) ? Math.max(x1, x(rec.end)) : x1,
       text: r.favorite ? `${STAR} ${r.artist}` : r.artist,
     };
   });
@@ -189,8 +194,13 @@ function drawGraph(g, container) {
   // The other played recommendations branch off main, dotted: you tried them, they're not in your top
   const branches = recs.filter(r => !inTop.has(r.name)).map(r => {
     const x0 = x(r.created);
-    // Open branches end a little past today, so a branch dropping off main today doesn't run over their marker
-    const x1 = Math.max(r.end ? x(r.end) : today + 12, x0 + minSpan);
+    // A recommendation you only tried a bit ends where you last played it, like a strand that leaves your top;
+    // a merged one rejoins main the day it merged. Older data.json without last_played: the end, or a little past today.
+    let xEnd;
+    if (r.status === "merged" && r.end) xEnd = x(r.end);
+    else if (r.last) xEnd = x(r.last) + dayW;
+    else xEnd = r.end ? x(r.end) : today + 12;
+    const x1 = Math.max(xEnd, x0 + minSpan);
     return { ...r, x0, x1, text: r.name };
   });
   // One set of lanes on both sides of main: branches first, so the recommendations sit closest to it
@@ -227,9 +237,9 @@ function drawGraph(g, container) {
     }
   });
 
-  // How a recommendation ends: merged rejoins main with a ring, tried ends in a gray dot
+  // How a recommendation ends, at the end of its own line: merged in a ring, tried in a gray dot
   const ending = (rec, xEnd, y, open) => {
-    if (rec.status === "merged") svg("circle", { cx: x(rec.end), cy: mainY, r: 7, fill: COLORS.bg, stroke: COLORS.text, "stroke-width": 3 }, marks);
+    if (rec.status === "merged") svg("circle", { cx: xEnd, cy: y, r: 7, fill: COLORS.bg, stroke: COLORS.text, "stroke-width": 3 }, marks);
     else if (rec.status === "tried") svg("circle", { cx: xEnd, cy: y, r: 4, fill: COLORS.secondary }, marks);
     else open();
   };
@@ -252,13 +262,19 @@ function drawGraph(g, container) {
       }, lines);
     });
     label(marks, s.artist, s.x0, y, width, s.favorite);
-    if (s.rec) ending(s.rec, s.x1, y, () => svg("circle", { cx: s.x1 + 5, cy: y, r: 5, fill: COLORS.accent }, marks));
+    // Merged after its last stretch in your top: a dotted blue line runs on to the ring, the day it merged
+    const lastX = s.segs[s.segs.length - 1].x1;
+    const mergeX = s.rec && s.rec.status === "merged" && s.rec.end ? x(s.rec.end) : null;
+    if (mergeX !== null && mergeX > lastX + 8) svg("path", {
+      d: `M ${lastX + 4} ${y} L ${mergeX - 8} ${y}`, fill: "none", stroke: COLORS.accent,
+      "stroke-width": 1.5, "stroke-dasharray": "1 4", "stroke-linecap": "round", "stroke-opacity": 0.8,
+    }, lines);
+    if (s.rec) ending(s.rec, mergeX ?? lastX, y, () => svg("circle", { cx: lastX + 5, cy: y, r: 5, fill: COLORS.accent }, marks));
   }
 
   for (const b of branches) {
     const y = laneY(b);
-    let d = `M ${b.x0} ${mainY} C ${b.x0} ${y}, ${b.x0} ${y}, ${b.x0 + 14} ${y} L ${b.x1} ${y}`;
-    if (b.status === "merged") d += ` C ${b.x1 + 16} ${y}, ${b.x1 + 16} ${y}, ${b.x1 + 16} ${mainY}`;
+    const d = `M ${b.x0} ${mainY} C ${b.x0} ${y}, ${b.x0} ${y}, ${b.x0 + 14} ${y} L ${b.x1} ${y}`;
     svg("path", { d, fill: "none", stroke: COLORS.accent, "stroke-width": 1.5, "stroke-dasharray": "3 4" }, lines);
     label(marks, b.name, b.x0, y, width);
     ending(b, b.x1, y, () => svg("circle", {

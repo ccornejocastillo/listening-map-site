@@ -20,7 +20,7 @@ data/data.json        written by the backend; don't edit it by hand
 
 ## Data contract
 
-The schema of `data/data.json` is documented in the backend's `docs/design.md` ("The `data.json` contract"). Its `version` goes up when the backend adds keys; the current one is 8. The two repos deploy separately, so the frontend must tolerate keys that don't exist yet: every section stays hidden until its data is there.
+The schema of `data/data.json` is documented in the backend's `docs/design.md` ("The `data.json` contract"). Its `version` goes up when the backend adds keys; the current one is 9. The two repos deploy separately, so the frontend must tolerate keys that don't exist yet: every section stays hidden until its data is there.
 
 | Section | Keys it reads |
 | --- | --- |
@@ -53,9 +53,9 @@ Main pieces:
 - `main` is your usual rotation: a white band, flat through each week at that week's weight (0 to 3: no plays, lighter, usual, heavier), with a node per week (hover says which). `data.json` carries weights, never play counts, so the page can't show them.
 - Your top artists run below as strands: one line per artist (`strandRuns` groups its runs of consecutive weeks in the top 5 into segments), gray, each segment as thick as its weight, with a faint dotted stretch for the weeks it was out of the top. Favorites (`favorite`: the artist has a liked song) get a ★ before their name (`STAR`, a text glyph, not an emoji); the strand stays the same gray.
 - Recommendations are drawn per artist (a path's artists too, each on its own) and only the ones with `played`; older `data.json` with plain names draws them all.
-- **Tried a bit:** a thin dotted blue branch off `main` from the day it arrived, ending in a small open circle a little past today (so a branch dropping off `main` today doesn't run over it).
+- **Tried a bit:** a thin dotted blue branch off `main` from the day it arrived to its `last_played` day, ending in a small open circle. Older `data.json` without `last_played`: it runs a little past today.
 - **In your top:** a recommendation whose artist is in your top since it arrived is drawn as that strand, solid blue and `REC_IN_TOP_W` thick, ending in a filled dot, and not as a branch.
-- **Merged:** a thick ring on `main` the day it merged. **Tried:** ends in a gray dot.
+- **Merged:** a thick ring at the end of the recommendation's own line, the day it merged (a dotted blue line reaches it if it merged after its last week in your top). **Tried:** ends in a gray dot.
 - Three layers: lines (`lines`) under the band (`band`), then markers and labels (`marks`), so lines come out from under `main` with no tips over it.
 - `main` sits in the middle: `assignLanes` puts each line in the free lane closest to `main`, above or below (on a tie, the side with fewer lanes, then alternating), branches first so recommendations are nearest to it. A lane is reused once what was in it, label included, has ended.
 - A label goes to the right of where its line starts; only when it wouldn't fit before the edge, to the left (`nearEdge`).
