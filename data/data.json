@@ -1,17 +1,17 @@
 {
   "version": 9,
-  "generated_at": "2026-11-04T16:35:14Z",
+  "generated_at": "2026-11-05T01:45:59Z",
   "window": {
-    "start": "2026-10-28T16:35:14Z",
-    "end": "2026-11-04T16:35:14Z"
+    "start": "2026-10-29T01:45:59Z",
+    "end": "2026-11-05T01:45:59Z"
   },
   "stats": {
-    "tracks": 138,
+    "tracks": 141,
     "artists": 16,
     "merged": 1
   },
   "totals": {
-    "tracks": 359,
+    "tracks": 372,
     "artists": 71,
     "merged": 1,
     "since": "2026-10-14"
@@ -189,9 +189,9 @@
             "favorite": true
           },
           {
-            "artist": "Soundgarden",
-            "weight": 1,
-            "favorite": true
+            "artist": "El Mató a un Policía Motorizado",
+            "weight": 2,
+            "favorite": false
           }
         ]
       }
@@ -321,7 +321,7 @@
           {
             "name": "Soen",
             "played": true,
-            "last_played": "2026-10-30"
+            "last_played": "2026-11-04"
           }
         ],
         "created": "2026-10-29",
