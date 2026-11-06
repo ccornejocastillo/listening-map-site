@@ -1,9 +1,9 @@
 {
   "version": 9,
-  "generated_at": "2026-11-06T11:07:43Z",
+  "generated_at": "2026-11-06T12:30:32Z",
   "window": {
-    "start": "2026-10-30T11:07:43Z",
-    "end": "2026-11-06T11:07:43Z"
+    "start": "2026-10-30T12:30:32Z",
+    "end": "2026-11-06T12:30:32Z"
   },
   "stats": {
     "tracks": 127,
@@ -17,35 +17,35 @@
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-11-04",
-    "kind": "wednesday"
+    "id": "2026-11-06",
+    "kind": "friday"
   },
-  "summary": "You spent the last week immersed in a heavy rotation of Soen, Dope Smoker, Men I Trust, and Pearl Jam, blending progressive rock with grunge and dream pop.",
+  "summary": "You listened to heavy doses of progressive metal and alternative rock, led by Soen, Men I Trust, and Pearl Jam.",
   "pending": false,
   "recommendations": [
     {
-      "type": "discovery",
+      "type": "heirs",
       "slot": "main",
-      "anchor": "Men I Trust",
-      "reason": "Since you have been listening closely to Men I Trust and Tokyo Tea Room, Beach House offers a similar lush dream pop atmosphere with steady, hypnotic basslines.",
+      "anchor": "Soen",
+      "reason": "Since you have been playing Soen heavily, this band shares the same melancholic heaviness and melodic progressive metal structure.",
       "artists": [
         {
-          "artist": "Beach House",
-          "artist_id": "56ZTgzPBDge0OvCGgMO3OY",
-          "spotify_url": "https://open.spotify.com/artist/56ZTgzPBDge0OvCGgMO3OY"
+          "artist": "Katatonia",
+          "artist_id": "2CWWgbxApjbyByxBBCvGTm",
+          "spotify_url": "https://open.spotify.com/artist/2CWWgbxApjbyByxBBCvGTm"
         }
       ]
     },
     {
-      "type": "heirs",
+      "type": "discovery",
       "slot": "extra",
-      "anchor": "TOOL",
-      "reason": "Building on your heavy rotation of Soen and deep affinity for TOOL, Karnivool delivers complex progressive rock structures and immense emotional weight.",
+      "anchor": "Men I Trust",
+      "reason": "This group matches the breezy, low-key dream pop and indie groove you enjoy from Men I Trust and Tokyo Tea Room.",
       "artists": [
         {
-          "artist": "Karnivool",
-          "artist_id": "6rX8AFY10dsJkJsv23Z9Um",
-          "spotify_url": "https://open.spotify.com/artist/6rX8AFY10dsJkJsv23Z9Um"
+          "artist": "Yumi Zouma",
+          "artist_id": "4tPyCwWrsvZ8OKYl7QRavL",
+          "spotify_url": "https://open.spotify.com/artist/4tPyCwWrsvZ8OKYl7QRavL"
         }
       ]
     }
@@ -367,6 +367,34 @@
           }
         ],
         "created": "2026-11-04",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "heirs",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Katatonia",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-06",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Yumi Zouma",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-06",
         "end": null,
         "status": "open"
       }
