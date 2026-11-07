@@ -1,19 +1,19 @@
 {
   "version": 9,
-  "generated_at": "2026-11-06T12:30:32Z",
+  "generated_at": "2026-11-07T01:10:09Z",
   "window": {
-    "start": "2026-10-30T12:30:32Z",
-    "end": "2026-11-06T12:30:32Z"
+    "start": "2026-10-31T01:10:09Z",
+    "end": "2026-11-07T01:10:09Z"
   },
   "stats": {
-    "tracks": 127,
-    "artists": 14,
-    "merged": 1
+    "tracks": 108,
+    "artists": 17,
+    "merged": 2
   },
   "totals": {
-    "tracks": 384,
-    "artists": 73,
-    "merged": 1,
+    "tracks": 399,
+    "artists": 75,
+    "merged": 2,
     "since": "2026-10-14"
   },
   "batch": {
@@ -166,8 +166,18 @@
       },
       {
         "start": "2026-11-02",
-        "weight": 2,
+        "weight": 3,
         "top": [
+          {
+            "artist": "Soen",
+            "weight": 2,
+            "favorite": true
+          },
+          {
+            "artist": "Men I Trust",
+            "weight": 2,
+            "favorite": true
+          },
           {
             "artist": "Pearl Jam",
             "weight": 2,
@@ -179,19 +189,9 @@
             "favorite": false
           },
           {
-            "artist": "Men I Trust",
-            "weight": 2,
-            "favorite": true
-          },
-          {
             "artist": "Radiohead",
             "weight": 2,
             "favorite": true
-          },
-          {
-            "artist": "El Mató a un Policía Motorizado",
-            "weight": 2,
-            "favorite": false
           }
         ]
       }
@@ -321,12 +321,12 @@
           {
             "name": "Soen",
             "played": true,
-            "last_played": "2026-11-05"
+            "last_played": "2026-11-06"
           }
         ],
         "created": "2026-10-29",
-        "end": null,
-        "status": "open"
+        "end": "2026-11-06",
+        "status": "merged"
       },
       {
         "type": "roots",
@@ -402,6 +402,15 @@
   },
   "stuck": {
     "merged": [
+      {
+        "type": "heirs",
+        "slot": "extra",
+        "artists": [
+          "Soen"
+        ],
+        "anchor": "TOOL",
+        "date": "2026-11-06"
+      },
       {
         "type": "discovery",
         "slot": "extra",
