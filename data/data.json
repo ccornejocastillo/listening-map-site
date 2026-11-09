@@ -1,13 +1,13 @@
 {
   "version": 9,
-  "generated_at": "2026-11-09T13:24:53Z",
+  "generated_at": "2026-11-09T13:56:37Z",
   "window": {
-    "start": "2026-11-02T13:24:53Z",
-    "end": "2026-11-09T13:24:53Z"
+    "start": "2026-11-02T13:56:37Z",
+    "end": "2026-11-09T13:56:37Z"
   },
   "stats": {
-    "tracks": 100,
-    "artists": 16,
+    "tracks": 93,
+    "artists": 15,
     "merged": 2
   },
   "totals": {
@@ -20,19 +20,45 @@
     "id": "2026-11-09",
     "kind": "monday"
   },
-  "summary": "You spent the last week anchored by progressive rock and alternative sounds, with Soen and Men I Trust leading your listening time. You also rotated through classic alternative staples like Radiohead and King Crimson, alongside a steady dose of El Mató a un Policía Motorizado and grunge tracks from Pearl Jam and Soundgarden.",
+  "summary": "Your past week was led by progressive metal and heavy textures through Soen, alongside classic art rock from King Crimson and Radiohead. At the same time, mellow dream pop from Men I Trust provided a softer contrast, with El Mató a un Policía Motorizado adding melodic indie rock.",
   "pending": false,
   "recommendations": [
     {
       "type": "roots",
       "slot": "main",
       "anchor": "Soen",
-      "reason": "Since you lean heavily into Soen's heavy yet melodic progressive compositions, exploring their clear structural roots in Opeth makes sense. These tracks deliver the intricate guitar work and dynamic shifts you already enjoy.",
+      "reason": "Steven Wilson's progressive rock outfit defined the atmospheric, pristine metal tone that directly shaped Soen's songwriting structure. Listening to their mid-2000s catalog highlights how dynamic shifts between heavy riffs and melancholic soundscapes paved the way for modern prog.",
       "artists": [
         {
-          "artist": "Opeth",
-          "artist_id": "0ybFZ2Ab08V8hueghSXm6E",
-          "spotify_url": "https://open.spotify.com/artist/0ybFZ2Ab08V8hueghSXm6E"
+          "artist": "Porcupine Tree",
+          "artist_id": "5NXHXK6hOCotCF8lvGM1I0",
+          "spotify_url": "https://open.spotify.com/artist/5NXHXK6hOCotCF8lvGM1I0"
+        }
+      ]
+    },
+    {
+      "type": "discovery",
+      "slot": "extra",
+      "anchor": "Alice In Chains",
+      "reason": "Moving away from your current prog and dream pop emphasis back toward your long-standing love for 90s alt-rock like Alice In Chains, Stone Temple Pilots offer gritty grunge riffs paired with strong melodic hooks. Their heavier rhythm section and bluesy undertones bring out classic Pacific Northwest grunge from a slightly different perspective.",
+      "artists": [
+        {
+          "artist": "Stone Temple Pilots",
+          "artist_id": "2UazAtjfzqBF0Nho2awK4z",
+          "spotify_url": "https://open.spotify.com/artist/2UazAtjfzqBF0Nho2awK4z"
+        }
+      ]
+    },
+    {
+      "type": "discovery",
+      "slot": "extra",
+      "anchor": "Como Asesinar a Felipes",
+      "reason": "Connected by the jazz instrumentation and cinematic basslines present in Como Asesinar a Felipes, this Manchester trio strips away hip-hop vocals in favor of acoustic piano-driven breakbeats and minimalist grooves. It steps completely outside your dominant rock and pop genres into modern acoustic jazz.",
+      "artists": [
+        {
+          "artist": "GoGo Penguin",
+          "artist_id": "19f2JXwlRU26376TCKmp6L",
+          "spotify_url": "https://open.spotify.com/artist/19f2JXwlRU26376TCKmp6L"
         }
       ]
     }
@@ -390,7 +416,35 @@
         "slot": "main",
         "artists": [
           {
-            "name": "Opeth",
+            "name": "Porcupine Tree",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-09",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Stone Temple Pilots",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-09",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "GoGo Penguin",
             "played": false,
             "last_played": null
           }
