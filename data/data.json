@@ -1,12 +1,12 @@
 {
   "version": 9,
-  "generated_at": "2026-11-09T11:47:53Z",
+  "generated_at": "2026-11-09T13:24:53Z",
   "window": {
-    "start": "2026-11-02T11:47:53Z",
-    "end": "2026-11-09T11:47:53Z"
+    "start": "2026-11-02T13:24:53Z",
+    "end": "2026-11-09T13:24:53Z"
   },
   "stats": {
-    "tracks": 106,
+    "tracks": 100,
     "artists": 16,
     "merged": 2
   },
@@ -17,35 +17,22 @@
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-11-06",
-    "kind": "friday"
+    "id": "2026-11-09",
+    "kind": "monday"
   },
-  "summary": "You listened to heavy doses of progressive metal and alternative rock, led by Soen, Men I Trust, and Pearl Jam.",
+  "summary": "You spent the last week anchored by progressive rock and alternative sounds, with Soen and Men I Trust leading your listening time. You also rotated through classic alternative staples like Radiohead and King Crimson, alongside a steady dose of El Mató a un Policía Motorizado and grunge tracks from Pearl Jam and Soundgarden.",
   "pending": false,
   "recommendations": [
     {
-      "type": "heirs",
+      "type": "roots",
       "slot": "main",
       "anchor": "Soen",
-      "reason": "Since you have been playing Soen heavily, this band shares the same melancholic heaviness and melodic progressive metal structure.",
+      "reason": "Since you lean heavily into Soen's heavy yet melodic progressive compositions, exploring their clear structural roots in Opeth makes sense. These tracks deliver the intricate guitar work and dynamic shifts you already enjoy.",
       "artists": [
         {
-          "artist": "Katatonia",
-          "artist_id": "2CWWgbxApjbyByxBBCvGTm",
-          "spotify_url": "https://open.spotify.com/artist/2CWWgbxApjbyByxBBCvGTm"
-        }
-      ]
-    },
-    {
-      "type": "discovery",
-      "slot": "extra",
-      "anchor": "Men I Trust",
-      "reason": "This group matches the breezy, low-key dream pop and indie groove you enjoy from Men I Trust and Tokyo Tea Room.",
-      "artists": [
-        {
-          "artist": "Yumi Zouma",
-          "artist_id": "4tPyCwWrsvZ8OKYl7QRavL",
-          "spotify_url": "https://open.spotify.com/artist/4tPyCwWrsvZ8OKYl7QRavL"
+          "artist": "Opeth",
+          "artist_id": "0ybFZ2Ab08V8hueghSXm6E",
+          "spotify_url": "https://open.spotify.com/artist/0ybFZ2Ab08V8hueghSXm6E"
         }
       ]
     }
@@ -395,6 +382,20 @@
           }
         ],
         "created": "2026-11-06",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Opeth",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-09",
         "end": null,
         "status": "open"
       }
