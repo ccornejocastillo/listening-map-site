@@ -1,18 +1,18 @@
 {
   "version": 9,
-  "generated_at": "2026-11-09T13:56:37Z",
+  "generated_at": "2026-11-10T03:47:26Z",
   "window": {
-    "start": "2026-11-02T13:56:37Z",
-    "end": "2026-11-09T13:56:37Z"
+    "start": "2026-11-03T03:47:26Z",
+    "end": "2026-11-10T03:47:26Z"
   },
   "stats": {
-    "tracks": 93,
-    "artists": 15,
+    "tracks": 104,
+    "artists": 23,
     "merged": 2
   },
   "totals": {
-    "tracks": 399,
-    "artists": 75,
+    "tracks": 426,
+    "artists": 80,
     "merged": 2,
     "since": "2026-10-14"
   },
@@ -67,7 +67,7 @@
   "next_batch": "2026-11-11",
   "graph": {
     "start": "2026-09-28",
-    "today": "2026-11-09",
+    "today": "2026-11-10",
     "weeks": [
       {
         "start": "2026-09-28",
@@ -205,8 +205,34 @@
       },
       {
         "start": "2026-11-09",
-        "weight": 0,
-        "top": []
+        "weight": 2,
+        "top": [
+          {
+            "artist": "Cámara Chilena de la Destrucción",
+            "weight": 3,
+            "favorite": false
+          },
+          {
+            "artist": "Pearl Jam",
+            "weight": 2,
+            "favorite": true
+          },
+          {
+            "artist": "Porcupine Tree",
+            "weight": 1,
+            "favorite": false
+          },
+          {
+            "artist": "TOOL",
+            "weight": 1,
+            "favorite": true
+          },
+          {
+            "artist": "Katatonia",
+            "weight": 1,
+            "favorite": false
+          }
+        ]
       }
     ],
     "branches": [
@@ -389,8 +415,8 @@
         "artists": [
           {
             "name": "Katatonia",
-            "played": false,
-            "last_played": null
+            "played": true,
+            "last_played": "2026-11-09"
           }
         ],
         "created": "2026-11-06",
@@ -403,8 +429,8 @@
         "artists": [
           {
             "name": "Yumi Zouma",
-            "played": false,
-            "last_played": null
+            "played": true,
+            "last_played": "2026-11-09"
           }
         ],
         "created": "2026-11-06",
@@ -417,8 +443,8 @@
         "artists": [
           {
             "name": "Porcupine Tree",
-            "played": false,
-            "last_played": null
+            "played": true,
+            "last_played": "2026-11-09"
           }
         ],
         "created": "2026-11-09",
