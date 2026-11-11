@@ -1,18 +1,18 @@
 {
   "version": 9,
-  "generated_at": "2026-11-10T13:00:35Z",
+  "generated_at": "2026-11-11T01:28:01Z",
   "window": {
-    "start": "2026-11-03T13:00:35Z",
-    "end": "2026-11-10T13:00:35Z"
+    "start": "2026-11-04T01:28:01Z",
+    "end": "2026-11-11T01:28:01Z"
   },
   "stats": {
-    "tracks": 104,
-    "artists": 23,
+    "tracks": 116,
+    "artists": 39,
     "merged": 2
   },
   "totals": {
-    "tracks": 426,
-    "artists": 80,
+    "tracks": 460,
+    "artists": 89,
     "merged": 2,
     "since": "2026-10-14"
   },
@@ -112,7 +112,7 @@
       },
       {
         "start": "2026-10-19",
-        "weight": 3,
+        "weight": 2,
         "top": [
           {
             "artist": "Bersuit Vergarabat",
@@ -143,7 +143,7 @@
       },
       {
         "start": "2026-10-26",
-        "weight": 3,
+        "weight": 2,
         "top": [
           {
             "artist": "Soen",
@@ -205,30 +205,30 @@
       },
       {
         "start": "2026-11-09",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
             "artist": "Cámara Chilena de la Destrucción",
-            "weight": 3,
+            "weight": 2,
+            "favorite": false
+          },
+          {
+            "artist": "teodioteodio",
+            "weight": 2,
+            "favorite": false
+          },
+          {
+            "artist": "Molotov",
+            "weight": 1,
             "favorite": false
           },
           {
             "artist": "Pearl Jam",
-            "weight": 2,
+            "weight": 1,
             "favorite": true
           },
           {
             "artist": "Porcupine Tree",
-            "weight": 1,
-            "favorite": false
-          },
-          {
-            "artist": "TOOL",
-            "weight": 1,
-            "favorite": true
-          },
-          {
-            "artist": "Katatonia",
             "weight": 1,
             "favorite": false
           }
