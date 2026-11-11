@@ -1,9 +1,9 @@
 {
   "version": 9,
-  "generated_at": "2026-11-11T11:11:06Z",
+  "generated_at": "2026-11-11T12:13:15Z",
   "window": {
-    "start": "2026-11-04T11:11:06Z",
-    "end": "2026-11-11T11:11:06Z"
+    "start": "2026-11-04T12:13:15Z",
+    "end": "2026-11-11T12:13:15Z"
   },
   "stats": {
     "tracks": 116,
@@ -17,48 +17,48 @@
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-11-09",
-    "kind": "monday"
+    "id": "2026-11-11",
+    "kind": "wednesday"
   },
-  "summary": "Your past week was led by progressive metal and heavy textures through Soen, alongside classic art rock from King Crimson and Radiohead. At the same time, mellow dream pop from Men I Trust provided a softer contrast, with El Mató a un Policía Motorizado adding melodic indie rock.",
+  "summary": "Your recent plays focused heavily on modern progressive metal alongside Argentine and Chilean indie rock.",
   "pending": false,
   "recommendations": [
     {
-      "type": "roots",
+      "type": "discovery",
       "slot": "main",
       "anchor": "Soen",
-      "reason": "Steven Wilson's progressive rock outfit defined the atmospheric, pristine metal tone that directly shaped Soen's songwriting structure. Listening to their mid-2000s catalog highlights how dynamic shifts between heavy riffs and melancholic soundscapes paved the way for modern prog.",
+      "reason": "Driven by your heavy listening to Soen, Leprous offers a similar blend of rhythmic complexity, soaring vocals, and dynamic progressive metal. Their modern production and emotive song structures fit naturally alongside your recent rotation.",
       "artists": [
         {
-          "artist": "Porcupine Tree",
-          "artist_id": "5NXHXK6hOCotCF8lvGM1I0",
-          "spotify_url": "https://open.spotify.com/artist/5NXHXK6hOCotCF8lvGM1I0"
+          "artist": "Leprous",
+          "artist_id": "4lgrzShsg2FLA89UM2fdO5",
+          "spotify_url": "https://open.spotify.com/artist/4lgrzShsg2FLA89UM2fdO5"
         }
       ]
     },
     {
-      "type": "discovery",
+      "type": "roots",
       "slot": "extra",
       "anchor": "Alice In Chains",
-      "reason": "Moving away from your current prog and dream pop emphasis back toward your long-standing love for 90s alt-rock like Alice In Chains, Stone Temple Pilots offer gritty grunge riffs paired with strong melodic hooks. Their heavier rhythm section and bluesy undertones bring out classic Pacific Northwest grunge from a slightly different perspective.",
+      "reason": "Revisiting your long-term affinity for Alice In Chains, Screaming Trees were pivotal figures in the same 1990s Pacific Northwest grunge movement. They combine heavy psychedelic guitar work with deep, melancholic vocals.",
       "artists": [
         {
-          "artist": "Stone Temple Pilots",
-          "artist_id": "2UazAtjfzqBF0Nho2awK4z",
-          "spotify_url": "https://open.spotify.com/artist/2UazAtjfzqBF0Nho2awK4z"
+          "artist": "Screaming Trees",
+          "artist_id": "3Ukr3Ufjg8ygRJv7Ww887f",
+          "spotify_url": "https://open.spotify.com/artist/3Ukr3Ufjg8ygRJv7Ww887f"
         }
       ]
     },
     {
       "type": "discovery",
       "slot": "extra",
-      "anchor": "Como Asesinar a Felipes",
-      "reason": "Connected by the jazz instrumentation and cinematic basslines present in Como Asesinar a Felipes, this Manchester trio strips away hip-hop vocals in favor of acoustic piano-driven breakbeats and minimalist grooves. It steps completely outside your dominant rock and pop genres into modern acoustic jazz.",
+      "anchor": "Bersuit Vergarabat",
+      "reason": "Stepping entirely outside your rock and metal rotation, Gotan Project explores electro-tango. Connected to Bersuit Vergarabat through the dramatic urban atmosphere of Buenos Aires, they fuse traditional bandoneón accordion with modern electronic downtempo grooves.",
       "artists": [
         {
-          "artist": "GoGo Penguin",
-          "artist_id": "19f2JXwlRU26376TCKmp6L",
-          "spotify_url": "https://open.spotify.com/artist/19f2JXwlRU26376TCKmp6L"
+          "artist": "Gotan Project",
+          "artist_id": "44ejFPE33H5aOInxNV2BFP",
+          "spotify_url": "https://open.spotify.com/artist/44ejFPE33H5aOInxNV2BFP"
         }
       ]
     }
@@ -476,6 +476,48 @@
           }
         ],
         "created": "2026-11-09",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Leprous",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-11",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Screaming Trees",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-11",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Gotan Project",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-11",
         "end": null,
         "status": "open"
       }
