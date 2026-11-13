@@ -1,17 +1,17 @@
 {
   "version": 9,
-  "generated_at": "2026-11-12T13:18:29Z",
+  "generated_at": "2026-11-13T02:06:22Z",
   "window": {
-    "start": "2026-11-05T13:18:29Z",
-    "end": "2026-11-12T13:18:29Z"
+    "start": "2026-11-06T02:06:22Z",
+    "end": "2026-11-13T02:06:22Z"
   },
   "stats": {
-    "tracks": 108,
-    "artists": 39,
+    "tracks": 107,
+    "artists": 37,
     "merged": 1
   },
   "totals": {
-    "tracks": 483,
+    "tracks": 491,
     "artists": 89,
     "merged": 2,
     "since": "2026-10-14"
@@ -218,17 +218,17 @@
             "favorite": false
           },
           {
+            "artist": "TOOL",
+            "weight": 2,
+            "favorite": true
+          },
+          {
             "artist": "teodioteodio",
             "weight": 1,
             "favorite": false
           },
           {
             "artist": "Molotov",
-            "weight": 1,
-            "favorite": false
-          },
-          {
-            "artist": "Porcupine Tree",
             "weight": 1,
             "favorite": false
           }
@@ -322,8 +322,8 @@
           }
         ],
         "created": "2026-10-26",
-        "end": null,
-        "status": "open"
+        "end": "2026-11-12",
+        "status": "paused"
       },
       {
         "type": "roots",
