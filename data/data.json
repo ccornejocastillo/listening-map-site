@@ -1,9 +1,9 @@
 {
   "version": 9,
-  "generated_at": "2026-11-13T02:06:22Z",
+  "generated_at": "2026-11-13T11:13:44Z",
   "window": {
-    "start": "2026-11-06T02:06:22Z",
-    "end": "2026-11-13T02:06:22Z"
+    "start": "2026-11-06T11:13:44Z",
+    "end": "2026-11-13T11:13:44Z"
   },
   "stats": {
     "tracks": 107,
@@ -64,10 +64,10 @@
     }
   ],
   "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
-  "next_batch": "2026-11-13",
+  "next_batch": "2026-11-16",
   "graph": {
     "start": "2026-09-28",
-    "today": "2026-11-12",
+    "today": "2026-11-13",
     "weeks": [
       {
         "start": "2026-09-28",
@@ -205,7 +205,7 @@
       },
       {
         "start": "2026-11-09",
-        "weight": 3,
+        "weight": 2,
         "top": [
           {
             "artist": "Pearl Jam",
