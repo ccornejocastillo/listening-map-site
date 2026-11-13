@@ -1,9 +1,9 @@
 {
   "version": 9,
-  "generated_at": "2026-11-13T11:13:44Z",
+  "generated_at": "2026-11-13T12:40:15Z",
   "window": {
-    "start": "2026-11-06T11:13:44Z",
-    "end": "2026-11-13T11:13:44Z"
+    "start": "2026-11-06T12:40:15Z",
+    "end": "2026-11-13T12:40:15Z"
   },
   "stats": {
     "tracks": 107,
@@ -17,48 +17,48 @@
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-11-11",
-    "kind": "wednesday"
+    "id": "2026-11-13",
+    "kind": "friday"
   },
-  "summary": "Your recent plays focused heavily on modern progressive metal alongside Argentine and Chilean indie rock.",
+  "summary": "Your recent plays were concentrated on Pearl Jam, Cámara Chilena de la Destrucción, TOOL, and Soen, leaning heavily into heavy alternative rock and progressive metal.",
   "pending": false,
   "recommendations": [
     {
-      "type": "discovery",
+      "type": "heirs",
       "slot": "main",
       "anchor": "Soen",
-      "reason": "Driven by your heavy listening to Soen, Leprous offers a similar blend of rhythmic complexity, soaring vocals, and dynamic progressive metal. Their modern production and emotive song structures fit naturally alongside your recent rotation.",
+      "reason": "Drawing direct inspiration from Tool and Soen, Wheel constructs heavy, rhythmic progressive metal built around intricate time signatures and brooding basslines. If you are leaning into Soen's polished technical metal, their album Resident Human will fit right in.",
       "artists": [
         {
-          "artist": "Leprous",
-          "artist_id": "4lgrzShsg2FLA89UM2fdO5",
-          "spotify_url": "https://open.spotify.com/artist/4lgrzShsg2FLA89UM2fdO5"
+          "artist": "Wheel",
+          "artist_id": "4msm1QtpV7zMReePhbEQ6H",
+          "spotify_url": "https://open.spotify.com/artist/4msm1QtpV7zMReePhbEQ6H"
         }
       ]
     },
     {
       "type": "roots",
       "slot": "extra",
-      "anchor": "Alice In Chains",
-      "reason": "Revisiting your long-term affinity for Alice In Chains, Screaming Trees were pivotal figures in the same 1990s Pacific Northwest grunge movement. They combine heavy psychedelic guitar work with deep, melancholic vocals.",
+      "anchor": "Los Prisioneros",
+      "reason": "Before synth-rock and post-punk fully took hold across Latin America, Virus introduced sleek new wave rhythms and sharp songwriting in Argentina. If you appreciate the synth-tinged rock edge of Los Prisioneros, their mid-80s work provides foundational history.",
       "artists": [
         {
-          "artist": "Screaming Trees",
-          "artist_id": "3Ukr3Ufjg8ygRJv7Ww887f",
-          "spotify_url": "https://open.spotify.com/artist/3Ukr3Ufjg8ygRJv7Ww887f"
+          "artist": "Virus",
+          "artist_id": "0G7A5LzQAs2egiQl7hO5tV",
+          "spotify_url": "https://open.spotify.com/artist/0G7A5LzQAs2egiQl7hO5tV"
         }
       ]
     },
     {
-      "type": "discovery",
+      "type": "roots",
       "slot": "extra",
       "anchor": "Bersuit Vergarabat",
-      "reason": "Stepping entirely outside your rock and metal rotation, Gotan Project explores electro-tango. Connected to Bersuit Vergarabat through the dramatic urban atmosphere of Buenos Aires, they fuse traditional bandoneón accordion with modern electronic downtempo grooves.",
+      "reason": "Bersuit Vergarabat frequently weaves traditional Argentine tango and murga into their energetic rock songs. Astor Piazzolla pioneered modern tango, offering dramatic bandoneon compositions and complex acoustic arrangements far outside standard rock genres.",
       "artists": [
         {
-          "artist": "Gotan Project",
-          "artist_id": "44ejFPE33H5aOInxNV2BFP",
-          "spotify_url": "https://open.spotify.com/artist/44ejFPE33H5aOInxNV2BFP"
+          "artist": "Astor Piazzolla",
+          "artist_id": "7dsugSamBB7enWE2IrlbFg",
+          "spotify_url": "https://open.spotify.com/artist/7dsugSamBB7enWE2IrlbFg"
         }
       ]
     }
@@ -518,6 +518,48 @@
           }
         ],
         "created": "2026-11-11",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "heirs",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Wheel",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-13",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Virus",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-13",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Astor Piazzolla",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-13",
         "end": null,
         "status": "open"
       }
