@@ -1,18 +1,18 @@
 {
   "version": 9,
-  "generated_at": "2026-11-13T12:40:15Z",
+  "generated_at": "2026-11-14T01:43:24Z",
   "window": {
-    "start": "2026-11-06T12:40:15Z",
-    "end": "2026-11-13T12:40:15Z"
+    "start": "2026-11-07T01:43:24Z",
+    "end": "2026-11-14T01:43:24Z"
   },
   "stats": {
-    "tracks": 107,
-    "artists": 37,
+    "tracks": 108,
+    "artists": 39,
     "merged": 1
   },
   "totals": {
-    "tracks": 491,
-    "artists": 89,
+    "tracks": 507,
+    "artists": 93,
     "merged": 2,
     "since": "2026-10-14"
   },
@@ -205,11 +205,11 @@
       },
       {
         "start": "2026-11-09",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
             "artist": "Pearl Jam",
-            "weight": 3,
+            "weight": 2,
             "favorite": true
           },
           {
@@ -219,7 +219,7 @@
           },
           {
             "artist": "TOOL",
-            "weight": 2,
+            "weight": 1,
             "favorite": true
           },
           {
