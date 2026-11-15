@@ -1,9 +1,9 @@
 {
   "version": 9,
-  "generated_at": "2026-11-15T01:16:52Z",
+  "generated_at": "2026-11-15T11:12:56Z",
   "window": {
-    "start": "2026-11-08T01:16:52Z",
-    "end": "2026-11-15T01:16:52Z"
+    "start": "2026-11-08T11:12:56Z",
+    "end": "2026-11-15T11:12:56Z"
   },
   "stats": {
     "tracks": 108,
@@ -67,7 +67,7 @@
   "next_batch": "2026-11-16",
   "graph": {
     "start": "2026-09-28",
-    "today": "2026-11-14",
+    "today": "2026-11-15",
     "weeks": [
       {
         "start": "2026-09-28",
@@ -112,7 +112,7 @@
       },
       {
         "start": "2026-10-19",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
             "artist": "Bersuit Vergarabat",
@@ -143,7 +143,7 @@
       },
       {
         "start": "2026-10-26",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
             "artist": "Soen",
