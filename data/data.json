@@ -1,18 +1,18 @@
 {
   "version": 9,
-  "generated_at": "2026-11-16T13:10:59Z",
+  "generated_at": "2026-11-16T15:52:48Z",
   "window": {
-    "start": "2026-11-09T13:10:59Z",
-    "end": "2026-11-16T13:10:59Z"
+    "start": "2026-11-09T15:52:48Z",
+    "end": "2026-11-16T15:52:48Z"
   },
   "stats": {
-    "tracks": 107,
-    "artists": 38,
+    "tracks": 97,
+    "artists": 32,
     "merged": 0
   },
   "totals": {
-    "tracks": 507,
-    "artists": 93,
+    "tracks": 513,
+    "artists": 94,
     "merged": 2,
     "since": "2026-10-14"
   },
@@ -231,8 +231,14 @@
       },
       {
         "start": "2026-11-16",
-        "weight": 0,
-        "top": []
+        "weight": 1,
+        "top": [
+          {
+            "artist": "BADBADNOTGOOD",
+            "weight": 3,
+            "favorite": false
+          }
+        ]
       }
     ],
     "branches": [
@@ -597,8 +603,8 @@
         "artists": [
           {
             "name": "BADBADNOTGOOD",
-            "played": false,
-            "last_played": null
+            "played": true,
+            "last_played": "2026-11-16"
           }
         ],
         "created": "2026-11-16",
