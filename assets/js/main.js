@@ -57,7 +57,8 @@ function card(rec) {
 // right below it, each recommendation branches off the day it arrived; further down, your top artists run as strands.
 // data.json only carries weights from 0 to 3, never play counts.
 const SVG = "http://www.w3.org/2000/svg";
-const COLORS = { text: "#F2F2F2", secondary: "#9A9A9A", accent: "#4D7CFF", bg: "#000000" };
+// Also passed to TasteNetwork (assets/js/network.js), so both drawings share the same colors
+const COLORS = { text: "#F2F2F2", secondary: "#9A9A9A", accent: "#4D7CFF", bg: "#000000", path: "#B8936E" };
 const shortDay = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "short", day: "numeric" });
 const toDate = s => new Date(s + "T12:00:00Z");
 const REC_IN_TOP_W = 4;  // a recommendation in your top: solid and thick, unlike the dotted ones you only tried
@@ -379,3 +380,14 @@ fetch("data/data.json", { cache: "no-cache" })
   .catch(() => {
     document.getElementById("error").hidden = false;
   });
+
+// The network comes in its own file, so a missing or broken network.json never affects the rest of the page:
+// the section just stays hidden
+fetch("data/network.json", { cache: "no-cache" })
+  .then(r => (r.ok ? r.json() : null))
+  .then(net => {
+    if (!net?.nodes?.length || !window.TasteNetwork) return;
+    document.getElementById("network").hidden = false;
+    TasteNetwork.mount(net, document.getElementById("network-graph"), { colors: COLORS, star: STAR, starColor: STAR_COLOR });
+  })
+  .catch(() => {});

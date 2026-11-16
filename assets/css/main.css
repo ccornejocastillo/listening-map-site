@@ -66,3 +66,9 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--border
   .stats { grid-template-columns: 1fr; }
   .stat + .stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--border); }
 }
+.intro { color: var(--secondary); font-size: 15px; max-width: 640px; margin: -4px 0 16px; }
+.network-graph { width: 100%; }
+.network-graph svg { display: block; overflow: visible; }
+.net-label { font-family: "IBM Plex Sans", sans-serif; font-size: 11px; fill: var(--text); }
+.net-label.rec { fill: #B9C9FF; }
+.net-label.rec.unplayed { fill: #7E95D6; }

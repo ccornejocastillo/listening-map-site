@@ -2,21 +2,23 @@
 
 Frontend for [Listening map](https://ccornejocastillo.github.io/listening-map-site/), served by GitHub Pages. The page is in English.
 
-This repo is the frontend only. The backend (Python, workflows, the raw listening history) lives in the private `listening-map` repo; the only thing it sends here is `data/data.json`.
+This repo is the frontend only. The backend (Python, workflows, the raw listening history) lives in the private `listening-map` repo; the only things it sends here are `data/data.json` and `data/network.json`.
 
 ```
 index.html            the page structure: sections, legend, footer
 assets/css/main.css   styles
-assets/js/main.js     fetches data/data.json and fills the page (vanilla JS, no build step)
+assets/js/main.js     fetches data/data.json and data/network.json and fills the page (vanilla JS, no build step)
+assets/js/network.js  TasteNetwork, an internal library that draws the taste network; loaded before main.js
 data/data.json        written by the backend; don't edit it by hand
+data/network.json     the taste network, written by the backend; don't edit it by hand
 .nojekyll             tells Pages to serve the files as-is, without Jekyll
 ```
 
 ## Who edits what
 
 - `index.html` and everything in `assets/` are edited here by hand.
-- `data/data.json` is written by the backend workflows (`track.yml` at 03:23 and 21:37 UTC, `recommend.yml` at 04:47 UTC; 00:23, 18:37 and 01:47 in Santiago) as `github-actions[bot]`, so any hand edit is overwritten on the next run. Since the bot commits to `main` every day, run `git pull` before committing here.
-- `data/data.json` is public and holds aggregates only, never individual plays.
+- `data/data.json` and `data/network.json` are written by the backend workflows (`track.yml` at 03:23 and 21:37 UTC, `recommend.yml` at 04:47 UTC; 00:23, 18:37 and 01:47 in Santiago) as `github-actions[bot]`, so any hand edit is overwritten on the next run. If the backend's network step fails, `network.json` just keeps its previous version. Since the bot commits to `main` every day, run `git pull` before committing here.
+- Both files are public and hold aggregates only, never individual plays or play counts.
 
 ## Data contract
 
@@ -32,13 +34,20 @@ The schema of `data/data.json` is documented in the backend's `docs/design.md` (
 | What stuck | `stuck` |
 | Footer | `generated_at`, `pending`, `next_batch` |
 
+`data/network.json` is a separate file with its own `version` (now 1), documented in the backend's `docs/design.md` ("Taste network"). It's fetched on its own; if it's missing or fails, the "Taste network" section stays hidden and the rest of the page isn't affected.
+
+| Section | Keys it reads |
+| --- | --- |
+| Taste network | `nodes` (`kind` `yours`/`rec`, `weight`, `favorite`, `status`, `played`, `x`, `y` from 0 to 1) and `edges` (`kind` `together`/`anchor`/`similar`, `weight`) |
+
 Timestamps come as UTC ISO strings and are formatted in `America/Santiago`. Plain dates (`created`, `next_batch`, graph dates) are `YYYY-MM-DD` and are formatted as calendar days, without a time zone shift.
 
 ## How `main.js` works
 
 1. Fetches `data/data.json` with `cache: "no-cache"`. If it fails, the page shows "Couldn't load data." instead of an empty page.
 2. Fills the header and the footer, then shows each section that has data.
-3. Builds every element with `textContent`, never `innerHTML`: summaries and reasons are written by Gemini and must never be able to inject markup.
+3. Builds every element with `textContent`, never `innerHTML`: summaries and reasons are written by Gemini and must never be able to inject markup. The network's names go into the SVG the same way.
+4. Separately, fetches `data/network.json` and, if it's there, hands it to `TasteNetwork.mount` (`assets/js/network.js`). A failure there only hides the "Taste network" section.
 
 Main pieces:
 
@@ -47,6 +56,21 @@ Main pieces:
 - `drawGraph(graph, container)`: the branch graph, drawn as SVG at the container's real width (so its text stays readable on phones) and redrawn on resize. `strandRuns` turns the weekly tops into strands, and `assignLanes` places strands and branches in lanes, counting their labels' width.
 - `extraItem(rec)`: a playlist extra in "Also in this playlist": name linked to Spotify, type and anchor, reason. No player of its own; its tracks are in the batch playlist.
 - `stuckItem(s)`: an entry in "What stuck", marked "via playlist" for an extra.
+
+## Taste network (`assets/js/network.js`)
+
+`TasteNetwork` is an internal library: no dependencies, nothing global but `window.TasteNetwork`, and it doesn't know about the rest of the page. `main.js` loads `data/network.json` and calls it.
+
+- `TasteNetwork.draw(net, container, options)`: draws once, as SVG at the container's real width (taller than wide on phones).
+- `TasteNetwork.mount(net, container, options)`: draws, and redraws when the container's width changes. This is what `main.js` uses.
+- `options` (all optional): `colors` (`text`, `secondary`, `accent`, `bg`, `path`), `star`, `starColor`. `main.js` passes its own `COLORS`, `STAR` and `STAR_COLOR`, so both drawings share them; without options it uses the same values as defaults.
+
+How it draws:
+
+- Positions come from the backend (`x` and `y` from 0 to 1) and are kept from one day to the next, so the network doesn't move between visits. The library never lays it out itself.
+- Lines first: `together` in gray (thicker at weight 2), `similar` dotted in sand, `anchor` in blue, dashed toward a recommendation not played yet and gray toward a paused one.
+- Then dots: your artists in three grays by weight, recommendations in blue (filled when played, ringed when merged, dashed when not played).
+- Then labels by importance (`rank`): your heaviest artists, then merged and played recommendations. A label goes below its dot, else above it, else it's left out; every dot keeps its name in a tooltip. Below 560 px, only heavier artists and played recommendations get a label.
 
 ## Branch graph
 
@@ -62,7 +86,7 @@ Main pieces:
 
 ## Style
 
-Colors are CSS variables in `:root` (`assets/css/main.css`) and the graph uses the same values in `COLORS` (`assets/js/main.js`); change both together.
+Colors are CSS variables in `:root` (`assets/css/main.css`) and the graph uses the same values in `COLORS` (`assets/js/main.js`), which it also passes to `TasteNetwork`; change both together. The network's own grays (`YOURS_FILL`, `TOGETHER`, `PAUSED`) live in `assets/js/network.js`.
 
 | Token | Value | Use |
 | --- | --- | --- |
@@ -71,7 +95,7 @@ Colors are CSS variables in `:root` (`assets/css/main.css`) and the graph uses t
 | `--secondary` | `#9A9A9A` | Labels, dates, tried and paused |
 | `--border` | `#262626` | Dividers |
 | `--accent` | `#4D7CFF` | Recommendation labels, branches, open |
-| `--path` | `#B8936E` | Path cards (a muted sand, so a path doesn't outweigh the main recommendation) |
+| `--path` | `#B8936E` | Path cards (a muted sand, so a path doesn't outweigh the main recommendation) and the network's similar-sound lines |
 
 Strands use three grays by weight, `#575757`, `#6E6E6E` and `#8A8A8A` (`STRAND` in `main.js`); the band's half thickness by week weight is in `BAND`.
 
