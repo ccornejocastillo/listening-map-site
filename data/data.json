@@ -1,9 +1,9 @@
 {
   "version": 9,
-  "generated_at": "2026-11-16T01:21:38Z",
+  "generated_at": "2026-11-16T11:42:49Z",
   "window": {
-    "start": "2026-11-09T01:21:38Z",
-    "end": "2026-11-16T01:21:38Z"
+    "start": "2026-11-09T11:42:49Z",
+    "end": "2026-11-16T11:42:49Z"
   },
   "stats": {
     "tracks": 108,
@@ -64,16 +64,11 @@
     }
   ],
   "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
-  "next_batch": "2026-11-16",
+  "next_batch": "2026-11-18",
   "graph": {
-    "start": "2026-09-28",
-    "today": "2026-11-15",
+    "start": "2026-10-05",
+    "today": "2026-11-16",
     "weeks": [
-      {
-        "start": "2026-09-28",
-        "weight": 0,
-        "top": []
-      },
       {
         "start": "2026-10-05",
         "weight": 0,
@@ -233,6 +228,11 @@
             "favorite": false
           }
         ]
+      },
+      {
+        "start": "2026-11-16",
+        "weight": 0,
+        "top": []
       }
     ],
     "branches": [
