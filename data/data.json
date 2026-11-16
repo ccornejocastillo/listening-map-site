@@ -1,13 +1,13 @@
 {
   "version": 9,
-  "generated_at": "2026-11-16T11:42:49Z",
+  "generated_at": "2026-11-16T13:10:59Z",
   "window": {
-    "start": "2026-11-09T11:42:49Z",
-    "end": "2026-11-16T11:42:49Z"
+    "start": "2026-11-09T13:10:59Z",
+    "end": "2026-11-16T13:10:59Z"
   },
   "stats": {
-    "tracks": 108,
-    "artists": 39,
+    "tracks": 107,
+    "artists": 38,
     "merged": 0
   },
   "totals": {
@@ -17,48 +17,48 @@
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-11-13",
-    "kind": "friday"
+    "id": "2026-11-16",
+    "kind": "monday"
   },
-  "summary": "Your recent plays were concentrated on Pearl Jam, Cámara Chilena de la Destrucción, TOOL, and Soen, leaning heavily into heavy alternative rock and progressive metal.",
+  "summary": "Over the past week, you logged 107 plays across 38 artists, leaning heavily into Pearl Jam, who accounted for nearly a quarter of your total listening. Your rotation also featured steady time with TOOL and Cámara Chilena de la Destrucción, alongside bursts of teodioteodio, Molotov, and System Of A Down. Overall, your plays concentrated around heavy 90s alternative rock, atmospheric progressive metal, and energetic Latin punk.",
   "pending": false,
   "recommendations": [
     {
       "type": "heirs",
       "slot": "main",
-      "anchor": "Soen",
-      "reason": "Drawing direct inspiration from Tool and Soen, Wheel constructs heavy, rhythmic progressive metal built around intricate time signatures and brooding basslines. If you are leaning into Soen's polished technical metal, their album Resident Human will fit right in.",
+      "anchor": "TOOL",
+      "reason": "Given your heavy focus on TOOL, Rishloo expands on that dynamic with soaring vocal arrangements, intricate polyrhythms, and dramatic narrative songwriting. They match the expansive, progressive metal tension you regularly return to.",
       "artists": [
         {
-          "artist": "Wheel",
-          "artist_id": "4msm1QtpV7zMReePhbEQ6H",
-          "spotify_url": "https://open.spotify.com/artist/4msm1QtpV7zMReePhbEQ6H"
+          "artist": "Rishloo",
+          "artist_id": "1l2cyuwystFDLEnXr254a1",
+          "spotify_url": "https://open.spotify.com/artist/1l2cyuwystFDLEnXr254a1"
         }
       ]
     },
     {
-      "type": "roots",
+      "type": "discovery",
       "slot": "extra",
-      "anchor": "Los Prisioneros",
-      "reason": "Before synth-rock and post-punk fully took hold across Latin America, Virus introduced sleek new wave rhythms and sharp songwriting in Argentina. If you appreciate the synth-tinged rock edge of Los Prisioneros, their mid-80s work provides foundational history.",
+      "anchor": "Tokyo Tea Room",
+      "reason": "Stepping away from heavy guitars and into your softer indie side previously anchored by Tokyo Tea Room, Crumb builds lush dream-pop soundscapes. Their songs blend hypnotic, jazzy basslines with hazy synth textures and restrained melodies.",
       "artists": [
         {
-          "artist": "Virus",
-          "artist_id": "0G7A5LzQAs2egiQl7hO5tV",
-          "spotify_url": "https://open.spotify.com/artist/0G7A5LzQAs2egiQl7hO5tV"
+          "artist": "Crumb",
+          "artist_id": "4kSGbjWGxTchKpIxXPJv0B",
+          "spotify_url": "https://open.spotify.com/artist/4kSGbjWGxTchKpIxXPJv0B"
         }
       ]
     },
     {
-      "type": "roots",
+      "type": "discovery",
       "slot": "extra",
-      "anchor": "Bersuit Vergarabat",
-      "reason": "Bersuit Vergarabat frequently weaves traditional Argentine tango and murga into their energetic rock songs. Astor Piazzolla pioneered modern tango, offering dramatic bandoneon compositions and complex acoustic arrangements far outside standard rock genres.",
+      "anchor": "Como Asesinar a Felipes",
+      "reason": "Your interest in Como Asesinar a Felipes shows an appreciation for hip-hop structures executed through live instrumentation. BADBADNOTGOOD takes that thread into pure instrumental modern jazz, combining hip-hop rhythm sections with rich, cinematic improvisations.",
       "artists": [
         {
-          "artist": "Astor Piazzolla",
-          "artist_id": "7dsugSamBB7enWE2IrlbFg",
-          "spotify_url": "https://open.spotify.com/artist/7dsugSamBB7enWE2IrlbFg"
+          "artist": "BADBADNOTGOOD",
+          "artist_id": "65dGLGjkw3UbddUg2GKQoZ",
+          "spotify_url": "https://open.spotify.com/artist/65dGLGjkw3UbddUg2GKQoZ"
         }
       ]
     }
@@ -560,6 +560,48 @@
           }
         ],
         "created": "2026-11-13",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "heirs",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Rishloo",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-16",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Crumb",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-16",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "BADBADNOTGOOD",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-16",
         "end": null,
         "status": "open"
       }
