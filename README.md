@@ -17,7 +17,7 @@ data/network.json     the taste network, written by the backend; don't edit it b
 ## Who edits what
 
 - `index.html` and everything in `assets/` are edited here by hand.
-- `data/data.json` and `data/network.json` are written by the backend workflows (`track.yml` at 03:23 and 21:37 UTC, `recommend.yml` at 04:47 UTC; 00:23, 18:37 and 01:47 in Santiago) as `github-actions[bot]`, so any hand edit is overwritten on the next run. If the backend's network step fails, `network.json` just keeps its previous version. Since the bot commits to `main` every day, run `git pull` before committing here.
+- `data/data.json` and `data/network.json` are written by the backend's `pipeline.yml`, once a day at 03:23 UTC (00:23 in Santiago), as `github-actions[bot]`, so any hand edit is overwritten on the next run. If the backend's network step fails, `network.json` just keeps its previous version. Since the bot commits to `main` every day, run `git pull` before committing here.
 - Both files are public and hold aggregates only, never individual plays or play counts.
 
 ## Data contract
