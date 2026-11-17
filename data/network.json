@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-16T16:01:00Z",
+  "generated_at": "2026-11-17T04:09:57Z",
   "nodes": [
     {
       "id": "6MxyNXnnmwQwdW2PD0gXYO",
@@ -227,6 +227,17 @@
       "y": 0.5553
     },
     {
+      "id": "2UazAtjfzqBF0Nho2awK4z",
+      "name": "Stone Temple Pilots",
+      "kind": "rec",
+      "weight": 2,
+      "status": "open",
+      "played": true,
+      "favorite": false,
+      "x": 0.6873,
+      "y": 0.4458
+    },
+    {
       "id": "3kzwYV3OCB010YfXMF0Avt",
       "name": "Alvvays",
       "kind": "rec",
@@ -408,7 +419,7 @@
       "kind": "rec",
       "weight": 1,
       "status": "open",
-      "played": false,
+      "played": true,
       "favorite": false,
       "x": 0.3437,
       "y": 0.5281
@@ -423,17 +434,6 @@
       "favorite": false,
       "x": 0.6768,
       "y": 0.3548
-    },
-    {
-      "id": "2UazAtjfzqBF0Nho2awK4z",
-      "name": "Stone Temple Pilots",
-      "kind": "rec",
-      "weight": 1,
-      "status": "open",
-      "played": false,
-      "favorite": false,
-      "x": 0.6874,
-      "y": 0.4458
     },
     {
       "id": "7bu3H8JO7d0UbMoVzbo70s",

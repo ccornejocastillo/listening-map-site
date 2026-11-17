@@ -1,18 +1,18 @@
 {
   "version": 9,
-  "generated_at": "2026-11-16T16:01:02Z",
+  "generated_at": "2026-11-17T04:09:59Z",
   "window": {
-    "start": "2026-11-09T16:01:02Z",
-    "end": "2026-11-16T16:01:02Z"
+    "start": "2026-11-10T04:09:59Z",
+    "end": "2026-11-17T04:09:59Z"
   },
   "stats": {
-    "tracks": 97,
-    "artists": 32,
+    "tracks": 105,
+    "artists": 34,
     "merged": 0
   },
   "totals": {
-    "tracks": 513,
-    "artists": 94,
+    "tracks": 531,
+    "artists": 97,
     "merged": 2,
     "since": "2026-10-14"
   },
@@ -67,7 +67,7 @@
   "next_batch": "2026-11-18",
   "graph": {
     "start": "2026-10-05",
-    "today": "2026-11-16",
+    "today": "2026-11-17",
     "weeks": [
       {
         "start": "2026-10-05",
@@ -231,11 +231,26 @@
       },
       {
         "start": "2026-11-16",
-        "weight": 1,
+        "weight": 2,
         "top": [
+          {
+            "artist": "Stone Temple Pilots",
+            "weight": 3,
+            "favorite": false
+          },
           {
             "artist": "BADBADNOTGOOD",
             "weight": 3,
+            "favorite": false
+          },
+          {
+            "artist": "Rishloo",
+            "weight": 2,
+            "favorite": false
+          },
+          {
+            "artist": "Mephistofeles",
+            "weight": 1,
             "favorite": false
           }
         ]
@@ -463,8 +478,8 @@
         "artists": [
           {
             "name": "Stone Temple Pilots",
-            "played": false,
-            "last_played": null
+            "played": true,
+            "last_played": "2026-11-16"
           }
         ],
         "created": "2026-11-09",
@@ -575,8 +590,8 @@
         "artists": [
           {
             "name": "Rishloo",
-            "played": false,
-            "last_played": null
+            "played": true,
+            "last_played": "2026-11-16"
           }
         ],
         "created": "2026-11-16",
