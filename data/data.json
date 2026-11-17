@@ -1,17 +1,17 @@
 {
   "version": 9,
-  "generated_at": "2026-11-17T13:53:43Z",
+  "generated_at": "2026-11-17T14:23:17Z",
   "window": {
-    "start": "2026-11-10T13:53:43Z",
-    "end": "2026-11-17T13:53:43Z"
+    "start": "2026-11-10T14:23:17Z",
+    "end": "2026-11-17T14:23:17Z"
   },
   "stats": {
-    "tracks": 99,
+    "tracks": 110,
     "artists": 34,
     "merged": 0
   },
   "totals": {
-    "tracks": 531,
+    "tracks": 542,
     "artists": 97,
     "merged": 2,
     "since": "2026-10-14"
@@ -107,7 +107,7 @@
       },
       {
         "start": "2026-10-19",
-        "weight": 3,
+        "weight": 2,
         "top": [
           {
             "artist": "Bersuit Vergarabat",
@@ -138,7 +138,7 @@
       },
       {
         "start": "2026-10-26",
-        "weight": 3,
+        "weight": 2,
         "top": [
           {
             "artist": "Soen",
@@ -234,12 +234,12 @@
         "weight": 2,
         "top": [
           {
-            "artist": "Stone Temple Pilots",
+            "artist": "BADBADNOTGOOD",
             "weight": 3,
             "favorite": false
           },
           {
-            "artist": "BADBADNOTGOOD",
+            "artist": "Stone Temple Pilots",
             "weight": 3,
             "favorite": false
           },
@@ -268,8 +268,8 @@
           }
         ],
         "created": "2026-10-21",
-        "end": null,
-        "status": "open"
+        "end": "2026-11-17",
+        "status": "tried"
       },
       {
         "type": "roots",
@@ -371,8 +371,8 @@
           }
         ],
         "created": "2026-10-29",
-        "end": null,
-        "status": "open"
+        "end": "2026-11-17",
+        "status": "paused"
       },
       {
         "type": "heirs",
@@ -619,7 +619,7 @@
           {
             "name": "BADBADNOTGOOD",
             "played": true,
-            "last_played": "2026-11-16"
+            "last_played": "2026-11-17"
           }
         ],
         "created": "2026-11-16",
@@ -649,6 +649,16 @@
         "date": "2026-11-03"
       }
     ],
-    "tried": []
+    "tried": [
+      {
+        "type": "roots",
+        "slot": "main",
+        "artists": [
+          "Cocteau Twins"
+        ],
+        "anchor": "Tokyo Tea Room",
+        "date": "2026-11-17"
+      }
+    ]
   }
 }
