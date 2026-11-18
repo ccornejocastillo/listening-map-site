@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-17T14:30:57Z",
+  "generated_at": "2026-11-18T11:54:29Z",
   "nodes": [
     {
       "id": "6MxyNXnnmwQwdW2PD0gXYO",
@@ -326,6 +326,17 @@
       "y": 0.3366
     },
     {
+      "id": "5CG9X521RDFWCuAhlo6QoR",
+      "name": "Fela Kuti",
+      "kind": "rec",
+      "weight": 1,
+      "status": "open",
+      "played": false,
+      "favorite": false,
+      "x": 0.2567,
+      "y": 0.3497
+    },
+    {
       "id": "19f2JXwlRU26376TCKmp6L",
       "name": "GoGo Penguin",
       "kind": "rec",
@@ -392,6 +403,17 @@
       "y": 0.658
     },
     {
+      "id": "1fpXM23IoNckJ7NDAm8YJQ",
+      "name": "Mark Lanegan",
+      "kind": "rec",
+      "weight": 1,
+      "status": "open",
+      "played": false,
+      "favorite": false,
+      "x": 0.4639,
+      "y": 0.2841
+    },
+    {
       "id": "7LuYiSXiWs86rwWJjEEgB9",
       "name": "Mudhoney",
       "kind": "rec",
@@ -403,6 +425,17 @@
       "y": 0.3111
     },
     {
+      "id": "4skJp5OKvcc9eKokiuhi2s",
+      "name": "Pond",
+      "kind": "rec",
+      "weight": 1,
+      "status": "open",
+      "played": false,
+      "favorite": false,
+      "x": 0.1483,
+      "y": 0.4154
+    },
+    {
       "id": "5NXHXK6hOCotCF8lvGM1I0",
       "name": "Porcupine Tree",
       "kind": "rec",
@@ -411,7 +444,7 @@
       "played": true,
       "favorite": false,
       "x": 0.3448,
-      "y": 0.6329
+      "y": 0.6328
     },
     {
       "id": "1l2cyuwystFDLEnXr254a1",
@@ -617,6 +650,21 @@
       "kind": "anchor"
     },
     {
+      "source": "1w5Kfo2jwwIPruYS2UWh56",
+      "target": "1fpXM23IoNckJ7NDAm8YJQ",
+      "kind": "anchor"
+    },
+    {
+      "source": "5INjqkS1o8h1imAzPqGZBb",
+      "target": "4skJp5OKvcc9eKokiuhi2s",
+      "kind": "anchor"
+    },
+    {
+      "source": "17WostYl0Ep0nyJmA0m2ds",
+      "target": "5CG9X521RDFWCuAhlo6QoR",
+      "kind": "anchor"
+    },
+    {
       "source": "0k17h0D3J5VfsdmQ1iZtE9",
       "target": "1w5Kfo2jwwIPruYS2UWh56",
       "kind": "together",
@@ -632,13 +680,13 @@
       "source": "17WostYl0Ep0nyJmA0m2ds",
       "target": "2yEwvVSSSUkcLeSTNyHKh8",
       "kind": "together",
-      "weight": 1
+      "weight": 2
     },
     {
       "source": "17WostYl0Ep0nyJmA0m2ds",
       "target": "3zmfs9cQwzJl575W1ZYXeT",
       "kind": "together",
-      "weight": 1
+      "weight": 2
     },
     {
       "source": "17WostYl0Ep0nyJmA0m2ds",
@@ -650,13 +698,13 @@
       "source": "17WostYl0Ep0nyJmA0m2ds",
       "target": "5eAWCfyUhZtHHtBdNk56l1",
       "kind": "together",
-      "weight": 1
+      "weight": 2
     },
     {
       "source": "17WostYl0Ep0nyJmA0m2ds",
       "target": "5xUf6j4upBrXZPg6AI4MRK",
       "kind": "together",
-      "weight": 1
+      "weight": 2
     },
     {
       "source": "1w5Kfo2jwwIPruYS2UWh56",
@@ -684,9 +732,15 @@
     },
     {
       "source": "2yEwvVSSSUkcLeSTNyHKh8",
-      "target": "5xUf6j4upBrXZPg6AI4MRK",
+      "target": "3zmfs9cQwzJl575W1ZYXeT",
       "kind": "together",
       "weight": 1
+    },
+    {
+      "source": "2yEwvVSSSUkcLeSTNyHKh8",
+      "target": "5xUf6j4upBrXZPg6AI4MRK",
+      "kind": "together",
+      "weight": 2
     },
     {
       "source": "2yEwvVSSSUkcLeSTNyHKh8",
@@ -697,6 +751,18 @@
     {
       "source": "2yEwvVSSSUkcLeSTNyHKh8",
       "target": "6MxyNXnnmwQwdW2PD0gXYO",
+      "kind": "together",
+      "weight": 2
+    },
+    {
+      "source": "3zmfs9cQwzJl575W1ZYXeT",
+      "target": "5eAWCfyUhZtHHtBdNk56l1",
+      "kind": "together",
+      "weight": 1
+    },
+    {
+      "source": "3zmfs9cQwzJl575W1ZYXeT",
+      "target": "5xUf6j4upBrXZPg6AI4MRK",
       "kind": "together",
       "weight": 1
     },
@@ -721,6 +787,18 @@
     {
       "source": "5eAWCfyUhZtHHtBdNk56l1",
       "target": "5xUf6j4upBrXZPg6AI4MRK",
+      "kind": "together",
+      "weight": 2
+    },
+    {
+      "source": "5eAWCfyUhZtHHtBdNk56l1",
+      "target": "6MxyNXnnmwQwdW2PD0gXYO",
+      "kind": "together",
+      "weight": 1
+    },
+    {
+      "source": "5xUf6j4upBrXZPg6AI4MRK",
+      "target": "6MxyNXnnmwQwdW2PD0gXYO",
       "kind": "together",
       "weight": 1
     },

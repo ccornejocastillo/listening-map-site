@@ -1,73 +1,73 @@
 {
   "version": 9,
-  "generated_at": "2026-11-17T14:30:59Z",
+  "generated_at": "2026-11-18T11:54:31Z",
   "window": {
-    "start": "2026-11-10T14:30:59Z",
-    "end": "2026-11-17T14:30:59Z"
+    "start": "2026-11-11T11:54:31Z",
+    "end": "2026-11-18T11:54:31Z"
   },
   "stats": {
-    "tracks": 110,
-    "artists": 34,
+    "tracks": 104,
+    "artists": 27,
     "merged": 0
   },
   "totals": {
-    "tracks": 542,
+    "tracks": 564,
     "artists": 97,
     "merged": 2,
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-11-16",
-    "kind": "monday"
+    "id": "2026-11-18",
+    "kind": "wednesday"
   },
-  "summary": "Over the past week, you logged 107 plays across 38 artists, leaning heavily into Pearl Jam, who accounted for nearly a quarter of your total listening. Your rotation also featured steady time with TOOL and Cámara Chilena de la Destrucción, alongside bursts of teodioteodio, Molotov, and System Of A Down. Overall, your plays concentrated around heavy 90s alternative rock, atmospheric progressive metal, and energetic Latin punk.",
+  "summary": "You spent the last week heavily focused on Pearl Jam, BADBADNOTGOOD, and TOOL, with a steady undercurrent of Chilean alternative rock.",
   "pending": false,
   "recommendations": [
     {
-      "type": "heirs",
+      "type": "roots",
       "slot": "main",
-      "anchor": "TOOL",
-      "reason": "Given your heavy focus on TOOL, Rishloo expands on that dynamic with soaring vocal arrangements, intricate polyrhythms, and dramatic narrative songwriting. They match the expansive, progressive metal tension you regularly return to.",
+      "anchor": "Pearl Jam",
+      "reason": "As the frontman of Screaming Trees and a frequent Pacific Northwest collaborator, Mark Lanegan shares the gravelly depth and soulful grunge roots that power Pearl Jam's heavier catalog.",
       "artists": [
         {
-          "artist": "Rishloo",
-          "artist_id": "1l2cyuwystFDLEnXr254a1",
-          "spotify_url": "https://open.spotify.com/artist/1l2cyuwystFDLEnXr254a1"
+          "artist": "Mark Lanegan",
+          "artist_id": "1fpXM23IoNckJ7NDAm8YJQ",
+          "spotify_url": "https://open.spotify.com/artist/1fpXM23IoNckJ7NDAm8YJQ"
         }
       ]
     },
     {
       "type": "discovery",
       "slot": "extra",
-      "anchor": "Tokyo Tea Room",
-      "reason": "Stepping away from heavy guitars and into your softer indie side previously anchored by Tokyo Tea Room, Crumb builds lush dream-pop soundscapes. Their songs blend hypnotic, jazzy basslines with hazy synth textures and restrained melodies.",
+      "anchor": "Tame Impala",
+      "reason": "Sharing key members and production history with Tame Impala, Pond leans into a raw, glam-infused side of Australian psychedelia while keeping the synth-heavy pop sensibilities.",
       "artists": [
         {
-          "artist": "Crumb",
-          "artist_id": "4kSGbjWGxTchKpIxXPJv0B",
-          "spotify_url": "https://open.spotify.com/artist/4kSGbjWGxTchKpIxXPJv0B"
+          "artist": "Pond",
+          "artist_id": "4skJp5OKvcc9eKokiuhi2s",
+          "spotify_url": "https://open.spotify.com/artist/4skJp5OKvcc9eKokiuhi2s"
         }
       ]
     },
     {
-      "type": "discovery",
+      "type": "roots",
       "slot": "extra",
       "anchor": "Como Asesinar a Felipes",
-      "reason": "Your interest in Como Asesinar a Felipes shows an appreciation for hip-hop structures executed through live instrumentation. BADBADNOTGOOD takes that thread into pure instrumental modern jazz, combining hip-hop rhythm sections with rich, cinematic improvisations.",
+      "reason": "Como Asesinar a Felipes pairs dark jazz improvisation with politically charged delivery, a spirit pioneered in West Africa by Fela Kuti through sweeping Afrobeat horn arrangements and hypnotic polyrhythms.",
       "artists": [
         {
-          "artist": "BADBADNOTGOOD",
-          "artist_id": "65dGLGjkw3UbddUg2GKQoZ",
-          "spotify_url": "https://open.spotify.com/artist/65dGLGjkw3UbddUg2GKQoZ"
+          "artist": "Fela Kuti",
+          "artist_id": "5CG9X521RDFWCuAhlo6QoR",
+          "spotify_url": "https://open.spotify.com/artist/5CG9X521RDFWCuAhlo6QoR"
         }
       ]
     }
   ],
   "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
-  "next_batch": "2026-11-18",
+  "next_batch": "2026-11-20",
   "graph": {
     "start": "2026-10-05",
-    "today": "2026-11-17",
+    "today": "2026-11-18",
     "weeks": [
       {
         "start": "2026-10-05",
@@ -240,18 +240,23 @@
           },
           {
             "artist": "Stone Temple Pilots",
-            "weight": 3,
-            "favorite": false
-          },
-          {
-            "artist": "Rishloo",
             "weight": 2,
             "favorite": false
           },
           {
-            "artist": "Mephistofeles",
+            "artist": "Rishloo",
             "weight": 1,
             "favorite": false
+          },
+          {
+            "artist": "TOOL",
+            "weight": 1,
+            "favorite": true
+          },
+          {
+            "artist": "Bersuit Vergarabat",
+            "weight": 1,
+            "favorite": true
           }
         ]
       }
@@ -623,6 +628,48 @@
           }
         ],
         "created": "2026-11-16",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Mark Lanegan",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-18",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Pond",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-18",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Fela Kuti",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-18",
         "end": null,
         "status": "open"
       }
