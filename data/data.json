@@ -1,12 +1,12 @@
 {
   "version": 9,
-  "generated_at": "2026-11-18T13:09:34Z",
+  "generated_at": "2026-11-18T14:04:41Z",
   "window": {
-    "start": "2026-11-11T13:09:34Z",
-    "end": "2026-11-18T13:09:34Z"
+    "start": "2026-11-11T14:04:41Z",
+    "end": "2026-11-18T14:04:41Z"
   },
   "stats": {
-    "tracks": 96,
+    "tracks": 89,
     "artists": 27,
     "merged": 0
   },
@@ -63,7 +63,6 @@
       ]
     }
   ],
-  "playlist_id": "4oVBvEMSHdsiHxLwDhEqqj",
   "next_batch": "2026-11-20",
   "graph": {
     "start": "2026-10-05",
