@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- A tiny taste network: your artists, a recommendation joined by its anchor line (blue), and a similar-sound arc (sand) -->
+  <rect width="32" height="32" rx="7" fill="#000000"/>
+  <path d="M23 8.5 Q28.5 16 24 23.5" fill="none" stroke="#B8936E" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="12.5" y1="15" x2="23" y2="8.5" stroke="#4D7CFF" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="12.5" y1="15" x2="24" y2="23.5" stroke="#5A5A5A" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="12.5" y1="15" x2="8" y2="24.5" stroke="#5A5A5A" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="12.5" cy="15" r="4.8" fill="#F2F2F2"/>
+  <circle cx="23" cy="8.5" r="3.4" fill="#4D7CFF"/>
+  <circle cx="24" cy="23.5" r="3" fill="#A48BE0"/>
+  <circle cx="8" cy="24.5" r="2.4" fill="#8A8A8A"/>
+</svg>
