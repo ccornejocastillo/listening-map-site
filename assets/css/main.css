@@ -71,4 +71,3 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--border
 .network-graph svg { display: block; overflow: visible; }
 .net-label { font-family: "IBM Plex Sans", sans-serif; font-size: 11px; fill: var(--text); }
 .net-label.rec { fill: #B9C9FF; }
-.net-label.rec.unplayed { fill: #7E95D6; }

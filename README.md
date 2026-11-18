@@ -38,7 +38,7 @@ The schema of `data/data.json` is documented in the backend's `docs/design.md` (
 
 | Section | Keys it reads |
 | --- | --- |
-| Taste network | `nodes` (`kind` `yours`/`rec`, `weight`, `favorite`, `status`, `played`, `x`, `y` from 0 to 1) and `edges` (`kind` `together`/`anchor`/`similar`, `weight`) |
+| Taste network | `nodes` (`kind` `yours`/`rec`, `weight`, `favorite`, `status`, `x`, `y` from 0 to 1) and `edges` (`kind` `together`/`anchor`/`similar`, `weight`) |
 
 Timestamps come as UTC ISO strings and are formatted in `America/Santiago`. Plain dates (`created`, `next_batch`, graph dates) are `YYYY-MM-DD` and are formatted as calendar days, without a time zone shift.
 
@@ -68,9 +68,9 @@ Main pieces:
 How it draws:
 
 - Positions come from the backend (`x` and `y` from 0 to 1) and are kept from one day to the next, so the network doesn't move between visits. The library never lays it out itself.
-- Lines first: `together` in gray (thicker at weight 2), `similar` dotted in sand, `anchor` in blue, dashed toward a recommendation not played yet and gray toward a paused one.
-- Then dots: your artists in three grays by weight, recommendations in blue (filled when played, ringed when merged, dashed when not played).
-- Then labels by importance (`rank`): your heaviest artists, then merged and played recommendations. A label goes below its dot, else above it, else it's left out; every dot keeps its name in a tooltip. Below 560 px, only heavier artists and played recommendations get a label.
+- Lines first: `together` in gray (thicker at weight 2), `similar` dotted in sand, `anchor` in blue.
+- Then dots: your artists in three grays by weight, recommendations in blue, ringed when merged. The backend only sends recommendations you've played.
+- Then labels by importance (`rank`): your heaviest artists, then merged recommendations, then the others by weight. A label goes below its dot, else above it, else it's left out; every dot keeps its name in a tooltip. Below 560 px, your lightest artists get no label.
 
 ## Branch graph
 
