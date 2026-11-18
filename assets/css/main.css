@@ -45,8 +45,6 @@ iframe { width: 100%; border: 0; border-radius: 12px; display: block; }
 .extras a:hover { color: var(--accent); }
 .extras .meta { display: block; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .04em; margin: 2px 0 6px; }
 .extras p { margin: 0; color: var(--secondary); font-size: 15px; }
-.playlist { margin-top: 32px; }
-.playlist h2 { font-size: 18px; }
 .graph { width: 100%; }
 .graph svg { display: block; overflow: visible; }
 .graph text { font-family: "IBM Plex Mono", monospace; font-size: 11px; fill: var(--secondary); }

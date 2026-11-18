@@ -365,11 +365,6 @@ fetch("data/data.json", { cache: "no-cache" })
         document.getElementById("extras-list").append(...extras.map(extraItem));
         document.getElementById("extras").hidden = false;
       }
-      if (data.playlist_id) {
-        const playlist = document.getElementById("playlist");
-        playlist.append(embed("playlist", data.playlist_id, 352));
-        playlist.hidden = false;
-      }
     }
 
     let footer = `Last updated ${day.format(updated)}, ${year.format(updated)}, ${time.format(updated)} (Santiago)`;

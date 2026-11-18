@@ -30,7 +30,6 @@ The schema of `data/data.json` is documented in the backend's `docs/design.md` (
 | This week | `summary` |
 | Last 7 weeks (branch graph) | `graph` |
 | Your recommendation, and "Also in this playlist" for the extras | `recommendations` (`slot` `main`/`optional` as cards, `extra` as the list) |
-| Listen to this batch | `playlist_id` |
 | What stuck | `stuck` |
 | Footer | `generated_at`, `pending`, `next_batch` |
 
@@ -52,7 +51,7 @@ Timestamps come as UTC ISO strings and are formatted in `America/Santiago`. Plai
 Main pieces:
 
 - `card(rec)`: a recommendation. The label is `also` (optional slot), `second look` if it's one, the type and the anchor. A path's artists read as a journey, "Mudhoney, then Dinosaur Jr." (`stepNames`), never with an arrow, which looked like "artist → song".
-- `embed(kind, id, height)`: a Spotify embed (`artist` or `playlist`) with the dark theme. Heights: main 352 px, optional and each step of a path 152 px, playlist 352 px. Visitors without a Spotify session only hear previews.
+- `embed(kind, id, height)`: a Spotify embed (`artist`) with the dark theme. Heights: main 352 px, optional and each step of a path 152 px. Visitors without a Spotify session only hear previews.
 - `drawGraph(graph, container)`: the branch graph, drawn as SVG at the container's real width (so its text stays readable on phones) and redrawn on resize. `strandRuns` turns the weekly tops into strands, and `assignLanes` places strands and branches in lanes, counting their labels' width.
 - `extraItem(rec)`: a playlist extra in "Also in this playlist": name linked to Spotify, type and anchor, reason. No player of its own; its tracks are in the batch playlist.
 - `stuckItem(s)`: an entry in "What stuck", marked "via playlist" for an extra.
@@ -112,4 +111,4 @@ Then open http://127.0.0.1:8000. Opening `index.html` directly from disk doesn't
 
 ## Deploy
 
-Pages serves `main` from the root. A push here, or the bot's daily `data/data.json` commit, is live in about a minute. Spotify caches its embeds separately: after a batch replaces the playlist, the playlist embed can show the old tracks for a while.
+Pages serves `main` from the root. A push here, or the bot's daily `data/data.json` commit, is live in about a minute.
