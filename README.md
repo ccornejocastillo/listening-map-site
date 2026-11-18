@@ -69,7 +69,7 @@ Main pieces:
 How it draws:
 
 - Positions come from the backend (`x` and `y` from 0 to 1) and are kept from one day to the next, so the network doesn't move between visits. The library never lays it out itself.
-- Lines first: `together` in gray (thicker at weight 2), `similar` dotted in sand, `anchor` in blue.
+- Lines first: `together` in gray (thicker at weight 2), `similar` dotted in sand, as an arc that always bends the same way for a pair (so it never lies on a straight line, even where an anchor joins the same pair), `anchor` in blue.
 - Then dots: your artists in their scene's color, or in three grays by weight outside a scene; recommendations in their scene's color with a blue ring, or all blue outside a scene. A merged recommendation comes as one of your artists (`kind` `yours`). One radius scale for every node, by weight (`NODE_R`). The backend only sends recommendations you've played. Scene colors (`SCENE_COLORS`) go by id, so a scene keeps its color.
 
 "Your scenes" (`scenesSection` in `main.js`): the last closed week as a bar by scene, then three tiles (In a scene, Spread, One scene at a time) with the last weeks as bars, the latest in white. It stays hidden without scenes or weeks.

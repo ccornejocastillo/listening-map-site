@@ -27,6 +27,7 @@
   const NARROW = 560;  // below this width, fewer labels and a taller drawing
   const PAD = 16;
   const EDGE_ORDER = { together: 0, similar: 1, anchor: 2 };  // drawn bottom to top
+  const ARC = 0.18;  // how far a similar arc bends, as a share of its length
 
   function sceneColor(id) {
     const n = parseInt(String(id).slice(1), 10) || 1;
@@ -82,6 +83,15 @@
     for (const e of [...net.edges].sort((a, b) => EDGE_ORDER[a.kind] - EDGE_ORDER[b.kind])) {
       const a = byId.get(e.source), b = byId.get(e.target);
       if (!a || !b) continue;
+      if (e.kind === "similar") {
+        // An arc, so it never lies on a straight line (a session or an anchor joining the same pair, or one passing by).
+        // The pair goes in a fixed order, so it always bends the same way
+        const [p, q] = a.id < b.id ? [a, b] : [b, a];
+        const x1 = px(p), y1 = py(p), x2 = px(q), y2 = py(q);
+        const cx = (x1 + x2) / 2 - (y2 - y1) * ARC, cy = (y1 + y2) / 2 + (x2 - x1) * ARC;
+        svg("path", { d: `M${x1},${y1} Q${cx},${cy} ${x2},${y2}`, fill: "none", ...edgeStyle(e, colors) }, lines);
+        continue;
+      }
       svg("line", { x1: px(a), y1: py(a), x2: px(b), y2: py(b), ...edgeStyle(e, colors) }, lines);
     }
 
