@@ -4,6 +4,7 @@
 //
 //   TasteNetwork.draw(net, container, options)   draws once, at the container's current width
 //   TasteNetwork.mount(net, container, options)  draws, and redraws when the container's width changes
+//   TasteNetwork.sceneColor(id)                  a scene's color, for legends outside the drawing
 //
 // options (all optional): colors { text, secondary, accent, bg, path }, star, starColor.
 // The data only carries weights (1 to 3) and yes/no, never play counts; positions come from the backend
@@ -16,13 +17,21 @@
     starColor: "#D9D9D9",
   };
   const NODE_R = { yours: { 1: 4, 2: 7, 3: 11 }, rec: { 1: 4.5, 2: 7, 3: 10 } };
-  const YOURS_FILL = { 1: "#8A8A8A", 2: "#BDBDBD", 3: "#F2F2F2" };
+  const YOURS_FILL = { 1: "#8A8A8A", 2: "#BDBDBD", 3: "#F2F2F2" };  // artists outside a scene
+  // Scenes by id (s1, s2...), muted so they don't fight the blue of recommendations; a scene keeps its id, so its
+  // color never jumps
+  const SCENE_COLORS = ["#A48BE0", "#5FC3B4", "#E08A5E", "#A9C26E", "#D58BA8", "#CDB45A"];
   const TOGETHER = { 1: { stroke: "#333333", width: 1 }, 2: { stroke: "#4A4A4A", width: 2 } };
   const LABEL_W = 6.4;  // IBM Plex Sans at 11px, per character
   const LABEL_H = 13;
   const NARROW = 560;  // below this width, fewer labels and a taller drawing
   const PAD = 16;
   const EDGE_ORDER = { together: 0, similar: 1, anchor: 2 };  // drawn bottom to top
+
+  function sceneColor(id) {
+    const n = parseInt(String(id).slice(1), 10) || 1;
+    return SCENE_COLORS[(n - 1) % SCENE_COLORS.length];
+  }
 
   function svg(tag, attrs, parent) {
     const node = document.createElementNS(SVG, tag);
@@ -50,10 +59,13 @@
     return { stroke: colors.accent, "stroke-width": 1.5 };  // anchor
   }
 
+  // Your artists in their scene's color (grays outside one); recommendations in their scene's color with a blue
+  // ring, or all blue outside one; merged ones with a white ring
   function dotStyle(n, colors) {
-    if (n.kind === "yours") return { fill: YOURS_FILL[n.weight] };
-    if (n.status === "merged") return { fill: colors.accent, stroke: colors.text, "stroke-width": 2.5 };
-    return { fill: colors.accent };
+    if (n.kind === "yours") return { fill: n.scene ? sceneColor(n.scene) : YOURS_FILL[n.weight] };
+    const fill = n.scene ? sceneColor(n.scene) : colors.accent;
+    if (n.status === "merged") return { fill, stroke: colors.text, "stroke-width": 2.5 };
+    return n.scene ? { fill, stroke: colors.accent, "stroke-width": 2 } : { fill };
   }
 
   function draw(net, container, options = {}) {
@@ -65,9 +77,10 @@
     const height = Math.round(narrow ? width * 1.2 : Math.max(420, width * 0.68));
     const px = n => PAD + n.x * (width - 2 * PAD), py = n => PAD + n.y * (height - 2 * PAD);
     const byId = new Map(net.nodes.map(n => [n.id, n]));
+    const sceneName = new Map((net.scenes ?? []).map(s => [s.id, s.name]));
     const root = svg("svg", {
       width, height, role: "img",
-      "aria-label": "Your top artists and recent recommendations, joined by sessions, anchors and similar sound",
+      "aria-label": "Your top artists and recent recommendations, colored by scene, joined by sessions, anchors and similar sound",
     }, container);
     const lines = svg("g", {}, root), dots = svg("g", {}, root), labels = svg("g", {}, root);
 
@@ -87,7 +100,8 @@
       const name = `${n.favorite ? `${star} ` : ""}${n.name}`;
       const dot = svg("circle", { cx: x, cy: y, r, ...dotStyle(n, colors) }, dots);
       const what = n.kind === "yours" ? "your artist" : `recommendation · ${n.status}`;
-      svg("title", {}, dot).textContent = `${name} · ${what}`;
+      const scene = sceneName.get(n.scene);
+      svg("title", {}, dot).textContent = `${name} · ${what}${scene ? ` · ${scene}` : ""}`;
 
       if (narrow && n.kind === "yours" && n.weight === 1) continue;
       const w = name.length * LABEL_W;
@@ -114,5 +128,5 @@
     });
   }
 
-  window.TasteNetwork = { draw, mount };
+  window.TasteNetwork = { draw, mount, sceneColor };
 })();

@@ -70,3 +70,17 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--border
 .network-graph svg { display: block; overflow: visible; }
 .net-label { font-family: "IBM Plex Sans", sans-serif; font-size: 11px; fill: var(--text); }
 .net-label.rec { fill: #B9C9FF; }
+.legend .scene-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+.scene-bar { display: flex; gap: 2px; height: 14px; border-radius: 4px; overflow: hidden; margin: 10px 0 0; }
+.scene-bar .outside { background: #2A2A2A; }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.tile { border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+.tile .out-of { font-size: 16px; color: var(--secondary); }
+.tile p { margin: 0; font-size: 13px; line-height: 1.5; color: var(--secondary); }
+.tile .bars { display: flex; align-items: flex-end; gap: 6px; height: 44px; margin-top: auto; }
+.tile .bars span { flex: 1; min-height: 2px; background: #3A3A3A; border-radius: 2px; }
+.tile .bars span:last-child { background: var(--text); }
+.tile .span { display: flex; justify-content: space-between; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--secondary); }
+@media (max-width: 720px) {
+  .tiles { grid-template-columns: 1fr; }
+}

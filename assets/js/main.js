@@ -376,6 +376,55 @@ fetch("data/data.json", { cache: "no-cache" })
     document.getElementById("error").hidden = false;
   });
 
+// The scenes, by name, first in the network's legend
+function sceneLegend(scenes) {
+  document.getElementById("network-legend").prepend(...scenes.map(s => el("span", {}, [
+    el("span", { className: "scene-dot", style: `background: ${TasteNetwork.sceneColor(s.id)}` }), s.name,
+  ])));
+}
+
+const pct = v => (v == null ? "—" : `${Math.round(v * 100)}%`);
+
+// "Your scenes": the last closed week by scene, then three numbers, each with the last weeks as bars (the
+// latest in white). Scores and shares only; the backend never sends counts
+function scenesSection(scenes, weeks) {
+  const last = weeks[weeks.length - 1];
+  if (!scenes.length || !last) return;
+  document.getElementById("scene-week").textContent = `Week of ${shortDay.format(toDate(last.start))}`;
+  const parts = scenes.map(s => ({ name: s.name, share: last.shares?.[s.id] ?? 0, color: TasteNetwork.sceneColor(s.id) }));
+  const outside = Math.max(0, 1 - last.in_scene);
+  const bar = document.getElementById("scene-bar");
+  bar.append(
+    ...parts.filter(p => p.share > 0).map(p => el("div", { style: `flex: ${p.share}; background: ${p.color}` })),
+    el("div", { className: "outside", style: `flex: ${outside}` }),
+  );
+  bar.setAttribute("aria-label", [...parts.map(p => `${p.name} ${pct(p.share)}`), `outside a scene ${pct(outside)}`].join(", "));
+  document.getElementById("scene-keys").append(
+    ...parts.map(p => el("span", {}, [el("span", { className: "scene-dot", style: `background: ${p.color}` }), `${p.name} ${pct(p.share)}`])),
+    el("span", {}, [el("span", { className: "scene-dot", style: "background: #6A6A6A" }), `outside a scene ${pct(outside)}`]),
+  );
+  const tiles = [
+    { title: "In a scene", key: "in_scene", show: pct, text: "of the week's plays are by an artist in one of your scenes. Low means playlists, loose artists or something new." },
+    { title: "Spread", key: "spread", show: v => (v == null ? "—" : v.toFixed(2)), outOf: " / 1", text: "how evenly the week moved between scenes: 0 is one scene only, 1 is all of them alike." },
+    { title: "One scene at a time", key: "one_scene", show: pct, text: "of the week's sessions stayed in a single scene; the rest jumped between them." },
+  ];
+  const span = weeks.length > 1 ? [shortDay.format(toDate(weeks[0].start)), shortDay.format(toDate(last.start))] : [];
+  document.getElementById("scene-tiles").append(...tiles.map(t => {
+    const value = el("span", { className: "num", textContent: t.show(last[t.key]) });
+    if (t.outOf && last[t.key] != null) value.append(el("span", { className: "out-of", textContent: t.outOf }));
+    const bars = el("div", { className: "bars", role: "img" }, weeks.map(w => el("span", { style: `height: ${Math.round((w[t.key] ?? 0) * 100)}%` })));
+    bars.setAttribute("aria-label", `${t.title}, week by week: ${weeks.map(w => t.show(w[t.key])).join(", ")}`);
+    return el("div", { className: "tile" }, [
+      el("span", { className: "label", textContent: t.title }),
+      value,
+      el("p", { textContent: t.text }),
+      bars,
+      el("div", { className: "span" }, span.map(d => el("span", { textContent: d }))),
+    ]);
+  }));
+  document.getElementById("scenes").hidden = false;
+}
+
 // The network comes in its own file, so a missing or broken network.json never affects the rest of the page:
 // the section just stays hidden
 fetch("data/network.json", { cache: "no-cache" })
@@ -384,5 +433,7 @@ fetch("data/network.json", { cache: "no-cache" })
     if (!net?.nodes?.length || !window.TasteNetwork) return;
     document.getElementById("network").hidden = false;
     TasteNetwork.mount(net, document.getElementById("network-graph"), { colors: COLORS, star: STAR, starColor: STAR_COLOR });
+    sceneLegend(net.scenes ?? []);
+    scenesSection(net.scenes ?? [], net.weeks ?? []);
   })
   .catch(() => {});
