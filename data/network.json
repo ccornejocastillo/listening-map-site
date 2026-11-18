@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-18T14:04:40Z",
+  "generated_at": "2026-11-18T17:40:26Z",
   "nodes": [
     {
       "id": "6MxyNXnnmwQwdW2PD0gXYO",
@@ -20,6 +20,16 @@
       "x": 0.4557,
       "y": 0.3505,
       "scene": "s3"
+    },
+    {
+      "id": "38uWD5h115pdz278q4rwZW",
+      "name": "Soen",
+      "kind": "yours",
+      "weight": 3,
+      "favorite": true,
+      "x": 0.2079,
+      "y": 0.5565,
+      "scene": "s1"
     },
     {
       "id": "17WostYl0Ep0nyJmA0m2ds",
@@ -57,6 +67,16 @@
       "favorite": false,
       "x": 0.4261,
       "y": 0.05
+    },
+    {
+      "id": "2awB7Ol181cocZcLLNBBAh",
+      "name": "Fazerdaze",
+      "kind": "yours",
+      "weight": 2,
+      "favorite": false,
+      "x": 0.9213,
+      "y": 0.6624,
+      "scene": "s2"
     },
     {
       "id": "3zmfs9cQwzJl575W1ZYXeT",
@@ -187,50 +207,25 @@
       "name": "Melvins",
       "kind": "rec",
       "weight": 3,
-      "status": "open",
       "favorite": false,
       "x": 0.6014,
       "y": 0.218,
       "scene": "s4"
     },
     {
-      "id": "38uWD5h115pdz278q4rwZW",
-      "name": "Soen",
-      "kind": "rec",
-      "weight": 3,
-      "status": "merged",
-      "favorite": true,
-      "x": 0.2079,
-      "y": 0.5565,
-      "scene": "s1"
-    },
-    {
       "id": "65dGLGjkw3UbddUg2GKQoZ",
       "name": "BADBADNOTGOOD",
       "kind": "rec",
       "weight": 2,
-      "status": "open",
       "favorite": false,
       "x": 0.1926,
       "y": 0.32
-    },
-    {
-      "id": "2awB7Ol181cocZcLLNBBAh",
-      "name": "Fazerdaze",
-      "kind": "rec",
-      "weight": 2,
-      "status": "merged",
-      "favorite": false,
-      "x": 0.9213,
-      "y": 0.6624,
-      "scene": "s2"
     },
     {
       "id": "7M1FPw29m5FbicYzS2xdpi",
       "name": "King Crimson",
       "kind": "rec",
       "weight": 2,
-      "status": "open",
       "favorite": false,
       "x": 0.2002,
       "y": 0.4333
@@ -240,7 +235,6 @@
       "name": "Stone Temple Pilots",
       "kind": "rec",
       "weight": 2,
-      "status": "open",
       "favorite": false,
       "x": 0.5787,
       "y": 0.3918,
@@ -251,7 +245,6 @@
       "name": "Beach House",
       "kind": "rec",
       "weight": 1,
-      "status": "open",
       "favorite": false,
       "x": 0.6142,
       "y": 0.563,
@@ -262,7 +255,6 @@
       "name": "Black Sabbath",
       "kind": "rec",
       "weight": 1,
-      "status": "open",
       "favorite": false,
       "x": 0.6427,
       "y": 0.1392,
@@ -273,7 +265,6 @@
       "name": "Cocteau Twins",
       "kind": "rec",
       "weight": 1,
-      "status": "tried",
       "favorite": false,
       "x": 0.7681,
       "y": 0.6392,
@@ -284,7 +275,6 @@
       "name": "Dinosaur Jr.",
       "kind": "rec",
       "weight": 1,
-      "status": "open",
       "favorite": false,
       "x": 0.6,
       "y": 0.3167
@@ -294,7 +284,6 @@
       "name": "Karnivool",
       "kind": "rec",
       "weight": 1,
-      "status": "open",
       "favorite": false,
       "x": 0.2508,
       "y": 0.5167,
@@ -305,7 +294,6 @@
       "name": "Katatonia",
       "kind": "rec",
       "weight": 1,
-      "status": "open",
       "favorite": false,
       "x": 0.1521,
       "y": 0.645,
@@ -316,7 +304,6 @@
       "name": "Porcupine Tree",
       "kind": "rec",
       "weight": 1,
-      "status": "open",
       "favorite": false,
       "x": 0.2479,
       "y": 0.5992,
@@ -327,7 +314,6 @@
       "name": "Rishloo",
       "kind": "rec",
       "weight": 1,
-      "status": "open",
       "favorite": false,
       "x": 0.3098,
       "y": 0.5553,
@@ -338,7 +324,6 @@
       "name": "The Cure",
       "kind": "rec",
       "weight": 1,
-      "status": "open",
       "favorite": false,
       "x": 0.8511,
       "y": 0.7626
@@ -348,7 +333,6 @@
       "name": "Yumi Zouma",
       "kind": "rec",
       "weight": 1,
-      "status": "open",
       "favorite": false,
       "x": 0.4952,
       "y": 0.5932,
