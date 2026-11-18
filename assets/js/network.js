@@ -16,7 +16,7 @@
     star: "★",
     starColor: "#D9D9D9",
   };
-  const NODE_R = { yours: { 1: 4, 2: 7, 3: 11 }, rec: { 1: 4.5, 2: 7, 3: 10 } };
+  const NODE_R = { 1: 4, 2: 7, 3: 11 };  // by weight, the same for every node
   const YOURS_FILL = { 1: "#8A8A8A", 2: "#BDBDBD", 3: "#F2F2F2" };  // artists outside a scene
   // Scenes by id (s1, s2...), muted so they don't fight the blue of recommendations; a scene keeps its id, so its
   // color never jumps
@@ -40,12 +40,9 @@
     return node;
   }
 
-  // Which labels go first when space is short: your heaviest artists, then merged recommendations, then the others
-  // by weight. The network only has recommendations you've played
+  // Which labels go first when space is short: heaviest first, your artists before recommendations of the same weight
   function rank(n) {
-    if (n.kind === "yours") return 10 - n.weight;
-    if (n.status === "merged") return 5;
-    return 6 + (3 - n.weight);
+    return (3 - n.weight) * 2 + (n.kind === "rec" ? 1 : 0);
   }
 
   function edgeStyle(e, colors) {
@@ -60,12 +57,10 @@
   }
 
   // Your artists in their scene's color (grays outside one); recommendations in their scene's color with a blue
-  // ring, or all blue outside one; merged ones with a white ring
+  // ring, or all blue outside one. A merged recommendation comes as one of your artists
   function dotStyle(n, colors) {
     if (n.kind === "yours") return { fill: n.scene ? sceneColor(n.scene) : YOURS_FILL[n.weight] };
-    const fill = n.scene ? sceneColor(n.scene) : colors.accent;
-    if (n.status === "merged") return { fill, stroke: colors.text, "stroke-width": 2.5 };
-    return n.scene ? { fill, stroke: colors.accent, "stroke-width": 2 } : { fill };
+    return n.scene ? { fill: sceneColor(n.scene), stroke: colors.accent, "stroke-width": 2 } : { fill: colors.accent };
   }
 
   function draw(net, container, options = {}) {
@@ -95,11 +90,11 @@
     const placed = [];
     const overlaps = box => placed.some(b => box.x0 < b.x1 && b.x0 < box.x1 && box.y0 < b.y1 && b.y0 < box.y1);
     for (const n of [...net.nodes].sort((a, b) => rank(a) - rank(b))) {
-      const r = NODE_R[n.kind][n.weight] + (n.status === "merged" ? 2 : 0);
+      const r = NODE_R[n.weight];
       const x = px(n), y = py(n);
       const name = `${n.favorite ? `${star} ` : ""}${n.name}`;
       const dot = svg("circle", { cx: x, cy: y, r, ...dotStyle(n, colors) }, dots);
-      const what = n.kind === "yours" ? "your artist" : `recommendation · ${n.status}`;
+      const what = n.kind === "yours" ? "your artist" : "recommendation";
       const scene = sceneName.get(n.scene);
       svg("title", {}, dot).textContent = `${name} · ${what}${scene ? ` · ${scene}` : ""}`;
 

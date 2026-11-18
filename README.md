@@ -37,7 +37,7 @@ The schema of `data/data.json` is documented in the backend's `docs/design.md` (
 
 | Section | Keys it reads |
 | --- | --- |
-| Taste network | `nodes` (`kind` `yours`/`rec`, `weight`, `favorite`, `status`, `x`, `y` from 0 to 1) and `edges` (`kind` `together`/`anchor`/`similar`, `weight`); `scene` on the nodes of a scene |
+| Taste network | `nodes` (`kind` `yours`/`rec`, `weight`, `favorite`, `x`, `y` from 0 to 1) and `edges` (`kind` `together`/`anchor`/`similar`, `weight`); `scene` on the nodes of a scene |
 | Taste network legend and "Your scenes" | `scenes` (`id`, `name`) and `weeks` (`start`, `in_scene`, `spread`, `one_scene`, `shares` by scene id), shares and scores from 0 to 1 |
 
 Timestamps come as UTC ISO strings and are formatted in `America/Santiago`. Plain dates (`created`, `next_batch`, graph dates) are `YYYY-MM-DD` and are formatted as calendar days, without a time zone shift.
@@ -70,10 +70,10 @@ How it draws:
 
 - Positions come from the backend (`x` and `y` from 0 to 1) and are kept from one day to the next, so the network doesn't move between visits. The library never lays it out itself.
 - Lines first: `together` in gray (thicker at weight 2), `similar` dotted in sand, `anchor` in blue.
-- Then dots: your artists in their scene's color, or in three grays by weight outside a scene; recommendations in their scene's color with a blue ring, or all blue outside a scene; merged ones with a white ring. The backend only sends recommendations you've played. Scene colors (`SCENE_COLORS`) go by id, so a scene keeps its color.
+- Then dots: your artists in their scene's color, or in three grays by weight outside a scene; recommendations in their scene's color with a blue ring, or all blue outside a scene. A merged recommendation comes as one of your artists (`kind` `yours`). One radius scale for every node, by weight (`NODE_R`). The backend only sends recommendations you've played. Scene colors (`SCENE_COLORS`) go by id, so a scene keeps its color.
 
 "Your scenes" (`scenesSection` in `main.js`): the last closed week as a bar by scene, then three tiles (In a scene, Spread, One scene at a time) with the last weeks as bars, the latest in white. It stays hidden without scenes or weeks.
-- Then labels by importance (`rank`): your heaviest artists, then merged recommendations, then the others by weight. A label goes below its dot, else above it, else it's left out; every dot keeps its name in a tooltip. Below 560 px, your lightest artists get no label.
+- Then labels by importance (`rank`): heaviest first, your artists before recommendations of the same weight. A label goes below its dot, else above it, else it's left out; every dot keeps its name in a tooltip. Below 560 px, your lightest artists get no label.
 
 ## Branch graph
 
