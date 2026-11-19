@@ -52,6 +52,11 @@ iframe { width: 100%; border: 0; border-radius: 12px; display: block; }
 .graph { width: 100%; }
 .graph svg { display: block; overflow: visible; }
 .graph text { font-family: "IBM Plex Mono", monospace; font-size: 11px; fill: var(--secondary); }
+/* A dark halo, so a label stays readable where another artist's line crosses it */
+.graph .lbl { paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round; }
+.graph .lit .lbl { fill: var(--text); }
+.graph .tip { fill: var(--secondary); }
+.graph .tip.head { fill: var(--text); }
 .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
 .stuck { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }

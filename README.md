@@ -7,6 +7,7 @@ This repo is the frontend only. The backend (Python, workflows, the raw listenin
 ```
 index.html                    the page structure: sections, legend, footer
 src/main.js                   the entry point: fetches data/data.json and data/network.json and fills the page
+src/branch.js                 BranchGraph, an internal module that draws "Last 7 weeks"; main.js imports it
 src/network.js                TasteNetwork, an internal module that draws the taste network; main.js imports it
 src/theme.js                  the colors and favorite star both drawings share
 src/main.css                  styles
@@ -58,7 +59,7 @@ Main pieces:
 
 - `card(rec)`: a recommendation. The label is `also` (optional slot), `second look` if it's one, the type and the anchor. A path's artists read as a journey, "Mudhoney, then Dinosaur Jr." (`stepNames`), never with an arrow, which looked like "artist → song".
 - `embed(kind, id, height)`: a Spotify embed (`artist`) with the dark theme. Heights: main 352 px, optional and each step of a path 152 px. Visitors without a Spotify session only hear previews.
-- `drawGraph(graph, container)`: the branch graph, drawn as SVG at the container's real width (so its text stays readable on phones) and redrawn on resize. `strandRuns` turns the weekly tops into strands, and `assignLanes` places strands and branches in lanes, counting their labels' width.
+- Hands `graph` to `BranchGraph.mount` (`src/branch.js`, see "Branch graph").
 - `extraItem(rec)`: a playlist extra in "Also in this playlist": name linked to Spotify, type and anchor, reason. No player of its own; its tracks are in the batch playlist.
 - `stuckItem(s)`: an entry in "What stuck", marked "via playlist" for an extra.
 
@@ -87,15 +88,20 @@ How it reacts (the hint under the drawing says how, for mouse or touch):
 
 "Your scenes" (`scenesSection` in `main.js`): the last closed week as a bar by scene, then three tiles (In a scene, Spread, One scene at a time) with the last weeks as bars, the latest in white. It stays hidden without scenes or weeks.
 
-## Branch graph
+## Branch graph (`src/branch.js`)
 
-- `main` is your usual rotation: a white band, flat through each week at that week's weight (0 to 3: no plays, lighter, usual, heavier), with a node per week (hover says which). `data.json` carries weights, never play counts, so the page can't show them.
+`BranchGraph` is an internal module drawn with D3 (`d3-scale`, `d3-axis`, `d3-shape`, `d3-time`, `d3-selection`), like `TasteNetwork`. It exports `mount(graph, container)`: draws as SVG at the container's real width (so its text stays readable on phones) and redraws when that width changes. `strandRuns` turns the weekly tops into strands, and `assignLanes` places strands and branches in lanes, counting their labels' width.
+
+- Time is a `scaleUtc` with an axis from `d3-axis`, one date per week (every other one below 480 px). A faint line (`GUIDE`, the border gray) marks where each week starts, and one marks today.
+- `main` is your usual rotation: a white band (a `d3-shape` area), flat through each week at that week's weight (0 to 3: no plays, lighter, usual, heavier), with a node per week. `data.json` carries weights, never play counts, so the page can't show them.
 - Your top artists run below as strands: one line per artist (`strandRuns` groups its runs of consecutive weeks in the top 5 into segments), gray, each segment as thick as its weight, with a faint dotted stretch for the weeks it was out of the top. Favorites (`favorite`: the artist has a liked song) get a ★ before their name (`STAR`, a text glyph, not an emoji); the strand stays the same gray.
 - Recommendations are drawn per artist (a path's artists too, each on its own) and only the ones with `played`; older `data.json` with plain names draws them all.
-- **Tried a bit:** a thin dotted blue branch off `main` from the day it arrived to its `last_played` day, ending in a small open circle. Older `data.json` without `last_played`: it runs a little past today.
+- **Lines don't drop from `main`:** each starts on its own lane in the week it started. With drops, the lines still running today took the inner lanes, so the newest ones dropped the farthest and the graph fanned out toward today, as if you listened more lately; now only the band tells how much you listened.
+- **Tried a bit:** a thin dotted blue line from the day it arrived to its `last_played` day, ending in a small open circle. Older `data.json` without `last_played`: it runs a little past today.
 - **In your top:** a recommendation whose artist is in your top since it arrived is drawn as that strand, solid blue and `REC_IN_TOP_W` thick, ending in a filled dot, and not as a branch.
 - **Merged:** a thick ring at the end of the recommendation's own line, the day it merged (a dotted blue line reaches it if it merged after its last week in your top). **Tried:** ends in a gray dot.
-- Three layers: lines (`lines`) under the band (`band`), then markers and labels (`marks`), so lines come out from under `main` with no tips over it.
+- Layers, back to front: the week lines and their hover areas, the band, the lines (each a group with its paths, ending, label and a wider invisible path to hover), the tooltip. Labels have a dark halo (`.lbl` in the CSS), so they stay readable where another line crosses them.
+- **Hover or tap a line:** it stays lit, the rest dims (`DIM`), and a tooltip says what it is, when it was recommended, how many weeks it was in your top or when you last played it, and how it ended. **Hover or tap a week:** it's shaded, the artists in your top that week stay lit, and a tooltip gives its weight and how many artists were in your top. Tapping the background clears it.
 - `main` sits in the middle: `assignLanes` puts each line in the free lane closest to `main`, above or below (on a tie, the side with fewer lanes, then alternating), branches first so recommendations are nearest to it. A lane is reused once what was in it, label included, has ended.
 - A label goes to the right of where its line starts; only when it wouldn't fit before the edge, to the left (`nearEdge`).
 
@@ -112,7 +118,7 @@ Colors are CSS variables in `:root` (`src/main.css`) and both drawings use the s
 | `--accent` | `#4D7CFF` | Recommendation labels, branches, open |
 | `--path` | `#B8936E` | Path cards (a muted sand, so a path doesn't outweigh the main recommendation) and the network's similar-sound lines |
 
-Strands use three grays by weight, `#575757`, `#6E6E6E` and `#8A8A8A` (`STRAND` in `main.js`); the band's half thickness by week weight is in `BAND`.
+Strands use three grays by weight, `#575757`, `#6E6E6E` and `#8A8A8A` (`STRAND` in `src/branch.js`); the band's half thickness by week weight is in `BAND`.
 
 Fonts, from Google Fonts: Space Grotesk (headings), IBM Plex Sans (body) and IBM Plex Mono (numbers and labels). Below 720 px the cards and "What stuck" stack; below 560 px the three header numbers do too.
 
