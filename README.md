@@ -12,7 +12,7 @@ src/main.css                  styles
 assets/                       favicon and touch icon, copied as they are
 data/data.json                written by the backend; don't edit it by hand
 data/network.json             the taste network, written by the backend; don't edit it by hand
-package.json                  the build (npm scripts) and its one dependency, esbuild
+package.json                  the build (npm scripts) and the dependencies: D3's modules for the page, esbuild for the build
 .github/workflows/deploy.yml  builds and publishes the page on every push to main
 ```
 
@@ -41,7 +41,7 @@ The schema of `data/data.json` is documented in the backend's `docs/design.md` (
 
 | Section | Keys it reads |
 | --- | --- |
-| Taste network | `nodes` (`kind` `yours`/`rec`, `weight`, `favorite`, `x`, `y` from 0 to 1) and `edges` (`kind` `together`/`anchor`/`similar`, `weight`); `scene` on the nodes of a scene |
+| Taste network | `nodes` (`kind` `yours`/`rec`, `weight`, `favorite`; no positions, the page lays them out) and `edges` (`kind` `together`/`anchor`/`similar`, `weight`); `scene` on the nodes of a scene |
 | Taste network legend and "Your scenes" | `scenes` (`id`, `name`) and `weeks` (`start`, `in_scene`, `spread`, `one_scene`, `shares` by scene id), shares and scores from 0 to 1 |
 
 Timestamps come as UTC ISO strings and are formatted in `America/Santiago`. Plain dates (`created`, `next_batch`, graph dates) are `YYYY-MM-DD` and are formatted as calendar days, without a time zone shift.
@@ -63,7 +63,7 @@ Main pieces:
 
 ## Taste network (`src/network.js`)
 
-`TasteNetwork` is an internal module: no dependencies, nothing global, and it doesn't know about the rest of the page. It exports `draw`, `mount` and `sceneColor`; `main.js` imports it as `TasteNetwork` (`import * as TasteNetwork from "./network.js"`), loads `data/network.json` and calls it.
+`TasteNetwork` is an internal module drawn with D3 (`d3-selection`, `d3-force`, `d3-zoom`, `d3-transition`): nothing global, and it doesn't know about the rest of the page. It exports `draw`, `mount` and `sceneColor`; `main.js` imports it as `TasteNetwork` (`import * as TasteNetwork from "./network.js"`), loads `data/network.json` and calls it.
 
 - `TasteNetwork.draw(net, container, options)`: draws once, as SVG at the container's real width (taller than wide on phones).
 - `TasteNetwork.mount(net, container, options)`: draws, and redraws when the container's width changes. This is what `main.js` uses.
@@ -72,12 +72,20 @@ Main pieces:
 
 How it draws:
 
-- Positions come from the backend (`x` and `y` from 0 to 1) and are kept from one day to the next, so the network doesn't move between visits. The library never lays it out itself.
+- The layout is the page's own (`layout()`, with `d3-force`); the backend sends no positions. Lines pull the artists they join (`LINK`: similar sound hardest, so scenes stay together, then anchors, then sessions), every artist pushes the others away (`REPEL`) and keeps room for its label (`ROOM`), and a pull to the middle keeps everyone in, harder for artists with no lines (`GRAVITY_LOOSE`), so they don't drift to the edges. It runs all at once before drawing (`TICKS` steps, nothing animated), in a fixed virtual space that's then stretched to the drawing, and d3-force's randomness is seeded, so the same data gives the same network on every visit and at any size. It can still change from one day to the next when the data does.
 - Lines first: `together` in gray (thicker at weight 2), `similar` dotted in sand, as an arc that always bends the same way for a pair (so it never lies on a straight line, even where an anchor joins the same pair), `anchor` in blue.
 - Then dots: your artists in their scene's color, or in three grays by weight outside a scene; recommendations in their scene's color with a blue ring, or all blue outside a scene. A merged recommendation comes as one of your artists (`kind` `yours`). One radius scale for every node, by weight (`NODE_R`). The backend only sends recommendations you've played. Scene colors (`SCENE_COLORS`) go by id, so a scene keeps its color.
 
-"Your scenes" (`scenesSection` in `main.js`): the last closed week as a bar by scene, then three tiles (In a scene, Spread, One scene at a time) with the last weeks as bars, the latest in white. It stays hidden without scenes or weeks.
 - Then labels by importance (`rank`): heaviest first, your artists before recommendations of the same weight. A label goes below its dot, else above it, else it's left out; every dot keeps its name in a tooltip. Below 560 px, your lightest artists get no label.
+
+How it reacts (the hint under the drawing says how, for mouse or touch):
+
+- Zoom with a pinch, or ctrl/⌘ + scroll, from 1× to 4×; a plain scroll still scrolls the page, and on phones one finger moves the drawing only once it's zoomed in. Dragging moves it, never out of its frame. A double-click (or double-tap) goes back to the start, animated.
+- The zoom is semantic: positions spread apart while dots, lines and labels keep their size, and labels are placed again at every step, so names left out for lack of room appear as you zoom in.
+- Hovering an artist (tapping it on a phone) lights up its lines and neighbors, puts their labels first and dims the rest; tapping the background clears it.
+- Everything is drawn by `render()`, which joins the data to SVG elements (`selection.data().join()`) and only moves them on zoom.
+
+"Your scenes" (`scenesSection` in `main.js`): the last closed week as a bar by scene, then three tiles (In a scene, Spread, One scene at a time) with the last weeks as bars, the latest in white. It stays hidden without scenes or weeks.
 
 ## Branch graph
 

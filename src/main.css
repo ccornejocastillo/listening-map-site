@@ -70,6 +70,13 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--border
 .network-graph svg { display: block; overflow: visible; }
 .net-label { font-family: "IBM Plex Sans", sans-serif; font-size: 11px; fill: var(--text); }
 .net-label.rec { fill: #B9C9FF; }
+.net-label { pointer-events: none; }
+.hint { margin: 8px 0 0; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); }
+.hint-touch { display: none; }
+@media (hover: none) {
+  .hint-mouse { display: none; }
+  .hint-touch { display: inline; }
+}
 .legend .scene-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
 .scene-bar { display: flex; gap: 2px; height: 14px; border-radius: 4px; overflow: hidden; margin: 10px 0 0; }
 .scene-bar .outside { background: #2A2A2A; }
