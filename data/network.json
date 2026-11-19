@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-18T18:23:30Z",
+  "generated_at": "2026-11-19T11:50:43Z",
   "nodes": [
     {
       "id": "6MxyNXnnmwQwdW2PD0gXYO",
@@ -77,6 +77,15 @@
       "x": 0.9213,
       "y": 0.6624,
       "scene": "s2"
+    },
+    {
+      "id": "2CgdffHkvt7WJM5IGuaUa3",
+      "name": "González y los Asistentes",
+      "kind": "yours",
+      "weight": 2,
+      "favorite": true,
+      "x": 0.914,
+      "y": 0.4543
     },
     {
       "id": "3zmfs9cQwzJl575W1ZYXeT",

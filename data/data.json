@@ -1,17 +1,17 @@
 {
   "version": 9,
-  "generated_at": "2026-11-18T18:23:31Z",
+  "generated_at": "2026-11-19T11:50:45Z",
   "window": {
-    "start": "2026-11-11T18:23:31Z",
-    "end": "2026-11-18T18:23:31Z"
+    "start": "2026-11-12T11:50:45Z",
+    "end": "2026-11-19T11:50:45Z"
   },
   "stats": {
-    "tracks": 81,
-    "artists": 26,
+    "tracks": 103,
+    "artists": 27,
     "merged": 0
   },
   "totals": {
-    "tracks": 564,
+    "tracks": 586,
     "artists": 97,
     "merged": 2,
     "since": "2026-10-14"
@@ -66,7 +66,7 @@
   "next_batch": "2026-11-20",
   "graph": {
     "start": "2026-10-05",
-    "today": "2026-11-18",
+    "today": "2026-11-19",
     "weeks": [
       {
         "start": "2026-10-05",
@@ -230,11 +230,16 @@
       },
       {
         "start": "2026-11-16",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
-            "artist": "BADBADNOTGOOD",
+            "artist": "González y los Asistentes",
             "weight": 3,
+            "favorite": true
+          },
+          {
+            "artist": "BADBADNOTGOOD",
+            "weight": 2,
             "favorite": false
           },
           {
@@ -249,11 +254,6 @@
           },
           {
             "artist": "TOOL",
-            "weight": 1,
-            "favorite": true
-          },
-          {
-            "artist": "Bersuit Vergarabat",
             "weight": 1,
             "favorite": true
           }
@@ -319,8 +319,8 @@
           }
         ],
         "created": "2026-10-22",
-        "end": null,
-        "status": "open"
+        "end": "2026-11-19",
+        "status": "tried"
       },
       {
         "type": "roots",
@@ -696,6 +696,16 @@
       }
     ],
     "tried": [
+      {
+        "type": "path",
+        "slot": "extra",
+        "artists": [
+          "Mudhoney",
+          "Dinosaur Jr."
+        ],
+        "anchor": "Pearl Jam",
+        "date": "2026-11-19"
+      },
       {
         "type": "roots",
         "slot": "main",
