@@ -1,4 +1,7 @@
 // data/data.json is written by the backend (listening-map); see the schema in its docs/design.md.
+// The page's entry point: esbuild bundles it, with what it imports, into assets/js/main.js (see package.json).
+import * as TasteNetwork from "./network.js";
+
 // Keys from later phases may be missing: every section hides itself when it has no data.
 const TZ = "America/Santiago";
 const day = new Intl.DateTimeFormat("en-US", { timeZone: TZ, month: "short", day: "numeric" });
@@ -430,7 +433,7 @@ function scenesSection(scenes, weeks) {
 fetch("data/network.json", { cache: "no-cache" })
   .then(r => (r.ok ? r.json() : null))
   .then(net => {
-    if (!net?.nodes?.length || !window.TasteNetwork) return;
+    if (!net?.nodes?.length) return;
     document.getElementById("network").hidden = false;
     TasteNetwork.mount(net, document.getElementById("network-graph"), { colors: COLORS, star: STAR, starColor: STAR_COLOR });
     sceneLegend(net.scenes ?? []);

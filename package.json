@@ -1,0 +1,12 @@
+{
+  "name": "listening-map-site",
+  "private": true,
+  "description": "Frontend of Listening map: a static page built with esbuild and deployed to GitHub Pages",
+  "scripts": {
+    "build": "esbuild assets/js/main=src/main.js assets/css/main=src/main.css index.html assets/favicon.svg assets/apple-touch-icon.png data/*.json --bundle --minify --sourcemap --target=es2020 --outdir=dist --loader:.html=copy --loader:.svg=copy --loader:.png=copy --loader:.json=copy",
+    "dev": "npm run build -- --watch --servedir=dist --serve=8000"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

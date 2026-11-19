@@ -1,22 +1,26 @@
 # listening-map-site
 
-Frontend for [Listening map](https://ccornejocastillo.github.io/listening-map-site/), served by GitHub Pages. The page is in English.
+Frontend for [Listening map](https://ccornejocastillo.github.io/listening-map-site/), built with esbuild and served by GitHub Pages. The page is in English.
 
 This repo is the frontend only. The backend (Python, workflows, the raw listening history) lives in the private `listening-map` repo; the only things it sends here are `data/data.json` and `data/network.json`.
 
 ```
-index.html            the page structure: sections, legend, footer
-assets/css/main.css   styles
-assets/js/main.js     fetches data/data.json and data/network.json and fills the page (vanilla JS, no build step)
-assets/js/network.js  TasteNetwork, an internal library that draws the taste network; loaded before main.js
-data/data.json        written by the backend; don't edit it by hand
-data/network.json     the taste network, written by the backend; don't edit it by hand
-.nojekyll             tells Pages to serve the files as-is, without Jekyll
+index.html                    the page structure: sections, legend, footer
+src/main.js                   the entry point: fetches data/data.json and data/network.json and fills the page
+src/network.js                TasteNetwork, an internal module that draws the taste network; main.js imports it
+src/main.css                  styles
+assets/                       favicon and touch icon, copied as they are
+data/data.json                written by the backend; don't edit it by hand
+data/network.json             the taste network, written by the backend; don't edit it by hand
+package.json                  the build (npm scripts) and its one dependency, esbuild
+.github/workflows/deploy.yml  builds and publishes the page on every push to main
 ```
+
+`dist/` (the built page) and `node_modules/` are made by the build and never committed.
 
 ## Who edits what
 
-- `index.html` and everything in `assets/` are edited here by hand.
+- `index.html`, `src/` and `assets/` are edited here by hand.
 - `data/data.json` and `data/network.json` are written by the backend's `pipeline.yml`, once a day at 03:23 UTC (00:23 in Santiago), as `github-actions[bot]`, so any hand edit is overwritten on the next run. If the backend's network step fails, `network.json` just keeps its previous version. Since the bot commits to `main` every day, run `git pull` before committing here.
 - Both files are public and hold aggregates only, never individual plays or play counts.
 
@@ -47,7 +51,7 @@ Timestamps come as UTC ISO strings and are formatted in `America/Santiago`. Plai
 1. Fetches `data/data.json` with `cache: "no-cache"`. If it fails, the page shows "Couldn't load data." instead of an empty page.
 2. Fills the header and the footer, then shows each section that has data.
 3. Builds every element with `textContent`, never `innerHTML`: summaries and reasons are written by Gemini and must never be able to inject markup. The network's names go into the SVG the same way.
-4. Separately, fetches `data/network.json` and, if it's there, hands it to `TasteNetwork.mount` (`assets/js/network.js`). A failure there only hides the "Taste network" section.
+4. Separately, fetches `data/network.json` and, if it's there, hands it to `TasteNetwork.mount` (`src/network.js`). A failure there only hides the "Taste network" section.
 
 Main pieces:
 
@@ -57,9 +61,9 @@ Main pieces:
 - `extraItem(rec)`: a playlist extra in "Also in this playlist": name linked to Spotify, type and anchor, reason. No player of its own; its tracks are in the batch playlist.
 - `stuckItem(s)`: an entry in "What stuck", marked "via playlist" for an extra.
 
-## Taste network (`assets/js/network.js`)
+## Taste network (`src/network.js`)
 
-`TasteNetwork` is an internal library: no dependencies, nothing global but `window.TasteNetwork`, and it doesn't know about the rest of the page. `main.js` loads `data/network.json` and calls it.
+`TasteNetwork` is an internal module: no dependencies, nothing global, and it doesn't know about the rest of the page. It exports `draw`, `mount` and `sceneColor`; `main.js` imports it as `TasteNetwork` (`import * as TasteNetwork from "./network.js"`), loads `data/network.json` and calls it.
 
 - `TasteNetwork.draw(net, container, options)`: draws once, as SVG at the container's real width (taller than wide on phones).
 - `TasteNetwork.mount(net, container, options)`: draws, and redraws when the container's width changes. This is what `main.js` uses.
@@ -89,7 +93,7 @@ How it draws:
 
 ## Style
 
-Colors are CSS variables in `:root` (`assets/css/main.css`) and the graph uses the same values in `COLORS` (`assets/js/main.js`), which it also passes to `TasteNetwork`; change both together. The network's own grays (`YOURS_FILL`, `TOGETHER`, `PAUSED`) live in `assets/js/network.js`.
+Colors are CSS variables in `:root` (`src/main.css`) and the graph uses the same values in `COLORS` (`src/main.js`), which it also passes to `TasteNetwork`; change both together. The network's own grays (`YOURS_FILL`, `TOGETHER`) live in `src/network.js`.
 
 | Token | Value | Use |
 | --- | --- | --- |
@@ -104,15 +108,32 @@ Strands use three grays by weight, `#575757`, `#6E6E6E` and `#8A8A8A` (`STRAND` 
 
 Fonts, from Google Fonts: Space Grotesk (headings), IBM Plex Sans (body) and IBM Plex Mono (numbers and labels). Below 720 px the cards and "What stuck" stack; below 560 px the three header numbers do too.
 
-## Local preview
+## Build and local preview
+
+It needs Node.js (22, like the deploy). Once, after cloning:
+
+```
+npm install
+```
+
+Then, to work on the page:
 
 ```
 git pull
-python -m http.server 8000
+npm run dev
 ```
 
-Then open http://127.0.0.1:8000. Opening `index.html` directly from disk doesn't work, because the browser blocks `fetch` on `file://`. The `data/data.json` from `git pull` is the live one; to try other cases (a pending batch, a path, a full graph), edit it locally and don't commit it.
+and open http://127.0.0.1:8000. `npm run dev` builds into `dist/`, serves it, and rebuilds whenever a file changes (reload the page to see it). `npm run build` builds once, as the deploy does. Opening `index.html` from the repo doesn't work: it points to the built `assets/js/main.js`, which only exists in `dist/`.
+
+What the build does (the `build` script in `package.json`, a single esbuild command):
+
+- Bundles `src/main.js` and everything it imports into one minified `dist/assets/js/main.js`, and `src/main.css` into `dist/assets/css/main.css`, each with a sourcemap, so the browser's developer tools show the original files and lines. A dependency added with `npm install` comes in with only the parts that are imported.
+- Copies `index.html`, the icons and `data/*.json` as they are (the `copy` loaders), keeping their paths.
+- Targets browsers from about 2020 (`--target=es2020`).
+ The `data/data.json` from `git pull` is the live one; to try other cases (a pending batch, a path, a full graph), edit it locally and don't commit it.
 
 ## Deploy
 
-Pages serves `main` from the root. A push here, or the bot's daily `data/data.json` commit, is live in about a minute.
+`.github/workflows/deploy.yml` runs on every push to `main`, yours or the bot's daily data push, and can be run by hand: `npm ci` (exactly the versions in `package-lock.json`), `npm run build`, then it publishes `dist/` with `actions/upload-pages-artifact` and `actions/deploy-pages`. The Pages source is "GitHub Actions" (Settings › Pages). A push is live in about one to two minutes; one deploy runs at a time, and a newer push waits for the running one.
+
+To add a dependency: `npm install <package>`, import it from `src/`, and commit `package.json` and `package-lock.json` together.

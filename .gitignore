@@ -1,0 +1,3 @@
+# Installed by npm and rebuilt on every deploy; neither belongs in the repo
+node_modules/
+dist/
