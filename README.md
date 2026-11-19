@@ -33,7 +33,7 @@ The schema of `data/data.json` is documented in the backend's `docs/design.md` (
 | Header: dates and the three numbers (totals big, last 7 days below) | `window`, `totals`, `stats` |
 | This week | `summary` |
 | Last 7 weeks (branch graph) | `graph` |
-| Your recommendation, and "Also in this playlist" for the extras | `recommendations` (`slot` `main`/`optional` as cards, `extra` as the list) |
+| Your recommendation, and "Also in this playlist" for the extras | `recommendations` (`slot` `main`/`optional` as cards, `extra` as the list, each with a compact player) |
 | What stuck | `stuck` |
 | Footer | `generated_at`, `pending`, `next_batch` |
 

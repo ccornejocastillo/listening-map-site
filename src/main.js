@@ -287,12 +287,13 @@ function drawGraph(g, container) {
   }
 }
 
-// A playlist extra: compact, no player of its own (its tracks are in the batch playlist)
+// A playlist extra: compact, with a compact player per artist like an optional card
 function extraItem(rec) {
   return el("li", {}, [
     stepNames(el("div", { className: "name" }), rec.artists, true),
     el("span", { className: "meta", textContent: [rec.type, rec.anchor ? `from ${rec.anchor}` : null].filter(Boolean).join(" · ") }),
     el("p", { textContent: rec.reason }),
+    el("div", { className: "embeds" }, rec.artists.map(a => embed("artist", a.artist_id, 152))),
   ]);
 }
 
