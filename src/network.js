@@ -2,11 +2,10 @@
 // An internal module: nothing global; main.js imports it and only loads the data and calls it. See the network.json
 // contract in the backend's docs/design.md ("Taste network").
 //
-//   TasteNetwork.draw(net, container, options)   draws once, at the container's current width
-//   TasteNetwork.mount(net, container, options)  draws, and redraws when the container's width changes
-//   TasteNetwork.sceneColor(id)                  a scene's color, for legends outside the drawing
+//   TasteNetwork.mount(net, container)  draws, and redraws when the container's width changes
+//   TasteNetwork.sceneColor(id)         a scene's color, for legends outside the drawing
 //
-// options (all optional): colors { text, secondary, accent, bg, path }, star, starColor.
+// Colors and the favorite star come from theme.js, shared with the branch graph.
 // The data only carries weights (1 to 3) and yes/no, never play counts.
 //
 // Layout (d3-force): the page arranges the network itself; the backend sends no positions. Lines pull the
@@ -23,12 +22,8 @@ import { select } from "d3-selection";
 import { zoom, zoomIdentity } from "d3-zoom";
 import { forceSimulation, forceLink, forceManyBody, forceCollide, forceX, forceY } from "d3-force";
 import "d3-transition";  // for the animated reset: adds .transition() to selections
+import { COLORS, STAR, STAR_COLOR } from "./theme.js";
 
-const DEFAULTS = {
-  colors: { text: "#F2F2F2", secondary: "#9A9A9A", accent: "#4D7CFF", bg: "#000000", path: "#B8936E" },
-  star: "★",
-  starColor: "#D9D9D9",
-};
 const NODE_R = { 1: 4, 2: 7, 3: 11 };  // by weight, the same for every node
 const YOURS_FILL = { 1: "#8A8A8A", 2: "#BDBDBD", 3: "#F2F2F2" };  // artists outside a scene
 // Scenes by id (s1, s2...), muted so they don't fight the blue of recommendations; a scene keeps its id, so its
@@ -68,29 +63,28 @@ function rank(n) {
   return (3 - n.weight) * 2 + (n.kind === "rec" ? 1 : 0);
 }
 
-function edgeStyle(e, colors) {
+function edgeStyle(e) {
   if (e.kind === "together") {
     const s = TOGETHER[e.weight] ?? TOGETHER[1];
     return { stroke: s.stroke, "stroke-width": s.width };
   }
   if (e.kind === "similar") {
-    return { stroke: colors.path, "stroke-width": e.weight === 2 ? 2 : 1.5, "stroke-dasharray": "1 4", "stroke-linecap": "round" };
+    return { stroke: COLORS.path, "stroke-width": e.weight === 2 ? 2 : 1.5, "stroke-dasharray": "1 4", "stroke-linecap": "round" };
   }
-  return { stroke: colors.accent, "stroke-width": 1.5 };  // anchor
+  return { stroke: COLORS.accent, "stroke-width": 1.5 };  // anchor
 }
 
 // Your artists in their scene's color (grays outside one); recommendations in their scene's color with a blue
 // ring, or all blue outside one. A merged recommendation comes as one of your artists
-function dotStyle(n, colors) {
+function dotStyle(n) {
   if (n.kind === "yours") return { fill: n.scene ? sceneColor(n.scene) : YOURS_FILL[n.weight] };
-  return n.scene ? { fill: sceneColor(n.scene), stroke: colors.accent, "stroke-width": 2 } : { fill: colors.accent };
+  return n.scene ? { fill: sceneColor(n.scene), stroke: COLORS.accent, "stroke-width": 2 } : { fill: COLORS.accent };
 }
 
 const setAttrs = (sel, attrs) => Object.entries(attrs).forEach(([k, v]) => sel.attr(k, v));
 
-function draw(net, container, options = {}) {
-  const colors = { ...DEFAULTS.colors, ...options.colors };
-  const star = options.star ?? DEFAULTS.star, starColor = options.starColor ?? DEFAULTS.starColor;
+// Draws once, at the container's current width
+function draw(net, container) {
   container.replaceChildren();
   const width = container.clientWidth;
   const narrow = width < NARROW;
@@ -158,7 +152,7 @@ function draw(net, container, options = {}) {
     root.style("overflow", transform.k === 1 && transform.x === 0 && transform.y === 0 ? "visible" : "hidden");
 
     lines.selectAll("path").data(edges)
-      .join(enter => enter.append("path").attr("fill", "none").each(function (e) { setAttrs(select(this), edgeStyle(e, colors)); }))
+      .join(enter => enter.append("path").attr("fill", "none").each(function (e) { setAttrs(select(this), edgeStyle(e)); }))
       .attr("d", edgePath)
       .attr("opacity", e => !focus || e.source === focus || e.target === focus ? 1 : DIM_LINE);
 
@@ -167,10 +161,10 @@ function draw(net, container, options = {}) {
         .attr("r", n => NODE_R[n.weight])
         .style("cursor", "pointer")
         .each(function (n) {
-          setAttrs(select(this), dotStyle(n, colors));
+          setAttrs(select(this), dotStyle(n));
           const what = n.kind === "yours" ? "your artist" : "recommendation";
           const scene = sceneName.get(n.scene);
-          select(this).append("title").text(`${n.favorite ? `${star} ` : ""}${n.name} · ${what}${scene ? ` · ${scene}` : ""}`);
+          select(this).append("title").text(`${n.favorite ? `${STAR} ` : ""}${n.name} · ${what}${scene ? ` · ${scene}` : ""}`);
         })
         .on("pointerenter", (event, n) => { if (event.pointerType === "mouse") { focus = n.id; render(); } })
         .on("pointerleave", event => { if (event.pointerType === "mouse") { focus = null; render(); } })
@@ -184,7 +178,7 @@ function draw(net, container, options = {}) {
         .attr("class", d => `net-label ${d.n.kind}`)
         .each(function (d) {
           const text = select(this);
-          if (d.n.favorite) text.append("tspan").style("fill", starColor).text(`${star} `);
+          if (d.n.favorite) text.append("tspan").style("fill", STAR_COLOR).text(`${STAR} `);
           text.append("tspan").text(d.n.name);
         }))
       .attr("x", d => d.x).attr("y", d => d.y)
@@ -235,15 +229,15 @@ function layout(nodes, edges) {
   return new Map(points.map(p => [p.id, { x: (p.x - x0) / (x1 - x0 || 1), y: (p.y - y0) / (y1 - y0 || 1) }]));
 }
 
-function mount(net, container, options = {}) {
-  draw(net, container, options);
+function mount(net, container) {
+  draw(net, container);
   let lastWidth = container.clientWidth;
   window.addEventListener("resize", () => {
     if (container.clientWidth !== lastWidth) {
       lastWidth = container.clientWidth;
-      draw(net, container, options);
+      draw(net, container);
     }
   });
 }
 
-export { draw, mount, sceneColor };
+export { mount, sceneColor };

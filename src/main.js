@@ -1,6 +1,7 @@
 // data/data.json is written by the backend (listening-map); see the schema in its docs/design.md.
 // The page's entry point: esbuild bundles it, with what it imports, into assets/js/main.js (see package.json).
 import * as TasteNetwork from "./network.js";
+import { COLORS, STAR, STAR_COLOR } from "./theme.js";
 
 // Keys from later phases may be missing: every section hides itself when it has no data.
 const TZ = "America/Santiago";
@@ -60,17 +61,12 @@ function card(rec) {
 // right below it, each recommendation branches off the day it arrived; further down, your top artists run as strands.
 // data.json only carries weights from 0 to 3, never play counts.
 const SVG = "http://www.w3.org/2000/svg";
-// Also passed to TasteNetwork (assets/js/network.js), so both drawings share the same colors
-const COLORS = { text: "#F2F2F2", secondary: "#9A9A9A", accent: "#4D7CFF", bg: "#000000", path: "#B8936E" };
 const shortDay = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "short", day: "numeric" });
 const toDate = s => new Date(s + "T12:00:00Z");
 const REC_IN_TOP_W = 4;  // a recommendation in your top: solid and thick, unlike the dotted ones you only tried
 const BAND = [1, 4, 7, 10];  // half the band's thickness, by week weight
 const WEEK_LABELS = ["no plays tracked", "a lighter week", "a usual week", "a heavier week"];
 const STRAND = { 1: { width: 1.5, color: "#575757" }, 2: { width: 3, color: "#6E6E6E" }, 3: { width: 5, color: "#8A8A8A" } };
-// Favorites (an artist with a liked song) get a star before their name: a text glyph, not an emoji
-const STAR = "★";
-const STAR_COLOR = "#D9D9D9";
 
 function svg(tag, attrs, parent) {
   const node = document.createElementNS(SVG, tag);
@@ -436,7 +432,7 @@ fetch("data/network.json", { cache: "no-cache" })
   .then(net => {
     if (!net?.nodes?.length) return;
     document.getElementById("network").hidden = false;
-    TasteNetwork.mount(net, document.getElementById("network-graph"), { colors: COLORS, star: STAR, starColor: STAR_COLOR });
+    TasteNetwork.mount(net, document.getElementById("network-graph"));
     sceneLegend(net.scenes ?? []);
     scenesSection(net.scenes ?? [], net.weeks ?? []);
   })

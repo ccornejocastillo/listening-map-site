@@ -8,6 +8,7 @@ This repo is the frontend only. The backend (Python, workflows, the raw listenin
 index.html                    the page structure: sections, legend, footer
 src/main.js                   the entry point: fetches data/data.json and data/network.json and fills the page
 src/network.js                TasteNetwork, an internal module that draws the taste network; main.js imports it
+src/theme.js                  the colors and favorite star both drawings share
 src/main.css                  styles
 assets/                       favicon and touch icon, copied as they are
 data/data.json                written by the backend; don't edit it by hand
@@ -63,12 +64,11 @@ Main pieces:
 
 ## Taste network (`src/network.js`)
 
-`TasteNetwork` is an internal module drawn with D3 (`d3-selection`, `d3-force`, `d3-zoom`, `d3-transition`): nothing global, and it doesn't know about the rest of the page. It exports `draw`, `mount` and `sceneColor`; `main.js` imports it as `TasteNetwork` (`import * as TasteNetwork from "./network.js"`), loads `data/network.json` and calls it.
+`TasteNetwork` is an internal module drawn with D3 (`d3-selection`, `d3-force`, `d3-zoom`, `d3-transition`): nothing global, and it doesn't know about the rest of the page. It exports `mount` and `sceneColor`; `main.js` imports it as `TasteNetwork` (`import * as TasteNetwork from "./network.js"`), loads `data/network.json` and calls it.
 
-- `TasteNetwork.draw(net, container, options)`: draws once, as SVG at the container's real width (taller than wide on phones).
-- `TasteNetwork.mount(net, container, options)`: draws, and redraws when the container's width changes. This is what `main.js` uses.
+- `TasteNetwork.mount(net, container)`: draws as SVG at the container's real width (taller than wide on phones), and redraws when that width changes.
 - `TasteNetwork.sceneColor(id)`: a scene's color, so `main.js` uses the same ones in the legend and in "Your scenes".
-- `options` (all optional): `colors` (`text`, `secondary`, `accent`, `bg`, `path`), `star`, `starColor`. `main.js` passes its own `COLORS`, `STAR` and `STAR_COLOR`, so both drawings share them; without options it uses the same values as defaults.
+- Colors and the favorite star come from `src/theme.js` (`COLORS`, `STAR`, `STAR_COLOR`), which `main.js` imports too, so both drawings share them.
 
 How it draws:
 
@@ -101,7 +101,7 @@ How it reacts (the hint under the drawing says how, for mouse or touch):
 
 ## Style
 
-Colors are CSS variables in `:root` (`src/main.css`) and the graph uses the same values in `COLORS` (`src/main.js`), which it also passes to `TasteNetwork`; change both together. The network's own grays (`YOURS_FILL`, `TOGETHER`) live in `src/network.js`.
+Colors are CSS variables in `:root` (`src/main.css`) and both drawings use the same values in `COLORS` (`src/theme.js`); change both together. The network's own grays (`YOURS_FILL`, `TOGETHER`) live in `src/network.js`.
 
 | Token | Value | Use |
 | --- | --- | --- |
