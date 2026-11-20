@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-19T13:56:46Z",
+  "generated_at": "2026-11-20T11:54:08Z",
   "nodes": [
     {
       "id": "6MxyNXnnmwQwdW2PD0gXYO",
@@ -24,6 +24,13 @@
       "weight": 3,
       "favorite": true,
       "scene": "s1"
+    },
+    {
+      "id": "2ziB7fzrXBoh1HUPS6sVFn",
+      "name": "Audioslave",
+      "kind": "yours",
+      "weight": 2,
+      "favorite": true
     },
     {
       "id": "17WostYl0Ep0nyJmA0m2ds",
@@ -122,14 +129,6 @@
       "kind": "yours",
       "weight": 1,
       "favorite": false
-    },
-    {
-      "id": "7jy3rLJdDQY21OgRLCZ9sD",
-      "name": "Foo Fighters",
-      "kind": "yours",
-      "weight": 1,
-      "favorite": true,
-      "scene": "s3"
     },
     {
       "id": "27Owkm4TGlMqb0BqaEt3PW",
@@ -560,12 +559,6 @@
       "target": "3lzTKwFsOqxtp5cLJ2qbSD",
       "kind": "similar",
       "weight": 2
-    },
-    {
-      "source": "7jy3rLJdDQY21OgRLCZ9sD",
-      "target": "2UazAtjfzqBF0Nho2awK4z",
-      "kind": "similar",
-      "weight": 1
     },
     {
       "source": "6rX8AFY10dsJkJsv23Z9Um",

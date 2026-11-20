@@ -1,72 +1,72 @@
 {
   "version": 9,
-  "generated_at": "2026-11-19T13:56:47Z",
+  "generated_at": "2026-11-20T11:54:10Z",
   "window": {
-    "start": "2026-11-12T13:56:47Z",
-    "end": "2026-11-19T13:56:47Z"
+    "start": "2026-11-13T11:54:10Z",
+    "end": "2026-11-20T11:54:10Z"
   },
   "stats": {
-    "tracks": 103,
-    "artists": 27,
+    "tracks": 119,
+    "artists": 33,
     "merged": 0
   },
   "totals": {
-    "tracks": 586,
-    "artists": 97,
+    "tracks": 610,
+    "artists": 99,
     "merged": 2,
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-11-18",
-    "kind": "wednesday"
+    "id": "2026-11-20",
+    "kind": "friday"
   },
-  "summary": "You spent the last week heavily focused on Pearl Jam, BADBADNOTGOOD, and TOOL, with a steady undercurrent of Chilean alternative rock.",
+  "summary": "Your recent listening focused heavily on Chilean spoken-word rock, heavy progressive metal, grunge, and instrumental jazz-fusion.",
   "pending": false,
   "recommendations": [
     {
-      "type": "roots",
+      "type": "heirs",
       "slot": "main",
-      "anchor": "Pearl Jam",
-      "reason": "As the frontman of Screaming Trees and a frequent Pacific Northwest collaborator, Mark Lanegan shares the gravelly depth and soulful grunge roots that power Pearl Jam's heavier catalog.",
+      "anchor": "TOOL",
+      "reason": "If you enjoy TOOL's hypnotic, polyrhythmic progressive metal, Lucid Planet builds on that heavy foundation with atmospheric soundscapes and extended rhythmic builds.",
       "artists": [
         {
-          "artist": "Mark Lanegan",
-          "artist_id": "1fpXM23IoNckJ7NDAm8YJQ",
-          "spotify_url": "https://open.spotify.com/artist/1fpXM23IoNckJ7NDAm8YJQ"
+          "artist": "Lucid Planet",
+          "artist_id": "5TdXaKb1xnSzfFc0a0SlcW",
+          "spotify_url": "https://open.spotify.com/artist/5TdXaKb1xnSzfFc0a0SlcW"
         }
       ]
     },
     {
       "type": "discovery",
       "slot": "extra",
-      "anchor": "Tame Impala",
-      "reason": "Sharing key members and production history with Tame Impala, Pond leans into a raw, glam-infused side of Australian psychedelia while keeping the synth-heavy pop sensibilities.",
+      "anchor": "Tokyo Tea Room",
+      "reason": "Expanding on the soft dream-pop side of your taste represented by Tokyo Tea Room, Hazel English offers warm, retro-leaning indie pop driven by clean guitars and laid-back melodies.",
       "artists": [
         {
-          "artist": "Pond",
-          "artist_id": "4skJp5OKvcc9eKokiuhi2s",
-          "spotify_url": "https://open.spotify.com/artist/4skJp5OKvcc9eKokiuhi2s"
+          "artist": "Hazel English",
+          "artist_id": "1nEGjL7aMVdNQzsfQPKdGr",
+          "spotify_url": "https://open.spotify.com/artist/1nEGjL7aMVdNQzsfQPKdGr"
         }
       ]
     },
     {
       "type": "roots",
       "slot": "extra",
-      "anchor": "Como Asesinar a Felipes",
-      "reason": "Como Asesinar a Felipes pairs dark jazz improvisation with politically charged delivery, a spirit pioneered in West Africa by Fela Kuti through sweeping Afrobeat horn arrangements and hypnotic polyrhythms.",
+      "anchor": "Bersuit Vergarabat",
+      "reason": "While Bersuit Vergarabat incorporates carnival murgas into alternative rock, Ruben Rada goes straight to the Afro-Uruguayan roots of candombe and murga, blending traditional percussion with Latin jazz and funk.",
       "artists": [
         {
-          "artist": "Fela Kuti",
-          "artist_id": "5CG9X521RDFWCuAhlo6QoR",
-          "spotify_url": "https://open.spotify.com/artist/5CG9X521RDFWCuAhlo6QoR"
+          "artist": "Ruben Rada",
+          "artist_id": "5AfGpwSbYKelc5nJjUVRmb",
+          "spotify_url": "https://open.spotify.com/artist/5AfGpwSbYKelc5nJjUVRmb"
         }
       ]
     }
   ],
-  "next_batch": "2026-11-20",
+  "next_batch": "2026-11-23",
   "graph": {
     "start": "2026-10-05",
-    "today": "2026-11-19",
+    "today": "2026-11-20",
     "weeks": [
       {
         "start": "2026-10-05",
@@ -234,13 +234,18 @@
         "top": [
           {
             "artist": "González y los Asistentes",
-            "weight": 3,
+            "weight": 2,
             "favorite": true
           },
           {
             "artist": "BADBADNOTGOOD",
             "weight": 2,
             "favorite": false
+          },
+          {
+            "artist": "Audioslave",
+            "weight": 2,
+            "favorite": true
           },
           {
             "artist": "Stone Temple Pilots",
@@ -251,11 +256,6 @@
             "artist": "Rishloo",
             "weight": 1,
             "favorite": false
-          },
-          {
-            "artist": "TOOL",
-            "weight": 1,
-            "favorite": true
           }
         ]
       }
@@ -669,6 +669,48 @@
           }
         ],
         "created": "2026-11-18",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "heirs",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Lucid Planet",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-20",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "discovery",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Hazel English",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-20",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Ruben Rada",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-20",
         "end": null,
         "status": "open"
       }
