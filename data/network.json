@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-20T14:38:27Z",
+  "generated_at": "2026-11-21T11:17:07Z",
   "nodes": [
     {
       "id": "6MxyNXnnmwQwdW2PD0gXYO",
@@ -61,14 +61,6 @@
       "kind": "yours",
       "weight": 2,
       "favorite": false
-    },
-    {
-      "id": "2awB7Ol181cocZcLLNBBAh",
-      "name": "Fazerdaze",
-      "kind": "yours",
-      "weight": 2,
-      "favorite": false,
-      "scene": "s2"
     },
     {
       "id": "2CgdffHkvt7WJM5IGuaUa3",
@@ -132,11 +124,12 @@
       "favorite": false
     },
     {
-      "id": "27Owkm4TGlMqb0BqaEt3PW",
-      "name": "Molotov",
+      "id": "2awB7Ol181cocZcLLNBBAh",
+      "name": "Fazerdaze",
       "kind": "yours",
       "weight": 1,
-      "favorite": false
+      "favorite": false,
+      "scene": "s2"
     },
     {
       "id": "0k17h0D3J5VfsdmQ1iZtE9",
@@ -693,12 +686,6 @@
     {
       "source": "2ziB7fzrXBoh1HUPS6sVFn",
       "target": "2UazAtjfzqBF0Nho2awK4z",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "6MxyNXnnmwQwdW2PD0gXYO",
-      "target": "27Owkm4TGlMqb0BqaEt3PW",
       "kind": "similar",
       "weight": 2
     },

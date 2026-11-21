@@ -1,13 +1,13 @@
 {
   "version": 9,
-  "generated_at": "2026-11-20T14:38:29Z",
+  "generated_at": "2026-11-21T11:17:07Z",
   "window": {
-    "start": "2026-11-13T14:38:29Z",
-    "end": "2026-11-20T14:38:29Z"
+    "start": "2026-11-14T11:17:07Z",
+    "end": "2026-11-21T11:17:07Z"
   },
   "stats": {
-    "tracks": 119,
-    "artists": 33,
+    "tracks": 103,
+    "artists": 24,
     "merged": 0
   },
   "totals": {
@@ -66,7 +66,7 @@
   "next_batch": "2026-11-23",
   "graph": {
     "start": "2026-10-05",
-    "today": "2026-11-20",
+    "today": "2026-11-21",
     "weeks": [
       {
         "start": "2026-10-05",
@@ -230,7 +230,7 @@
       },
       {
         "start": "2026-11-16",
-        "weight": 3,
+        "weight": 2,
         "top": [
           {
             "artist": "González y los Asistentes",
