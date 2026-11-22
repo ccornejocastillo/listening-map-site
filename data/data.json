@@ -1,18 +1,18 @@
 {
   "version": 9,
-  "generated_at": "2026-11-21T11:17:07Z",
+  "generated_at": "2026-11-22T11:37:13Z",
   "window": {
-    "start": "2026-11-14T11:17:07Z",
-    "end": "2026-11-21T11:17:07Z"
+    "start": "2026-11-15T11:37:13Z",
+    "end": "2026-11-22T11:37:13Z"
   },
   "stats": {
-    "tracks": 103,
-    "artists": 24,
+    "tracks": 131,
+    "artists": 38,
     "merged": 0
   },
   "totals": {
-    "tracks": 610,
-    "artists": 99,
+    "tracks": 638,
+    "artists": 111,
     "merged": 2,
     "since": "2026-10-14"
   },
@@ -66,7 +66,7 @@
   "next_batch": "2026-11-23",
   "graph": {
     "start": "2026-10-05",
-    "today": "2026-11-21",
+    "today": "2026-11-22",
     "weeks": [
       {
         "start": "2026-10-05",
@@ -243,17 +243,17 @@
             "favorite": false
           },
           {
+            "artist": "Ke Personajes",
+            "weight": 2,
+            "favorite": false
+          },
+          {
             "artist": "Audioslave",
             "weight": 2,
             "favorite": true
           },
           {
             "artist": "Stone Temple Pilots",
-            "weight": 2,
-            "favorite": false
-          },
-          {
-            "artist": "Rishloo",
             "weight": 1,
             "favorite": false
           }
@@ -516,7 +516,7 @@
         ],
         "created": "2026-11-11",
         "end": null,
-        "status": "open"
+        "status": "second look"
       },
       {
         "type": "roots",

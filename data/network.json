@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-21T11:17:07Z",
+  "generated_at": "2026-11-22T11:37:11Z",
   "nodes": [
     {
       "id": "6MxyNXnnmwQwdW2PD0gXYO",
@@ -34,13 +34,6 @@
       "scene": "s3"
     },
     {
-      "id": "17WostYl0Ep0nyJmA0m2ds",
-      "name": "Como Asesinar a Felipes",
-      "kind": "yours",
-      "weight": 2,
-      "favorite": true
-    },
-    {
       "id": "3zdrl0FdJvv4MC97zk8Qmo",
       "name": "Cámara Chilena de la Destrucción",
       "kind": "yours",
@@ -68,6 +61,13 @@
       "kind": "yours",
       "weight": 2,
       "favorite": true
+    },
+    {
+      "id": "06Q5VlSAku57lFzyME3HrM",
+      "name": "Ke Personajes",
+      "kind": "yours",
+      "weight": 2,
+      "favorite": false
     },
     {
       "id": "3zmfs9cQwzJl575W1ZYXeT",
@@ -102,13 +102,6 @@
       "scene": "s1"
     },
     {
-      "id": "6uNoywBI6pGJedmCrlM7Eo",
-      "name": "teodioteodio",
-      "kind": "yours",
-      "weight": 2,
-      "favorite": false
-    },
-    {
       "id": "64tNsm6TnZe2zpcMVMOoHL",
       "name": "Alice In Chains",
       "kind": "yours",
@@ -122,6 +115,13 @@
       "kind": "yours",
       "weight": 1,
       "favorite": false
+    },
+    {
+      "id": "17WostYl0Ep0nyJmA0m2ds",
+      "name": "Como Asesinar a Felipes",
+      "kind": "yours",
+      "weight": 1,
+      "favorite": true
     },
     {
       "id": "2awB7Ol181cocZcLLNBBAh",
@@ -147,19 +147,19 @@
       "favorite": true
     },
     {
-      "id": "5INjqkS1o8h1imAzPqGZBb",
-      "name": "Tame Impala",
-      "kind": "yours",
-      "weight": 1,
-      "favorite": true
-    },
-    {
       "id": "3lzTKwFsOqxtp5cLJ2qbSD",
       "name": "Tokyo Tea Room",
       "kind": "yours",
       "weight": 1,
       "favorite": false,
       "scene": "s2"
+    },
+    {
+      "id": "6uNoywBI6pGJedmCrlM7Eo",
+      "name": "teodioteodio",
+      "kind": "yours",
+      "weight": 1,
+      "favorite": false
     },
     {
       "id": "6aVjo0xHSiuW5hkasoYSR3",
@@ -379,12 +379,6 @@
     },
     {
       "source": "17WostYl0Ep0nyJmA0m2ds",
-      "target": "5INjqkS1o8h1imAzPqGZBb",
-      "kind": "together",
-      "weight": 1
-    },
-    {
-      "source": "17WostYl0Ep0nyJmA0m2ds",
       "target": "5eAWCfyUhZtHHtBdNk56l1",
       "kind": "together",
       "weight": 2
@@ -458,18 +452,6 @@
     {
       "source": "4Z8W4fKeB5YxbusRsdQVPb",
       "target": "5rLsN2LxYaEPLa1N7I2mPB",
-      "kind": "together",
-      "weight": 1
-    },
-    {
-      "source": "5INjqkS1o8h1imAzPqGZBb",
-      "target": "5eAWCfyUhZtHHtBdNk56l1",
-      "kind": "together",
-      "weight": 2
-    },
-    {
-      "source": "5INjqkS1o8h1imAzPqGZBb",
-      "target": "5xUf6j4upBrXZPg6AI4MRK",
       "kind": "together",
       "weight": 1
     },
