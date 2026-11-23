@@ -1,78 +1,61 @@
 {
   "version": 9,
-  "generated_at": "2026-11-22T11:37:13Z",
+  "generated_at": "2026-11-23T13:14:41Z",
   "window": {
-    "start": "2026-11-15T11:37:13Z",
-    "end": "2026-11-22T11:37:13Z"
+    "start": "2026-11-16T13:14:41Z",
+    "end": "2026-11-23T13:14:41Z"
   },
   "stats": {
-    "tracks": 131,
-    "artists": 38,
+    "tracks": 153,
+    "artists": 52,
     "merged": 0
   },
   "totals": {
-    "tracks": 638,
-    "artists": 111,
+    "tracks": 660,
+    "artists": 125,
     "merged": 2,
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-11-20",
-    "kind": "friday"
+    "id": "2026-11-23",
+    "kind": "monday"
   },
-  "summary": "Your recent listening focused heavily on Chilean spoken-word rock, heavy progressive metal, grunge, and instrumental jazz-fusion.",
+  "summary": "Your week featured a steady mix of heavy rock and alternative sounds, with González y los Asistentes and BADBADNOTGOOD leading your plays. You also spent considerable time with contemporary cumbia and groove-heavy tracks from Ke Personajes and Audioslave. The rotation kept a balance between driving rhythms and atmospheric textures.",
   "pending": false,
   "recommendations": [
     {
       "type": "heirs",
       "slot": "main",
-      "anchor": "TOOL",
-      "reason": "If you enjoy TOOL's hypnotic, polyrhythmic progressive metal, Lucid Planet builds on that heavy foundation with atmospheric soundscapes and extended rhythmic builds.",
+      "anchor": "Soen",
+      "reason": "Given your heavy listening to Soen, Riverside provides a natural extension with its melodic progressive rock and melancholic atmosphere. Their focus on intricate basslines and emotional vocal delivery aligns well with your current rotation.",
       "artists": [
         {
-          "artist": "Lucid Planet",
-          "artist_id": "5TdXaKb1xnSzfFc0a0SlcW",
-          "spotify_url": "https://open.spotify.com/artist/5TdXaKb1xnSzfFc0a0SlcW"
+          "artist": "Riverside",
+          "artist_id": "5yjbUO1Jocui7RKE30zfLT",
+          "spotify_url": "https://open.spotify.com/artist/5yjbUO1Jocui7RKE30zfLT"
         }
       ]
     },
     {
       "type": "discovery",
-      "slot": "extra",
-      "anchor": "Tokyo Tea Room",
-      "reason": "Expanding on the soft dream-pop side of your taste represented by Tokyo Tea Room, Hazel English offers warm, retro-leaning indie pop driven by clean guitars and laid-back melodies.",
+      "slot": "optional",
+      "anchor": "Soen",
+      "reason": "Returning to Leprous from a different angle, their emphasis on theatrical vocal arrangements and shifting time signatures offers a compelling contrast to the more straightforward rock in your recent plays.",
       "artists": [
         {
-          "artist": "Hazel English",
-          "artist_id": "1nEGjL7aMVdNQzsfQPKdGr",
-          "spotify_url": "https://open.spotify.com/artist/1nEGjL7aMVdNQzsfQPKdGr"
+          "artist": "Leprous",
+          "artist_id": "4lgrzShsg2FLA89UM2fdO5",
+          "spotify_url": "https://open.spotify.com/artist/4lgrzShsg2FLA89UM2fdO5"
         }
-      ]
-    },
-    {
-      "type": "roots",
-      "slot": "extra",
-      "anchor": "Bersuit Vergarabat",
-      "reason": "While Bersuit Vergarabat incorporates carnival murgas into alternative rock, Ruben Rada goes straight to the Afro-Uruguayan roots of candombe and murga, blending traditional percussion with Latin jazz and funk.",
-      "artists": [
-        {
-          "artist": "Ruben Rada",
-          "artist_id": "5AfGpwSbYKelc5nJjUVRmb",
-          "spotify_url": "https://open.spotify.com/artist/5AfGpwSbYKelc5nJjUVRmb"
-        }
-      ]
+      ],
+      "second_look": true
     }
   ],
-  "next_batch": "2026-11-23",
+  "next_batch": "2026-11-25",
   "graph": {
-    "start": "2026-10-05",
-    "today": "2026-11-22",
+    "start": "2026-10-12",
+    "today": "2026-11-23",
     "weeks": [
-      {
-        "start": "2026-10-05",
-        "weight": 0,
-        "top": []
-      },
       {
         "start": "2026-10-12",
         "weight": 1,
@@ -230,7 +213,7 @@
       },
       {
         "start": "2026-11-16",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
             "artist": "González y los Asistentes",
@@ -244,12 +227,12 @@
           },
           {
             "artist": "Ke Personajes",
-            "weight": 2,
+            "weight": 1,
             "favorite": false
           },
           {
             "artist": "Audioslave",
-            "weight": 2,
+            "weight": 1,
             "favorite": true
           },
           {
@@ -258,6 +241,11 @@
             "favorite": false
           }
         ]
+      },
+      {
+        "start": "2026-11-23",
+        "weight": 0,
+        "top": []
       }
     ],
     "branches": [
@@ -333,8 +321,8 @@
           }
         ],
         "created": "2026-10-26",
-        "end": null,
-        "status": "open"
+        "end": "2026-11-23",
+        "status": "tried"
       },
       {
         "type": "discovery",
@@ -713,6 +701,20 @@
         "created": "2026-11-20",
         "end": null,
         "status": "open"
+      },
+      {
+        "type": "heirs",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Riverside",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-23",
+        "end": null,
+        "status": "open"
       }
     ]
   },
@@ -738,6 +740,15 @@
       }
     ],
     "tried": [
+      {
+        "type": "roots",
+        "slot": "main",
+        "artists": [
+          "Melvins"
+        ],
+        "anchor": "Alice In Chains",
+        "date": "2026-11-23"
+      },
       {
         "type": "path",
         "slot": "extra",

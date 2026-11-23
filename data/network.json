@@ -1,14 +1,7 @@
 {
   "version": 1,
-  "generated_at": "2026-11-22T11:37:11Z",
+  "generated_at": "2026-11-23T13:14:39Z",
   "nodes": [
-    {
-      "id": "6MxyNXnnmwQwdW2PD0gXYO",
-      "name": "Bersuit Vergarabat",
-      "kind": "yours",
-      "weight": 3,
-      "favorite": true
-    },
     {
       "id": "1w5Kfo2jwwIPruYS2UWh56",
       "name": "Pearl Jam",
@@ -34,6 +27,14 @@
       "scene": "s3"
     },
     {
+      "id": "5PbpKlxQE0Ktl5lcNABoFf",
+      "name": "Car Seat Headrest",
+      "kind": "yours",
+      "weight": 2,
+      "favorite": false,
+      "scene": "s5"
+    },
+    {
       "id": "3zdrl0FdJvv4MC97zk8Qmo",
       "name": "Cámara Chilena de la Destrucción",
       "kind": "yours",
@@ -53,7 +54,8 @@
       "name": "El Mató a un Policía Motorizado",
       "kind": "yours",
       "weight": 2,
-      "favorite": false
+      "favorite": false,
+      "scene": "s5"
     },
     {
       "id": "2CgdffHkvt7WJM5IGuaUa3",
@@ -110,11 +112,11 @@
       "scene": "s3"
     },
     {
-      "id": "5PbpKlxQE0Ktl5lcNABoFf",
-      "name": "Car Seat Headrest",
+      "id": "6MxyNXnnmwQwdW2PD0gXYO",
+      "name": "Bersuit Vergarabat",
       "kind": "yours",
       "weight": 1,
-      "favorite": false
+      "favorite": true
     },
     {
       "id": "17WostYl0Ep0nyJmA0m2ds",
@@ -221,7 +223,8 @@
       "name": "Dinosaur Jr.",
       "kind": "rec",
       "weight": 1,
-      "favorite": false
+      "favorite": false,
+      "scene": "s5"
     },
     {
       "id": "6rX8AFY10dsJkJsv23Z9Um",
@@ -492,6 +495,18 @@
       "weight": 2
     },
     {
+      "source": "2ziB7fzrXBoh1HUPS6sVFn",
+      "target": "64tNsm6TnZe2zpcMVMOoHL",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "2ziB7fzrXBoh1HUPS6sVFn",
+      "target": "5xUf6j4upBrXZPg6AI4MRK",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
       "source": "56ZTgzPBDge0OvCGgMO3OY",
       "target": "5Wabl1lPdNOeIn0SQ5A1mp",
       "kind": "similar",
@@ -576,8 +591,26 @@
       "weight": 2
     },
     {
+      "source": "2CWWgbxApjbyByxBBCvGTm",
+      "target": "38uWD5h115pdz278q4rwZW",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "7M1FPw29m5FbicYzS2xdpi",
+      "target": "5NXHXK6hOCotCF8lvGM1I0",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
       "source": "3zmfs9cQwzJl575W1ZYXeT",
       "target": "2awB7Ol181cocZcLLNBBAh",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "3zmfs9cQwzJl575W1ZYXeT",
+      "target": "3lzTKwFsOqxtp5cLJ2qbSD",
       "kind": "similar",
       "weight": 2
     },
@@ -608,6 +641,12 @@
     {
       "source": "0k17h0D3J5VfsdmQ1iZtE9",
       "target": "5NXHXK6hOCotCF8lvGM1I0",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "5NXHXK6hOCotCF8lvGM1I0",
+      "target": "38uWD5h115pdz278q4rwZW",
       "kind": "similar",
       "weight": 2
     },
@@ -648,20 +687,14 @@
       "weight": 2
     },
     {
-      "source": "2ziB7fzrXBoh1HUPS6sVFn",
-      "target": "64tNsm6TnZe2zpcMVMOoHL",
+      "source": "64tNsm6TnZe2zpcMVMOoHL",
+      "target": "6aVjo0xHSiuW5hkasoYSR3",
       "kind": "similar",
-      "weight": 2
+      "weight": 1
     },
     {
       "source": "2ziB7fzrXBoh1HUPS6sVFn",
       "target": "1w5Kfo2jwwIPruYS2UWh56",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "2ziB7fzrXBoh1HUPS6sVFn",
-      "target": "5xUf6j4upBrXZPg6AI4MRK",
       "kind": "similar",
       "weight": 2
     },
@@ -672,14 +705,50 @@
       "weight": 2
     },
     {
+      "source": "56ZTgzPBDge0OvCGgMO3OY",
+      "target": "3lzTKwFsOqxtp5cLJ2qbSD",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "5M52tdBnJaKSvOpJGz8mfZ",
+      "target": "5xUf6j4upBrXZPg6AI4MRK",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "5M52tdBnJaKSvOpJGz8mfZ",
+      "target": "2yEwvVSSSUkcLeSTNyHKh8",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "5Wabl1lPdNOeIn0SQ5A1mp",
+      "target": "3zmfs9cQwzJl575W1ZYXeT",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
       "source": "5Wabl1lPdNOeIn0SQ5A1mp",
       "target": "7bu3H8JO7d0UbMoVzbo70s",
       "kind": "similar",
       "weight": 2
     },
     {
+      "source": "5Wabl1lPdNOeIn0SQ5A1mp",
+      "target": "4tPyCwWrsvZ8OKYl7QRavL",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
       "source": "17WostYl0Ep0nyJmA0m2ds",
       "target": "65dGLGjkw3UbddUg2GKQoZ",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "267VY6GX5LyU5c9M85ECZQ",
+      "target": "5rLsN2LxYaEPLa1N7I2mPB",
       "kind": "similar",
       "weight": 1
     },
@@ -702,31 +771,19 @@
       "weight": 1
     },
     {
-      "source": "2CWWgbxApjbyByxBBCvGTm",
-      "target": "38uWD5h115pdz278q4rwZW",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "7M1FPw29m5FbicYzS2xdpi",
-      "target": "5NXHXK6hOCotCF8lvGM1I0",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "3zmfs9cQwzJl575W1ZYXeT",
-      "target": "3lzTKwFsOqxtp5cLJ2qbSD",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "5NXHXK6hOCotCF8lvGM1I0",
-      "target": "38uWD5h115pdz278q4rwZW",
+      "source": "0k17h0D3J5VfsdmQ1iZtE9",
+      "target": "4Z8W4fKeB5YxbusRsdQVPb",
       "kind": "similar",
       "weight": 1
     },
     {
       "source": "5NXHXK6hOCotCF8lvGM1I0",
+      "target": "2yEwvVSSSUkcLeSTNyHKh8",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "4Z8W4fKeB5YxbusRsdQVPb",
       "target": "2yEwvVSSSUkcLeSTNyHKh8",
       "kind": "similar",
       "weight": 1
@@ -754,19 +811,13 @@
     {
       "id": "s4",
       "name": "doom & sludge metal"
+    },
+    {
+      "id": "s5",
+      "name": "indie rock"
     }
   ],
   "weeks": [
-    {
-      "start": "2026-10-12",
-      "in_scene": 0.78,
-      "spread": 0.25,
-      "one_scene": 0.5,
-      "shares": {
-        "s2": 0.69,
-        "s3": 0.08
-      }
-    },
     {
       "start": "2026-10-19",
       "in_scene": 0.29,
@@ -810,6 +861,17 @@
         "s1": 0.13,
         "s2": 0.01,
         "s3": 0.27
+      }
+    },
+    {
+      "start": "2026-11-16",
+      "in_scene": 0.26,
+      "spread": 0.43,
+      "one_scene": 0.83,
+      "shares": {
+        "s1": 0.07,
+        "s2": 0.01,
+        "s3": 0.18
       }
     }
   ]
