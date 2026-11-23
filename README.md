@@ -10,6 +10,7 @@ src/main.js                   the entry point: fetches data/data.json and data/n
 src/branch.js                 BranchGraph, an internal module that draws "Last 7 weeks"; main.js imports it
 src/network.js                TasteNetwork, an internal module that draws the taste network; main.js imports it
 src/theme.js                  the colors and favorite star both drawings share
+src/focus.js                  what each drawing has in focus (hovered or pinned) and its legend as a filter
 src/main.css                  styles
 assets/                       favicon and touch icon, copied as they are
 data/data.json                written by the backend; don't edit it by hand
@@ -67,7 +68,7 @@ Main pieces:
 
 `TasteNetwork` is an internal module drawn with D3 (`d3-selection`, `d3-force`, `d3-zoom`, `d3-transition`): nothing global, and it doesn't know about the rest of the page. It exports `mount` and `sceneColor`; `main.js` imports it as `TasteNetwork` (`import * as TasteNetwork from "./network.js"`), loads `data/network.json` and calls it.
 
-- `TasteNetwork.mount(net, container)`: draws as SVG at the container's real width (taller than wide on phones), and redraws when that width changes.
+- `TasteNetwork.mount(net, container, legend)`: draws as SVG at the container's real width (taller than wide on phones), and redraws when that width changes. The legend (`#network-legend`) becomes a filter (see below).
 - `TasteNetwork.sceneColor(id)`: a scene's color, so `main.js` uses the same ones in the legend and in "Your scenes".
 - Colors and the favorite star come from `src/theme.js` (`COLORS`, `STAR`, `STAR_COLOR`), which `main.js` imports too, so both drawings share them.
 
@@ -83,14 +84,16 @@ How it reacts (the hint under the drawing says how, for mouse or touch):
 
 - Zoom with a pinch, or ctrl/⌘ + scroll, from 1× to 4×; a plain scroll still scrolls the page, and on phones one finger moves the drawing only once it's zoomed in. Dragging moves it, never out of its frame. A double-click (or double-tap) goes back to the start, animated.
 - The zoom is semantic: positions spread apart while dots, lines and labels keep their size, and labels are placed again at every step, so names left out for lack of room appear as you zoom in.
-- Hovering an artist (tapping it on a phone) lights up its lines and neighbors, puts their labels first and dims the rest; tapping the background clears it.
+- Hovering an artist lights up its lines and neighbors, puts their labels first and dims the rest. A click or tap pins it until it's clicked again or the background is tapped.
+- **The legend is a filter.** Its entries are buttons with `data-filter`; hovering, focusing (keyboard) or clicking one lights up what it names, the same way: `scene:<id>` (a scene's artists and the lines among them; `main.js` adds one per scene), `outside` (the artists without a scene), `rec` (the recommendations, their anchor lines and anchors), `edge:together`, `edge:anchor`, `edge:similar` (the lines of one kind and the artists they join). The entry in focus is marked (`.on`).
+- `src/focus.js` keeps the focus in two layers, shared by both drawings: what's hovered wins, and what's pinned shows when nothing is. It lives in `mount`, so a redraw on resize keeps it.
 - Everything is drawn by `render()`, which joins the data to SVG elements (`selection.data().join()`) and only moves them on zoom.
 
 "Your scenes" (`scenesSection` in `main.js`): the last closed week as a bar by scene, then three tiles (In a scene, Spread, One scene at a time) with the last weeks as bars, the latest in white. It stays hidden without scenes or weeks.
 
 ## Branch graph (`src/branch.js`)
 
-`BranchGraph` is an internal module drawn with D3 (`d3-scale`, `d3-axis`, `d3-shape`, `d3-time`, `d3-selection`), like `TasteNetwork`. It exports `mount(graph, container)`: draws as SVG at the container's real width (so its text stays readable on phones) and redraws when that width changes. `strandRuns` turns the weekly tops into strands, and `assignLanes` places strands and branches in lanes, counting their labels' width.
+`BranchGraph` is an internal module drawn with D3 (`d3-scale`, `d3-axis`, `d3-shape`, `d3-time`, `d3-selection`), like `TasteNetwork`. It exports `mount(graph, container, legend)`: draws as SVG at the container's real width (so its text stays readable on phones) and redraws when that width changes. `strandRuns` turns the weekly tops into strands, and `assignLanes` places strands and branches in lanes, counting their labels' width.
 
 - Time is a `scaleUtc` with an axis from `d3-axis`, one date per week (every other one below 480 px). A faint line (`GUIDE`, the border gray) marks where each week starts, and one marks today.
 - `main` is your usual rotation: a white band (a `d3-shape` area), flat through each week at that week's weight (0 to 3: no plays, lighter, usual, heavier), with a node per week. `data.json` carries weights, never play counts, so the page can't show them.
@@ -101,7 +104,8 @@ How it reacts (the hint under the drawing says how, for mouse or touch):
 - **In your top:** a recommendation whose artist is in your top since it arrived is drawn as that strand, solid blue and `REC_IN_TOP_W` thick, ending in a filled dot, and not as a branch.
 - **Merged:** a thick ring at the end of the recommendation's own line, the day it merged (a dotted blue line reaches it if it merged after its last week in your top). **Tried:** ends in a gray dot.
 - Layers, back to front: the week lines and their hover areas, the band, the lines (each a group with its paths, ending, label and a wider invisible path to hover), the tooltip. Labels have a dark halo (`.lbl` in the CSS), so they stay readable where another line crosses them.
-- **Hover or tap a line:** it stays lit, the rest dims (`DIM`), and a tooltip says what it is, when it was recommended, how many weeks it was in your top or when you last played it, and how it ended. **Hover or tap a week:** it's shaded, the artists in your top that week stay lit, and a tooltip gives its weight and how many artists were in your top. Tapping the background clears it.
+- **Hover or tap a line:** it stays lit, the rest dims (`DIM`), and a tooltip says what it is, when it was recommended, how many weeks it was in your top or when you last played it, and how it ended. **Hover or tap a week:** it's shaded, the artists in your top that week stay lit, and a tooltip gives its weight and how many artists were in your top. A click or tap pins either until clicked again or the background is tapped.
+- **The legend is a filter** (`#graph-legend`), like the network's: `top` (your top artists' gray lines), `favorite`, `gap` (artists who left your top and came back), `rec-tried` (the dotted blue branches), `rec-top` (the solid blue lines), `merged` and `tried` (how a recommendation ended). The band's entry isn't one: the band is always there.
 - `main` sits in the middle: `assignLanes` puts each line in the free lane closest to `main`, above or below (on a tie, the side with fewer lanes, then alternating), branches first so recommendations are nearest to it. A lane is reused once what was in it, label included, has ended.
 - A label goes to the right of where its line starts; only when it wouldn't fit before the edge, to the left (`nearEdge`).
 

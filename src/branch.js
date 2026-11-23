@@ -1,7 +1,8 @@
 // BranchGraph: draws "Last 7 weeks" (data.json's `graph`) as SVG, with D3. An internal module like network.js:
 // main.js imports it and calls it.
 //
-//   BranchGraph.mount(graph, container)  draws, and redraws when the container's width changes
+//   BranchGraph.mount(graph, container, legend)  draws, and redraws when the container's width changes; the legend
+//                                                (optional) becomes a filter
 //
 // What it shows: the band is your listening, as thick as how much you listened each week (a time scale and axis,
 // d3-scale and d3-axis, the band a d3-shape area). Each line sits on its own lane, from the week it started: your
@@ -11,13 +12,15 @@
 // data.json only carries weights from 0 to 3, never play counts.
 //
 // Interaction: hovering (or tapping) a line lights it up, dims the rest and shows what it is; hovering (or tapping)
-// a week shades it and lights up the artists in your top that week. Tapping the background clears it.
+// a week shades it and lights up the artists in your top that week; hovering (or tapping) a legend entry lights up
+// the lines it names. A tap pins it until tapped again or the background is tapped (focus.js).
 import { select } from "d3-selection";
 import { scaleUtc } from "d3-scale";
 import { axisBottom } from "d3-axis";
 import { area } from "d3-shape";
 import { utcDay } from "d3-time";
 import { COLORS, STAR, STAR_COLOR } from "./theme.js";
+import { current, toggle, bindLegend, markLegend } from "./focus.js";
 
 const shortDay = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "short", day: "numeric" });
 const toDate = s => new Date(s + "T12:00:00Z");
@@ -99,7 +102,9 @@ function assignLanes(items, width) {
 
 const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
 
-function draw(g, container) {
+// `state` is what's in focus (focus.js), kept across redraws; `update` redraws the focus after a change. Returns the
+// function that applies the focus to this drawing
+function draw(g, container, state, update) {
   container.replaceChildren();
   const width = container.clientWidth;
   const start = toDate(g.start);
@@ -168,9 +173,20 @@ function draw(g, container) {
   const bottom = height - AXIS_H + 2;
   for (const it of items) it.y = laneY(it);
 
-  let focus = null;  // { item } or { week }, hovered or tapped
+  // What's lit: everything; one line ({ item }: its artist's name); the artists in your top one week ({ week }); or
+  // what a legend entry names ({ key }, its data-filter, see KEYS)
   const weekTop = g.weeks.map(w => new Set((w.top ?? []).map(t => t.artist)));
-  const lit = it => !focus || (focus.item ? focus.item === it : weekTop[focus.week].has(it.name));
+  const KEYS = {
+    top: it => it.kind === "strand" && !it.rec,
+    favorite: it => it.kind === "strand" && it.favorite,
+    gap: it => it.kind === "strand" && it.segments.length > 1,
+    "rec-tried": it => it.kind === "branch",
+    "rec-top": it => it.kind === "strand" && Boolean(it.rec),
+    merged: it => it.rec?.status === "merged",
+    tried: it => it.rec?.status === "tried",
+  };
+  const litBy = f => (!f ? () => true : f.key ? KEYS[f.key] ?? (() => true)
+    : f.week != null ? it => weekTop[f.week].has(it.name) : it => it.name === f.item);
 
   const root = select(container).append("svg")
     .attr("width", width).attr("height", height).attr("role", "img")
@@ -188,13 +204,9 @@ function draw(g, container) {
   back.selectAll("rect.week").data(g.weeks).join("rect")
     .attr("class", "week").attr("x", (w, i) => weekStart(i)).attr("width", (w, i) => weekEnd(i) - weekStart(i))
     .attr("y", 0).attr("height", bottom).attr("fill", "transparent")
-    .on("pointerenter", (event, w) => { if (event.pointerType === "mouse") set({ week: g.weeks.indexOf(w) }); })
-    .on("pointerleave", event => { if (event.pointerType === "mouse") set(null); })
-    .on("click", (event, w) => {
-      event.stopPropagation();
-      const week = g.weeks.indexOf(w);
-      set(focus?.week === week ? null : { week });
-    });
+    .on("pointerenter", (event, w) => { if (event.pointerType === "mouse") { state.hover = { week: g.weeks.indexOf(w) }; update(); } })
+    .on("pointerleave", event => { if (event.pointerType === "mouse") { state.hover = null; update(); } })
+    .on("click", (event, w) => { event.stopPropagation(); toggle(state, { week: g.weeks.indexOf(w) }); update(); });
 
   // The band: flat through each week at that week's thickness, with a short step into the next one
   const pts = g.weeks.flatMap((w, i) => {
@@ -219,9 +231,9 @@ function draw(g, container) {
 
   // Each line is a group: its paths, its ending and its label, plus a wider invisible path to hover or tap it
   const groups = front.selectAll("g").data(items).join("g").style("cursor", "pointer")
-    .on("pointerenter", (event, it) => { if (event.pointerType === "mouse") set({ item: it }); })
-    .on("pointerleave", event => { if (event.pointerType === "mouse") set(null); })
-    .on("click", (event, it) => { event.stopPropagation(); set(focus?.item === it ? null : { item: it }); });
+    .on("pointerenter", (event, it) => { if (event.pointerType === "mouse") { state.hover = { item: it.name }; update(); } })
+    .on("pointerleave", event => { if (event.pointerType === "mouse") { state.hover = null; update(); } })
+    .on("click", (event, it) => { event.stopPropagation(); toggle(state, { item: it.name }); update(); });
   groups.each(function (it) { drawItem(select(this), it); });
 
   function line(parent, x0, x1, y, attrs) {
@@ -294,13 +306,14 @@ function draw(g, container) {
     rows.forEach((r, i) => box.append("text").attr("class", i ? "tip" : "tip head").attr("x", 12).attr("y", 20 + i * TIP_LINE).text(r));
   }
 
-  function set(next) {
-    focus = next;
+  function apply() {
+    const focus = current(state), lit = litBy(focus);
     groups.attr("opacity", it => (lit(it) ? 1 : DIM)).classed("lit", it => Boolean(focus) && lit(it));
     shade.attr("opacity", focus?.week != null ? 0.08 : 0);
     if (focus?.week != null) shade.attr("x", weekStart(focus.week)).attr("width", weekEnd(focus.week) - weekStart(focus.week));
     tips.selectAll("*").remove();
-    if (focus?.item) tooltip(focus.item.end - 40, focus.item.y, itemRows(focus.item));
+    const item = focus?.item && items.find(it => it.name === focus.item);
+    if (item) tooltip(item.end - 40, item.y, itemRows(item));
     if (focus?.week != null) {
       const w = g.weeks[focus.week];
       tooltip((weekStart(focus.week) + weekEnd(focus.week)) / 2, mainY - BAND[3] - 4,
@@ -308,16 +321,23 @@ function draw(g, container) {
     }
   }
 
-  root.on("click", () => { if (focus) set(null); });  // tapping the background clears the focus
+  root.on("click", () => { if (state.pin) { state.pin = null; update(); } });  // tapping the background unpins
+  apply();
+  return apply;
 }
 
-function mount(graph, container) {
-  draw(graph, container);
+// `legend`, optional: its entries with data-filter light up what they name (see KEYS)
+function mount(graph, container, legend) {
+  const state = { hover: null, pin: null };
+  let apply;
+  const update = () => { apply(); if (legend) markLegend(legend, state); };
+  apply = draw(graph, container, state, update);
+  if (legend) bindLegend(legend, state, update);
   let lastWidth = container.clientWidth;
   window.addEventListener("resize", () => {
     if (container.clientWidth !== lastWidth) {
       lastWidth = container.clientWidth;
-      draw(graph, container);
+      apply = draw(graph, container, state, update);
     }
   });
 }

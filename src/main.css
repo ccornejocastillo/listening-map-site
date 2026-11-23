@@ -59,6 +59,12 @@ iframe { width: 100%; border: 0; border-radius: 12px; display: block; }
 .graph .tip.head { fill: var(--text); }
 .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
+/* A legend entry that's also a filter: hover, focus or tap it to light up what it names in the chart above */
+.legend button { display: inline-flex; align-items: center; gap: 6px; margin: -4px 0; padding: 4px 0; border: 0; background: none;
+  font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.legend button:hover, .legend button.on { color: var(--text); }
+.legend button.on { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--accent); }
+.legend button:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 .stuck { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .stuck h3 { font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: 12px; color: var(--secondary); text-transform: uppercase; letter-spacing: .04em; margin: 0 0 8px; }
 .stuck ul { list-style: none; margin: 0; padding: 0; }

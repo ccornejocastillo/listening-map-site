@@ -116,7 +116,7 @@ fetch("data/data.json", { cache: "no-cache" })
     if (data.graph) {
       const container = document.getElementById("graph");
       document.getElementById("weeks").hidden = false;
-      BranchGraph.mount(data.graph, container);
+      BranchGraph.mount(data.graph, container, document.getElementById("graph-legend"));
     }
 
     const merged = data.stuck?.merged ?? [], tried = data.stuck?.tried ?? [];
@@ -148,9 +148,14 @@ fetch("data/data.json", { cache: "no-cache" })
 
 // The scenes, by name, first in the network's legend
 function sceneLegend(scenes) {
-  document.getElementById("network-legend").prepend(...scenes.map(s => el("span", {}, [
-    el("span", { className: "scene-dot", style: `background: ${TasteNetwork.sceneColor(s.id)}` }), s.name,
-  ])));
+  // Each scene is a filter, like the rest of the legend: hovering or tapping it lights up the scene in the network
+  document.getElementById("network-legend").prepend(...scenes.map(s => {
+    const key = el("button", { type: "button" }, [
+      el("span", { className: "scene-dot", style: `background: ${TasteNetwork.sceneColor(s.id)}` }), s.name,
+    ]);
+    key.dataset.filter = `scene:${s.id}`;
+    return key;
+  }));
 }
 
 const pct = v => (v == null ? "—" : `${Math.round(v * 100)}%`);
@@ -202,7 +207,7 @@ fetch("data/network.json", { cache: "no-cache" })
   .then(net => {
     if (!net?.nodes?.length) return;
     document.getElementById("network").hidden = false;
-    TasteNetwork.mount(net, document.getElementById("network-graph"));
+    TasteNetwork.mount(net, document.getElementById("network-graph"), document.getElementById("network-legend"));
     sceneLegend(net.scenes ?? []);
     scenesSection(net.scenes ?? [], net.weeks ?? []);
   })

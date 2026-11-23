@@ -2,8 +2,9 @@
 // An internal module: nothing global; main.js imports it and only loads the data and calls it. See the network.json
 // contract in the backend's docs/design.md ("Taste network").
 //
-//   TasteNetwork.mount(net, container)  draws, and redraws when the container's width changes
-//   TasteNetwork.sceneColor(id)         a scene's color, for legends outside the drawing
+//   TasteNetwork.mount(net, container, legend)  draws, and redraws when the container's width changes; the legend
+//                                               (optional) becomes a filter
+//   TasteNetwork.sceneColor(id)                 a scene's color, for legends outside the drawing
 //
 // Colors and the favorite star come from theme.js, shared with the branch graph.
 // The data only carries weights (1 to 3) and yes/no, never play counts.
@@ -17,12 +18,14 @@
 // Interaction (d3-zoom): pinch, or ctrl/⌘ + scroll, zooms; dragging moves once zoomed; double-click resets.
 // Zoom is "semantic": positions spread out but dots, lines and labels keep their size, and labels are placed again
 // at every step, so names hidden for lack of room show up as you zoom in. Hovering (or tapping) an artist lights up
-// its lines and neighbors and dims the rest.
+// its lines and neighbors and dims the rest; hovering (or tapping) a legend entry lights up what it names: a scene,
+// the artists outside one, the recommendations, or one kind of line. A tap pins it until tapped again (focus.js).
 import { select } from "d3-selection";
 import { zoom, zoomIdentity } from "d3-zoom";
 import { forceSimulation, forceLink, forceManyBody, forceCollide, forceX, forceY } from "d3-force";
 import "d3-transition";  // for the animated reset: adds .transition() to selections
 import { COLORS, STAR, STAR_COLOR } from "./theme.js";
+import { current, toggle, bindLegend, markLegend } from "./focus.js";
 
 const NODE_R = { 1: 4, 2: 7, 3: 11 };  // by weight, the same for every node
 const YOURS_FILL = { 1: "#8A8A8A", 2: "#BDBDBD", 3: "#F2F2F2" };  // artists outside a scene
@@ -37,7 +40,7 @@ const PAD = 16;
 const EDGE_ORDER = { together: 0, similar: 1, anchor: 2 };  // drawn bottom to top
 const ARC = 0.18;  // how far a similar arc bends, as a share of its length
 const MAX_ZOOM = 4;
-const DIM_LINE = 0.12, DIM_DOT = 0.25, DIM_LABEL = 0.3;  // opacity of what's not around the artist in focus
+const DIM_LINE = 0.12, DIM_DOT = 0.25, DIM_LABEL = 0.3;  // opacity of what's not in focus
 // The layout's virtual space, and its forces
 const SPACE_W = 1000, SPACE_H = 680;
 const LINK = {  // distance and pull of each kind of line; similar pulls hardest, so scenes stay together
@@ -83,8 +86,9 @@ function dotStyle(n) {
 
 const setAttrs = (sel, attrs) => Object.entries(attrs).forEach(([k, v]) => sel.attr(k, v));
 
-// Draws once, at the container's current width
-function draw(net, container) {
+// Draws once, at the container's current width. `state` is what's in focus (focus.js), kept across redraws; `update`
+// redraws the focus after a change. Returns the function that applies the focus to this drawing
+function draw(net, container, state, update) {
   container.replaceChildren();
   const width = container.clientWidth;
   const narrow = width < NARROW;
@@ -101,8 +105,29 @@ function draw(net, container) {
   }
 
   let transform = zoomIdentity;
-  let focus = null;  // the artist hovered or tapped, if any
-  const near = id => !focus || neighbors.get(focus).has(id);
+  // What's lit: everything; an artist and its neighbors; or what a legend entry names (see `lightFor`)
+  let litNode = () => true, litEdge = () => true, active = false;
+  const near = id => litNode(byId.get(id));
+
+  // A legend entry's data-filter: "scene:<id>", "outside" (no scene), "rec" (the recommendations, their anchor
+  // lines and anchors) or "edge:<kind>" (the lines of one kind and the artists they join)
+  function lightFor(f) {
+    if (!f) return [() => true, () => true];
+    if (f.item) return [n => neighbors.get(f.item).has(n.id), e => e.source === f.item || e.target === f.item];
+    const [what, arg] = f.key.split(":");
+    let ids, lines;
+    if (what === "scene" || what === "outside") {
+      ids = new Set(nodes.filter(n => (what === "scene" ? n.scene === arg : !n.scene)).map(n => n.id));
+      lines = edges.filter(e => ids.has(e.source) && ids.has(e.target));
+    } else {
+      const recs = new Set(nodes.filter(n => n.kind === "rec").map(n => n.id));
+      lines = edges.filter(e => (what === "edge" ? e.kind === arg : e.kind === "anchor" && (recs.has(e.source) || recs.has(e.target))));
+      ids = new Set(what === "rec" ? recs : []);
+      for (const e of lines) ids.add(e.source).add(e.target);
+    }
+    const lit = new Set(lines);
+    return [n => ids.has(n.id), e => lit.has(e)];
+  }
 
   const at = layout(nodes, edges);
   // Positions on screen: the layout (0–1) stretched to the drawing, then through the zoom
@@ -130,9 +155,9 @@ function draw(net, container) {
   function placeLabels() {
     const placed = [], out = [];
     const overlaps = box => placed.some(b => box.x0 < b.x1 && b.x0 < box.x1 && box.y0 < b.y1 && b.y0 < box.y1);
-    const order = focus ? [...nodes].sort((a, b) => near(b.id) - near(a.id)) : nodes;
+    const order = active ? [...nodes].sort((a, b) => near(b.id) - near(a.id)) : nodes;
     for (const n of order) {
-      if (narrow && n.kind === "yours" && n.weight === 1 && transform.k < 1.5 && !(focus && near(n.id))) continue;
+      if (narrow && n.kind === "yours" && n.weight === 1 && transform.k < 1.5 && !(active && near(n.id))) continue;
       const x = X(n), y = Y(n), r = NODE_R[n.weight];
       if (x < -40 || x > width + 40 || y < -20 || y > height + 20) continue;  // zoomed out of view
       const w = ((n.favorite ? 2 : 0) + n.name.length) * LABEL_W;
@@ -148,13 +173,16 @@ function draw(net, container) {
   }
 
   function render() {
+    const f = current(state);
+    [litNode, litEdge] = lightFor(f);
+    active = Boolean(f);
     // Drawn past its edges at rest, so labels near them aren't cut; clipped once zoomed, so nothing spills out
     root.style("overflow", transform.k === 1 && transform.x === 0 && transform.y === 0 ? "visible" : "hidden");
 
     lines.selectAll("path").data(edges)
       .join(enter => enter.append("path").attr("fill", "none").each(function (e) { setAttrs(select(this), edgeStyle(e)); }))
       .attr("d", edgePath)
-      .attr("opacity", e => !focus || e.source === focus || e.target === focus ? 1 : DIM_LINE);
+      .attr("opacity", e => litEdge(e) ? 1 : DIM_LINE);
 
     dots.selectAll("circle").data(nodes, n => n.id)
       .join(enter => enter.append("circle")
@@ -166,9 +194,9 @@ function draw(net, container) {
           const scene = sceneName.get(n.scene);
           select(this).append("title").text(`${n.favorite ? `${STAR} ` : ""}${n.name} · ${what}${scene ? ` · ${scene}` : ""}`);
         })
-        .on("pointerenter", (event, n) => { if (event.pointerType === "mouse") { focus = n.id; render(); } })
-        .on("pointerleave", event => { if (event.pointerType === "mouse") { focus = null; render(); } })
-        .on("click", (event, n) => { event.stopPropagation(); focus = focus === n.id ? null : n.id; render(); }))
+        .on("pointerenter", (event, n) => { if (event.pointerType === "mouse") { state.hover = { item: n.id }; update(); } })
+        .on("pointerleave", event => { if (event.pointerType === "mouse") { state.hover = null; update(); } })
+        .on("click", (event, n) => { event.stopPropagation(); toggle(state, { item: n.id }); update(); }))
       .attr("cx", X).attr("cy", Y)
       .attr("opacity", n => near(n.id) ? 1 : DIM_DOT);
 
@@ -200,9 +228,10 @@ function draw(net, container) {
   root.call(behavior)
     .style("touch-action", "pan-y")  // d3-zoom sets "none"; let one finger scroll the page
     .on("dblclick", () => root.transition().duration(300).call(behavior.transform, zoomIdentity))
-    .on("click", () => { if (focus) { focus = null; render(); } });  // tapping the background clears the focus
+    .on("click", () => { if (state.pin) { state.pin = null; update(); } });  // tapping the background unpins
 
   render();
+  return render;
 }
 
 // The network's layout with d3-force: each artist's place, from 0 to 1 on both axes. Computed all at once (TICKS steps,
@@ -229,13 +258,18 @@ function layout(nodes, edges) {
   return new Map(points.map(p => [p.id, { x: (p.x - x0) / (x1 - x0 || 1), y: (p.y - y0) / (y1 - y0 || 1) }]));
 }
 
-function mount(net, container) {
-  draw(net, container);
+// `legend`, optional: its entries with data-filter light up what they name (see `lightFor`)
+function mount(net, container, legend) {
+  const state = { hover: null, pin: null };
+  let apply;
+  const update = () => { apply(); if (legend) markLegend(legend, state); };
+  apply = draw(net, container, state, update);
+  if (legend) bindLegend(legend, state, update);
   let lastWidth = container.clientWidth;
   window.addEventListener("resize", () => {
     if (container.clientWidth !== lastWidth) {
       lastWidth = container.clientWidth;
-      draw(net, container);
+      apply = draw(net, container, state, update);
     }
   });
 }
