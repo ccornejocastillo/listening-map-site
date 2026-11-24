@@ -1,18 +1,18 @@
 {
   "version": 9,
-  "generated_at": "2026-11-23T14:03:47Z",
+  "generated_at": "2026-11-24T13:52:44Z",
   "window": {
-    "start": "2026-11-16T14:03:47Z",
-    "end": "2026-11-23T14:03:47Z"
+    "start": "2026-11-17T13:52:44Z",
+    "end": "2026-11-24T13:52:44Z"
   },
   "stats": {
-    "tracks": 150,
-    "artists": 52,
+    "tracks": 123,
+    "artists": 51,
     "merged": 0
   },
   "totals": {
-    "tracks": 660,
-    "artists": 125,
+    "tracks": 665,
+    "artists": 126,
     "merged": 2,
     "since": "2026-10-14"
   },
@@ -54,7 +54,7 @@
   "next_batch": "2026-11-25",
   "graph": {
     "start": "2026-10-12",
-    "today": "2026-11-23",
+    "today": "2026-11-24",
     "weeks": [
       {
         "start": "2026-10-12",
@@ -89,7 +89,7 @@
       },
       {
         "start": "2026-10-19",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
             "artist": "Bersuit Vergarabat",
@@ -120,7 +120,7 @@
       },
       {
         "start": "2026-10-26",
-        "weight": 2,
+        "weight": 3,
         "top": [
           {
             "artist": "Soen",
@@ -244,8 +244,34 @@
       },
       {
         "start": "2026-11-23",
-        "weight": 0,
-        "top": []
+        "weight": 1,
+        "top": [
+          {
+            "artist": "Heilung",
+            "weight": 2,
+            "favorite": true
+          },
+          {
+            "artist": "Mother Love Bone",
+            "weight": 2,
+            "favorite": true
+          },
+          {
+            "artist": "System Of A Down",
+            "weight": 2,
+            "favorite": true
+          },
+          {
+            "artist": "Ghost",
+            "weight": 2,
+            "favorite": true
+          },
+          {
+            "artist": "Bersuit Vergarabat",
+            "weight": 2,
+            "favorite": true
+          }
+        ]
       }
     ],
     "branches": [
@@ -546,7 +572,7 @@
         ],
         "created": "2026-11-13",
         "end": null,
-        "status": "open"
+        "status": "second look"
       },
       {
         "type": "roots",
