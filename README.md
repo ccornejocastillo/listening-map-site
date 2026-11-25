@@ -86,6 +86,7 @@ How it reacts (the hint under the drawing says how, for mouse or touch):
 - The zoom is semantic: positions spread apart while dots, lines and labels keep their size, and labels are placed again at every step, so names left out for lack of room appear as you zoom in.
 - Hovering an artist lights up its lines and neighbors, puts their labels first and dims the rest. A click or tap pins it until it's clicked again or the background is tapped.
 - **The legend is a filter.** Its entries are buttons with `data-filter`; hovering, focusing (keyboard) or clicking one lights up what it names, the same way: `scene:<id>` (a scene's artists and the lines among them; `main.js` adds one per scene), `outside` (the artists without a scene), `rec` (the recommendations, their anchor lines and anchors), `edge:together`, `edge:anchor`, `edge:similar` (the lines of one kind and the artists they join). The entry in focus is marked (`.on`).
+- Under the legend, `.source` says where the similar lines come from: Gemini, and Last.fm for the artists Gemini doesn't know well (phase 13 of the backend). Last.fm's API terms ask for that credit with a link; keep it while any line comes from Last.fm.
 - `src/focus.js` keeps the focus in two layers, shared by both drawings: what's hovered wins, and what's pinned shows when nothing is. It lives in `mount`, so a redraw on resize keeps it.
 - Everything is drawn by `render()`, which joins the data to SVG elements (`selection.data().join()`) and only moves them on zoom.
 

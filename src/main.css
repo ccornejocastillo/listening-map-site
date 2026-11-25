@@ -86,6 +86,10 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--border
 .net-label.rec { fill: #B9C9FF; }
 .net-label { pointer-events: none; }
 .hint { margin: 8px 0 0; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); }
+/* Where the similar lines come from; Last.fm's API terms ask for a credit with a link */
+.source { margin: 12px 0 0; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--secondary); }
+.source a { color: inherit; text-underline-offset: 3px; }
+.source a:hover { color: var(--text); }
 .hint-touch { display: none; }
 @media (hover: none) {
   .hint-mouse { display: none; }
