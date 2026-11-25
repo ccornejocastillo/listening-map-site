@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-25T18:41:22Z",
+  "generated_at": "2026-11-25T18:49:51Z",
   "nodes": [
     {
       "id": "1w5Kfo2jwwIPruYS2UWh56",
@@ -85,7 +85,8 @@
       "name": "Radiohead",
       "kind": "yours",
       "weight": 2,
-      "favorite": true
+      "favorite": true,
+      "scene": "s9"
     },
     {
       "id": "5xUf6j4upBrXZPg6AI4MRK",
@@ -262,7 +263,8 @@
       "name": "Pink Floyd",
       "kind": "yours",
       "weight": 1,
-      "favorite": false
+      "favorite": false,
+      "scene": "s9"
     },
     {
       "id": "5eAWCfyUhZtHHtBdNk56l1",
@@ -315,7 +317,8 @@
       "name": "King Crimson",
       "kind": "rec",
       "weight": 2,
-      "favorite": false
+      "favorite": false,
+      "scene": "s9"
     },
     {
       "id": "6aVjo0xHSiuW5hkasoYSR3",
@@ -386,7 +389,8 @@
       "name": "Porcupine Tree",
       "kind": "rec",
       "weight": 1,
-      "favorite": false
+      "favorite": false,
+      "scene": "s9"
     },
     {
       "id": "1l2cyuwystFDLEnXr254a1",
@@ -682,6 +686,12 @@
     },
     {
       "source": "64tNsm6TnZe2zpcMVMOoHL",
+      "target": "4DWX7u8BV0vZIQSpJQQDWU",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "64tNsm6TnZe2zpcMVMOoHL",
       "target": "0T7JQxpy1Li93vLNirbv0Z",
       "kind": "similar",
       "weight": 2
@@ -729,10 +739,34 @@
       "weight": 1
     },
     {
+      "source": "4DWX7u8BV0vZIQSpJQQDWU",
+      "target": "1w5Kfo2jwwIPruYS2UWh56",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "4DWX7u8BV0vZIQSpJQQDWU",
+      "target": "5xUf6j4upBrXZPg6AI4MRK",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "4DWX7u8BV0vZIQSpJQQDWU",
+      "target": "2UazAtjfzqBF0Nho2awK4z",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
       "source": "2ziB7fzrXBoh1HUPS6sVFn",
       "target": "64tNsm6TnZe2zpcMVMOoHL",
       "kind": "similar",
       "weight": 2
+    },
+    {
+      "source": "2ziB7fzrXBoh1HUPS6sVFn",
+      "target": "43sZBwHjahUvgbx1WNIkIz",
+      "kind": "similar",
+      "weight": 1
     },
     {
       "source": "2ziB7fzrXBoh1HUPS6sVFn",
@@ -790,6 +824,12 @@
     },
     {
       "source": "56ZTgzPBDge0OvCGgMO3OY",
+      "target": "5INjqkS1o8h1imAzPqGZBb",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "56ZTgzPBDge0OvCGgMO3OY",
       "target": "3lzTKwFsOqxtp5cLJ2qbSD",
       "kind": "similar",
       "weight": 2
@@ -814,6 +854,12 @@
     },
     {
       "source": "5M52tdBnJaKSvOpJGz8mfZ",
+      "target": "1Qp56T7n950O3EGMsSl81D",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "5M52tdBnJaKSvOpJGz8mfZ",
       "target": "2tRsMl4eGxwoNabM08Dm4I",
       "kind": "similar",
       "weight": 1
@@ -827,6 +873,24 @@
     {
       "source": "5PbpKlxQE0Ktl5lcNABoFf",
       "target": "267VY6GX5LyU5c9M85ECZQ",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "5PbpKlxQE0Ktl5lcNABoFf",
+      "target": "3RTAXX6KGdljBsOIupyZgT",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "5Wabl1lPdNOeIn0SQ5A1mp",
+      "target": "2awB7Ol181cocZcLLNBBAh",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "5Wabl1lPdNOeIn0SQ5A1mp",
+      "target": "3zmfs9cQwzJl575W1ZYXeT",
       "kind": "similar",
       "weight": 1
     },
@@ -863,6 +927,24 @@
     {
       "source": "43sZBwHjahUvgbx1WNIkIz",
       "target": "7jy3rLJdDQY21OgRLCZ9sD",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "43sZBwHjahUvgbx1WNIkIz",
+      "target": "1w5Kfo2jwwIPruYS2UWh56",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "43sZBwHjahUvgbx1WNIkIz",
+      "target": "5xUf6j4upBrXZPg6AI4MRK",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "43sZBwHjahUvgbx1WNIkIz",
+      "target": "2UazAtjfzqBF0Nho2awK4z",
       "kind": "similar",
       "weight": 1
     },
@@ -904,7 +986,19 @@
     },
     {
       "source": "7jy3rLJdDQY21OgRLCZ9sD",
+      "target": "64tNsm6TnZe2zpcMVMOoHL",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "7jy3rLJdDQY21OgRLCZ9sD",
       "target": "1w5Kfo2jwwIPruYS2UWh56",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "7jy3rLJdDQY21OgRLCZ9sD",
+      "target": "5xUf6j4upBrXZPg6AI4MRK",
       "kind": "similar",
       "weight": 1
     },
@@ -952,9 +1046,21 @@
     },
     {
       "source": "2CWWgbxApjbyByxBBCvGTm",
+      "target": "1l2cyuwystFDLEnXr254a1",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "2CWWgbxApjbyByxBBCvGTm",
       "target": "38uWD5h115pdz278q4rwZW",
       "kind": "similar",
       "weight": 2
+    },
+    {
+      "source": "2CWWgbxApjbyByxBBCvGTm",
+      "target": "2yEwvVSSSUkcLeSTNyHKh8",
+      "kind": "similar",
+      "weight": 1
     },
     {
       "source": "06Q5VlSAku57lFzyME3HrM",
@@ -967,6 +1073,18 @@
       "target": "5NXHXK6hOCotCF8lvGM1I0",
       "kind": "similar",
       "weight": 2
+    },
+    {
+      "source": "7M1FPw29m5FbicYzS2xdpi",
+      "target": "4Z8W4fKeB5YxbusRsdQVPb",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "7M1FPw29m5FbicYzS2xdpi",
+      "target": "2yEwvVSSSUkcLeSTNyHKh8",
+      "kind": "similar",
+      "weight": 1
     },
     {
       "source": "6XyY86QOPPrYVGvF9ch6wz",
@@ -991,6 +1109,12 @@
       "target": "0iHb0mCbqZTYeb4y9Pirrd",
       "kind": "similar",
       "weight": 2
+    },
+    {
+      "source": "6aVjo0xHSiuW5hkasoYSR3",
+      "target": "5xUf6j4upBrXZPg6AI4MRK",
+      "kind": "similar",
+      "weight": 1
     },
     {
       "source": "3zmfs9cQwzJl575W1ZYXeT",
@@ -1059,6 +1183,12 @@
       "weight": 1
     },
     {
+      "source": "0k17h0D3J5VfsdmQ1iZtE9",
+      "target": "5INjqkS1o8h1imAzPqGZBb",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
       "source": "5NXHXK6hOCotCF8lvGM1I0",
       "target": "38uWD5h115pdz278q4rwZW",
       "kind": "similar",
@@ -1107,6 +1237,24 @@
       "weight": 2
     },
     {
+      "source": "5eAWCfyUhZtHHtBdNk56l1",
+      "target": "2yEwvVSSSUkcLeSTNyHKh8",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "5INjqkS1o8h1imAzPqGZBb",
+      "target": "2awB7Ol181cocZcLLNBBAh",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "5INjqkS1o8h1imAzPqGZBb",
+      "target": "4Z8W4fKeB5YxbusRsdQVPb",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
       "source": "0iHb0mCbqZTYeb4y9Pirrd",
       "target": "2UazAtjfzqBF0Nho2awK4z",
       "kind": "similar",
@@ -1125,50 +1273,8 @@
       "weight": 2
     },
     {
-      "source": "64tNsm6TnZe2zpcMVMOoHL",
-      "target": "4DWX7u8BV0vZIQSpJQQDWU",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "4DWX7u8BV0vZIQSpJQQDWU",
-      "target": "1w5Kfo2jwwIPruYS2UWh56",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "4DWX7u8BV0vZIQSpJQQDWU",
-      "target": "5xUf6j4upBrXZPg6AI4MRK",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "4DWX7u8BV0vZIQSpJQQDWU",
-      "target": "2UazAtjfzqBF0Nho2awK4z",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "2ziB7fzrXBoh1HUPS6sVFn",
-      "target": "43sZBwHjahUvgbx1WNIkIz",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "56ZTgzPBDge0OvCGgMO3OY",
-      "target": "5INjqkS1o8h1imAzPqGZBb",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
       "source": "56ZTgzPBDge0OvCGgMO3OY",
       "target": "7bu3H8JO7d0UbMoVzbo70s",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "5M52tdBnJaKSvOpJGz8mfZ",
-      "target": "1Qp56T7n950O3EGMsSl81D",
       "kind": "similar",
       "weight": 1
     },
@@ -1181,24 +1287,6 @@
     {
       "source": "5M52tdBnJaKSvOpJGz8mfZ",
       "target": "2yEwvVSSSUkcLeSTNyHKh8",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "5PbpKlxQE0Ktl5lcNABoFf",
-      "target": "3RTAXX6KGdljBsOIupyZgT",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "5Wabl1lPdNOeIn0SQ5A1mp",
-      "target": "2awB7Ol181cocZcLLNBBAh",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "5Wabl1lPdNOeIn0SQ5A1mp",
-      "target": "3zmfs9cQwzJl575W1ZYXeT",
       "kind": "similar",
       "weight": 1
     },
@@ -1210,55 +1298,13 @@
     },
     {
       "source": "43sZBwHjahUvgbx1WNIkIz",
-      "target": "1w5Kfo2jwwIPruYS2UWh56",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "43sZBwHjahUvgbx1WNIkIz",
-      "target": "5xUf6j4upBrXZPg6AI4MRK",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "43sZBwHjahUvgbx1WNIkIz",
-      "target": "2UazAtjfzqBF0Nho2awK4z",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "7jy3rLJdDQY21OgRLCZ9sD",
       "target": "64tNsm6TnZe2zpcMVMOoHL",
       "kind": "similar",
-      "weight": 1
+      "weight": 2
     },
     {
-      "source": "7jy3rLJdDQY21OgRLCZ9sD",
-      "target": "5xUf6j4upBrXZPg6AI4MRK",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "2CWWgbxApjbyByxBBCvGTm",
-      "target": "1l2cyuwystFDLEnXr254a1",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "2CWWgbxApjbyByxBBCvGTm",
-      "target": "2yEwvVSSSUkcLeSTNyHKh8",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "7M1FPw29m5FbicYzS2xdpi",
-      "target": "4Z8W4fKeB5YxbusRsdQVPb",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "7M1FPw29m5FbicYzS2xdpi",
-      "target": "2yEwvVSSSUkcLeSTNyHKh8",
+      "source": "6XyY86QOPPrYVGvF9ch6wz",
+      "target": "27Owkm4TGlMqb0BqaEt3PW",
       "kind": "similar",
       "weight": 1
     },
@@ -1270,31 +1316,31 @@
     },
     {
       "source": "6aVjo0xHSiuW5hkasoYSR3",
-      "target": "5xUf6j4upBrXZPg6AI4MRK",
+      "target": "267VY6GX5LyU5c9M85ECZQ",
       "kind": "similar",
       "weight": 1
     },
     {
-      "source": "0k17h0D3J5VfsdmQ1iZtE9",
-      "target": "5INjqkS1o8h1imAzPqGZBb",
+      "source": "6aVjo0xHSiuW5hkasoYSR3",
+      "target": "2yEwvVSSSUkcLeSTNyHKh8",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "4Z8W4fKeB5YxbusRsdQVPb",
+      "target": "4DFhHyjvGYa9wxdHUjtDkc",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "4Z8W4fKeB5YxbusRsdQVPb",
+      "target": "7bu3H8JO7d0UbMoVzbo70s",
       "kind": "similar",
       "weight": 1
     },
     {
       "source": "4Z8W4fKeB5YxbusRsdQVPb",
       "target": "2yEwvVSSSUkcLeSTNyHKh8",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "5eAWCfyUhZtHHtBdNk56l1",
-      "target": "2yEwvVSSSUkcLeSTNyHKh8",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "5INjqkS1o8h1imAzPqGZBb",
-      "target": "2awB7Ol181cocZcLLNBBAh",
       "kind": "similar",
       "weight": 1
     },
@@ -1306,7 +1352,7 @@
     },
     {
       "source": "5INjqkS1o8h1imAzPqGZBb",
-      "target": "4Z8W4fKeB5YxbusRsdQVPb",
+      "target": "3lzTKwFsOqxtp5cLJ2qbSD",
       "kind": "similar",
       "weight": 1
     },
@@ -1357,6 +1403,10 @@
     {
       "id": "s7",
       "name": "jazz rap & fusion"
+    },
+    {
+      "id": "s9",
+      "name": "art & prog rock"
     }
   ],
   "weeks": [
