@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-24T13:52:42Z",
+  "generated_at": "2026-11-25T13:07:27Z",
   "nodes": [
     {
       "id": "1w5Kfo2jwwIPruYS2UWh56",
@@ -25,6 +25,14 @@
       "weight": 2,
       "favorite": true,
       "scene": "s3"
+    },
+    {
+      "id": "5PbpKlxQE0Ktl5lcNABoFf",
+      "name": "Car Seat Headrest",
+      "kind": "yours",
+      "weight": 2,
+      "favorite": false,
+      "scene": "s5"
     },
     {
       "id": "3zdrl0FdJvv4MC97zk8Qmo",
@@ -133,14 +141,6 @@
       "favorite": true
     },
     {
-      "id": "5PbpKlxQE0Ktl5lcNABoFf",
-      "name": "Car Seat Headrest",
-      "kind": "yours",
-      "weight": 1,
-      "favorite": false,
-      "scene": "s5"
-    },
-    {
       "id": "17WostYl0Ep0nyJmA0m2ds",
       "name": "Como Asesinar a Felipes",
       "kind": "yours",
@@ -169,6 +169,13 @@
       "weight": 1,
       "favorite": true,
       "scene": "s3"
+    },
+    {
+      "id": "1Qp56T7n950O3EGMsSl81D",
+      "name": "Ghost",
+      "kind": "yours",
+      "weight": 1,
+      "favorite": true
     },
     {
       "id": "2tRsMl4eGxwoNabM08Dm4I",
@@ -288,14 +295,6 @@
       "favorite": false
     },
     {
-      "id": "6aVjo0xHSiuW5hkasoYSR3",
-      "name": "Melvins",
-      "kind": "rec",
-      "weight": 3,
-      "favorite": false,
-      "scene": "s4"
-    },
-    {
       "id": "65dGLGjkw3UbddUg2GKQoZ",
       "name": "BADBADNOTGOOD",
       "kind": "rec",
@@ -309,6 +308,14 @@
       "weight": 2,
       "favorite": false,
       "scene": "s1"
+    },
+    {
+      "id": "6aVjo0xHSiuW5hkasoYSR3",
+      "name": "Melvins",
+      "kind": "rec",
+      "weight": 2,
+      "favorite": false,
+      "scene": "s4"
     },
     {
       "id": "2UazAtjfzqBF0Nho2awK4z",

@@ -1,60 +1,60 @@
 {
   "version": 9,
-  "generated_at": "2026-11-24T13:52:44Z",
+  "generated_at": "2026-11-25T13:07:28Z",
   "window": {
-    "start": "2026-11-17T13:52:44Z",
-    "end": "2026-11-24T13:52:44Z"
+    "start": "2026-11-18T13:07:28Z",
+    "end": "2026-11-25T13:07:28Z"
   },
   "stats": {
-    "tracks": 123,
-    "artists": 51,
+    "tracks": 110,
+    "artists": 42,
     "merged": 0
   },
   "totals": {
-    "tracks": 665,
-    "artists": 126,
+    "tracks": 674,
+    "artists": 127,
     "merged": 2,
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-11-23",
-    "kind": "monday"
+    "id": "2026-11-25",
+    "kind": "wednesday"
   },
-  "summary": "Your week featured a steady mix of heavy rock and alternative sounds, with González y los Asistentes and BADBADNOTGOOD leading your plays. You also spent considerable time with contemporary cumbia and groove-heavy tracks from Ke Personajes and Audioslave. The rotation kept a balance between driving rhythms and atmospheric textures.",
+  "summary": "Your recent listening leaned heavily on Chilean spoken-word rock, Argentine cumbia, and mid-2000s post-grunge riffing.",
   "pending": false,
   "recommendations": [
     {
-      "type": "heirs",
+      "type": "roots",
       "slot": "main",
-      "anchor": "Soen",
-      "reason": "Given your heavy listening to Soen, Riverside provides a natural extension with its melodic progressive rock and melancholic atmosphere. Their focus on intricate basslines and emotional vocal delivery aligns well with your current rotation.",
+      "anchor": "Ke Personajes",
+      "reason": "While you have been streaming Ke Personajes regularly, Ráfaga offers another pillar of Argentine cumbia with uptempo brass arrangements and romantic hooks. Their energetic live sound aligns directly with your recent turn toward tropical rhythms.",
       "artists": [
         {
-          "artist": "Riverside",
-          "artist_id": "5yjbUO1Jocui7RKE30zfLT",
-          "spotify_url": "https://open.spotify.com/artist/5yjbUO1Jocui7RKE30zfLT"
+          "artist": "Rafaga",
+          "artist_id": "0CBKUzrf6yGdTgxAQbUUHS",
+          "spotify_url": "https://open.spotify.com/artist/0CBKUzrf6yGdTgxAQbUUHS"
         }
       ]
     },
     {
-      "type": "discovery",
+      "type": "heirs",
       "slot": "optional",
       "anchor": "Soen",
-      "reason": "Returning to Leprous from a different angle, their emphasis on theatrical vocal arrangements and shifting time signatures offers a compelling contrast to the more straightforward rock in your recent plays.",
+      "reason": "Beyond their rhythmic precision, Wheel excels at building dense, atmospheric soundscapes with haunting vocals and socio-political themes. Listening through tracks like 'Hyperion' reveals a cinematic, brooding edge that deepens their progressive metal sound.",
       "artists": [
         {
-          "artist": "Leprous",
-          "artist_id": "4lgrzShsg2FLA89UM2fdO5",
-          "spotify_url": "https://open.spotify.com/artist/4lgrzShsg2FLA89UM2fdO5"
+          "artist": "Wheel",
+          "artist_id": "4msm1QtpV7zMReePhbEQ6H",
+          "spotify_url": "https://open.spotify.com/artist/4msm1QtpV7zMReePhbEQ6H"
         }
       ],
       "second_look": true
     }
   ],
-  "next_batch": "2026-11-25",
+  "next_batch": "2026-11-27",
   "graph": {
     "start": "2026-10-12",
-    "today": "2026-11-24",
+    "today": "2026-11-25",
     "weeks": [
       {
         "start": "2026-10-12",
@@ -247,28 +247,28 @@
         "weight": 1,
         "top": [
           {
-            "artist": "Heilung",
-            "weight": 2,
-            "favorite": true
-          },
-          {
-            "artist": "Mother Love Bone",
-            "weight": 2,
-            "favorite": true
-          },
-          {
-            "artist": "System Of A Down",
-            "weight": 2,
-            "favorite": true
-          },
-          {
             "artist": "Ghost",
-            "weight": 2,
+            "weight": 3,
             "favorite": true
           },
           {
             "artist": "Bersuit Vergarabat",
             "weight": 2,
+            "favorite": true
+          },
+          {
+            "artist": "Heilung",
+            "weight": 1,
+            "favorite": true
+          },
+          {
+            "artist": "Mother Love Bone",
+            "weight": 1,
+            "favorite": true
+          },
+          {
+            "artist": "System Of A Down",
+            "weight": 1,
             "favorite": true
           }
         ]
@@ -375,8 +375,8 @@
           }
         ],
         "created": "2026-10-29",
-        "end": null,
-        "status": "open"
+        "end": "2026-11-25",
+        "status": "tried"
       },
       {
         "type": "discovery",
@@ -741,6 +741,20 @@
         "created": "2026-11-23",
         "end": null,
         "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "Rafaga",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-25",
+        "end": null,
+        "status": "open"
       }
     ]
   },
@@ -766,6 +780,15 @@
       }
     ],
     "tried": [
+      {
+        "type": "roots",
+        "slot": "main",
+        "artists": [
+          "Black Sabbath"
+        ],
+        "anchor": "Melvins",
+        "date": "2026-11-25"
+      },
       {
         "type": "roots",
         "slot": "main",
