@@ -1,12 +1,12 @@
 {
   "version": 9,
-  "generated_at": "2026-11-25T13:07:28Z",
+  "generated_at": "2026-11-25T18:11:36Z",
   "window": {
-    "start": "2026-11-18T13:07:28Z",
-    "end": "2026-11-25T13:07:28Z"
+    "start": "2026-11-18T18:11:36Z",
+    "end": "2026-11-25T18:11:36Z"
   },
   "stats": {
-    "tracks": 110,
+    "tracks": 96,
     "artists": 42,
     "merged": 0
   },

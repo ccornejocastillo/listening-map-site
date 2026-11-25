@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-25T13:07:27Z",
+  "generated_at": "2026-11-25T18:11:34Z",
   "nodes": [
     {
       "id": "1w5Kfo2jwwIPruYS2UWh56",
@@ -69,7 +69,8 @@
       "name": "Ke Personajes",
       "kind": "yours",
       "weight": 2,
-      "favorite": false
+      "favorite": false,
+      "scene": "s6"
     },
     {
       "id": "3zmfs9cQwzJl575W1ZYXeT",
@@ -116,7 +117,8 @@
       "name": "Agrupación Marilyn",
       "kind": "yours",
       "weight": 1,
-      "favorite": false
+      "favorite": false,
+      "scene": "s6"
     },
     {
       "id": "64tNsm6TnZe2zpcMVMOoHL",
@@ -131,7 +133,8 @@
       "name": "Alter Bridge",
       "kind": "yours",
       "weight": 1,
-      "favorite": true
+      "favorite": true,
+      "scene": "s3"
     },
     {
       "id": "6MxyNXnnmwQwdW2PD0gXYO",
@@ -145,14 +148,16 @@
       "name": "Como Asesinar a Felipes",
       "kind": "yours",
       "weight": 1,
-      "favorite": true
+      "favorite": true,
+      "scene": "s7"
     },
     {
       "id": "43sZBwHjahUvgbx1WNIkIz",
       "name": "Creed",
       "kind": "yours",
       "weight": 1,
-      "favorite": true
+      "favorite": true,
+      "scene": "s3"
     },
     {
       "id": "2awB7Ol181cocZcLLNBBAh",
@@ -175,7 +180,8 @@
       "name": "Ghost",
       "kind": "yours",
       "weight": 1,
-      "favorite": true
+      "favorite": true,
+      "scene": "s4"
     },
     {
       "id": "2tRsMl4eGxwoNabM08Dm4I",
@@ -190,21 +196,24 @@
       "name": "Julius Popper",
       "kind": "yours",
       "weight": 1,
-      "favorite": true
+      "favorite": true,
+      "scene": "s5"
     },
     {
       "id": "066X20Nz7iquqkkCW6Jxy6",
       "name": "LCD Soundsystem",
       "kind": "yours",
       "weight": 1,
-      "favorite": true
+      "favorite": true,
+      "scene": "s1"
     },
     {
       "id": "4XbPmAuePPr3JhIoN6WNGP",
       "name": "La Brigida Orquesta",
       "kind": "yours",
       "weight": 1,
-      "favorite": true
+      "favorite": true,
+      "scene": "s7"
     },
     {
       "id": "6XyY86QOPPrYVGvF9ch6wz",
@@ -218,14 +227,16 @@
       "name": "Los Bunkers",
       "kind": "yours",
       "weight": 1,
-      "favorite": true
+      "favorite": true,
+      "scene": "s5"
     },
     {
       "id": "0ZCO8oVkMj897cKgFH7fRW",
       "name": "Los Ángeles Azules",
       "kind": "yours",
       "weight": 1,
-      "favorite": false
+      "favorite": false,
+      "scene": "s6"
     },
     {
       "id": "0T7JQxpy1Li93vLNirbv0Z",
@@ -299,7 +310,8 @@
       "name": "BADBADNOTGOOD",
       "kind": "rec",
       "weight": 2,
-      "favorite": false
+      "favorite": false,
+      "scene": "s7"
     },
     {
       "id": "7M1FPw29m5FbicYzS2xdpi",
@@ -626,6 +638,48 @@
       "weight": 1
     },
     {
+      "source": "4DFhHyjvGYa9wxdHUjtDkc",
+      "target": "6rX8AFY10dsJkJsv23Z9Um",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "4DFhHyjvGYa9wxdHUjtDkc",
+      "target": "1l2cyuwystFDLEnXr254a1",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "4DFhHyjvGYa9wxdHUjtDkc",
+      "target": "38uWD5h115pdz278q4rwZW",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "4DFhHyjvGYa9wxdHUjtDkc",
+      "target": "2yEwvVSSSUkcLeSTNyHKh8",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "1dJfjAj2mnpKrGm8ldBjNG",
+      "target": "06Q5VlSAku57lFzyME3HrM",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "1dJfjAj2mnpKrGm8ldBjNG",
+      "target": "0ZCO8oVkMj897cKgFH7fRW",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "64tNsm6TnZe2zpcMVMOoHL",
+      "target": "0T7JQxpy1Li93vLNirbv0Z",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
       "source": "64tNsm6TnZe2zpcMVMOoHL",
       "target": "1w5Kfo2jwwIPruYS2UWh56",
       "kind": "similar",
@@ -644,10 +698,28 @@
       "weight": 2
     },
     {
+      "source": "64tNsm6TnZe2zpcMVMOoHL",
+      "target": "0iHb0mCbqZTYeb4y9Pirrd",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "4DWX7u8BV0vZIQSpJQQDWU",
+      "target": "43sZBwHjahUvgbx1WNIkIz",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
       "source": "2ziB7fzrXBoh1HUPS6sVFn",
       "target": "64tNsm6TnZe2zpcMVMOoHL",
       "kind": "similar",
       "weight": 2
+    },
+    {
+      "source": "2ziB7fzrXBoh1HUPS6sVFn",
+      "target": "7jy3rLJdDQY21OgRLCZ9sD",
+      "kind": "similar",
+      "weight": 1
     },
     {
       "source": "2ziB7fzrXBoh1HUPS6sVFn",
@@ -664,6 +736,12 @@
     {
       "source": "2ziB7fzrXBoh1HUPS6sVFn",
       "target": "2UazAtjfzqBF0Nho2awK4z",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "65dGLGjkw3UbddUg2GKQoZ",
+      "target": "4XbPmAuePPr3JhIoN6WNGP",
       "kind": "similar",
       "weight": 2
     },
@@ -687,15 +765,33 @@
     },
     {
       "source": "56ZTgzPBDge0OvCGgMO3OY",
+      "target": "3lzTKwFsOqxtp5cLJ2qbSD",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "56ZTgzPBDge0OvCGgMO3OY",
       "target": "4tPyCwWrsvZ8OKYl7QRavL",
       "kind": "similar",
       "weight": 1
+    },
+    {
+      "source": "6MxyNXnnmwQwdW2PD0gXYO",
+      "target": "27Owkm4TGlMqb0BqaEt3PW",
+      "kind": "similar",
+      "weight": 2
     },
     {
       "source": "5M52tdBnJaKSvOpJGz8mfZ",
       "target": "5MsYlytV6rgcW1BB261xBS",
       "kind": "similar",
       "weight": 2
+    },
+    {
+      "source": "5M52tdBnJaKSvOpJGz8mfZ",
+      "target": "2tRsMl4eGxwoNabM08Dm4I",
+      "kind": "similar",
+      "weight": 1
     },
     {
       "source": "5M52tdBnJaKSvOpJGz8mfZ",
@@ -734,6 +830,18 @@
       "weight": 1
     },
     {
+      "source": "17WostYl0Ep0nyJmA0m2ds",
+      "target": "4XbPmAuePPr3JhIoN6WNGP",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "267VY6GX5LyU5c9M85ECZQ",
+      "target": "5rLsN2LxYaEPLa1N7I2mPB",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
       "source": "5MsYlytV6rgcW1BB261xBS",
       "target": "6aVjo0xHSiuW5hkasoYSR3",
       "kind": "similar",
@@ -756,6 +864,12 @@
       "target": "4tPyCwWrsvZ8OKYl7QRavL",
       "kind": "similar",
       "weight": 2
+    },
+    {
+      "source": "7jy3rLJdDQY21OgRLCZ9sD",
+      "target": "1w5Kfo2jwwIPruYS2UWh56",
+      "kind": "similar",
+      "weight": 1
     },
     {
       "source": "7jy3rLJdDQY21OgRLCZ9sD",
@@ -788,8 +902,20 @@
       "weight": 2
     },
     {
+      "source": "06Q5VlSAku57lFzyME3HrM",
+      "target": "0ZCO8oVkMj897cKgFH7fRW",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
       "source": "7M1FPw29m5FbicYzS2xdpi",
       "target": "5NXHXK6hOCotCF8lvGM1I0",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "0T7JQxpy1Li93vLNirbv0Z",
+      "target": "0iHb0mCbqZTYeb4y9Pirrd",
       "kind": "similar",
       "weight": 2
     },
@@ -813,6 +939,12 @@
     },
     {
       "source": "1w5Kfo2jwwIPruYS2UWh56",
+      "target": "0T7JQxpy1Li93vLNirbv0Z",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "1w5Kfo2jwwIPruYS2UWh56",
       "target": "5xUf6j4upBrXZPg6AI4MRK",
       "kind": "similar",
       "weight": 1
@@ -820,6 +952,12 @@
     {
       "source": "1w5Kfo2jwwIPruYS2UWh56",
       "target": "2UazAtjfzqBF0Nho2awK4z",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
+      "source": "1w5Kfo2jwwIPruYS2UWh56",
+      "target": "0iHb0mCbqZTYeb4y9Pirrd",
       "kind": "similar",
       "weight": 2
     },
@@ -878,6 +1016,12 @@
       "weight": 1
     },
     {
+      "source": "5xUf6j4upBrXZPg6AI4MRK",
+      "target": "0iHb0mCbqZTYeb4y9Pirrd",
+      "kind": "similar",
+      "weight": 2
+    },
+    {
       "source": "2yEwvVSSSUkcLeSTNyHKh8",
       "target": "6rX8AFY10dsJkJsv23Z9Um",
       "kind": "similar",
@@ -891,9 +1035,9 @@
     },
     {
       "source": "4DFhHyjvGYa9wxdHUjtDkc",
-      "target": "6rX8AFY10dsJkJsv23Z9Um",
+      "target": "2CWWgbxApjbyByxBBCvGTm",
       "kind": "similar",
-      "weight": 2
+      "weight": 1
     },
     {
       "source": "4DFhHyjvGYa9wxdHUjtDkc",
@@ -902,61 +1046,13 @@
       "weight": 1
     },
     {
-      "source": "4DFhHyjvGYa9wxdHUjtDkc",
-      "target": "1l2cyuwystFDLEnXr254a1",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "4DFhHyjvGYa9wxdHUjtDkc",
-      "target": "38uWD5h115pdz278q4rwZW",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "4DFhHyjvGYa9wxdHUjtDkc",
-      "target": "2yEwvVSSSUkcLeSTNyHKh8",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "1dJfjAj2mnpKrGm8ldBjNG",
-      "target": "06Q5VlSAku57lFzyME3HrM",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "1dJfjAj2mnpKrGm8ldBjNG",
-      "target": "0ZCO8oVkMj897cKgFH7fRW",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "64tNsm6TnZe2zpcMVMOoHL",
-      "target": "0T7JQxpy1Li93vLNirbv0Z",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
       "source": "64tNsm6TnZe2zpcMVMOoHL",
       "target": "6aVjo0xHSiuW5hkasoYSR3",
       "kind": "similar",
       "weight": 1
     },
     {
-      "source": "64tNsm6TnZe2zpcMVMOoHL",
-      "target": "0iHb0mCbqZTYeb4y9Pirrd",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
       "source": "4DWX7u8BV0vZIQSpJQQDWU",
-      "target": "43sZBwHjahUvgbx1WNIkIz",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "2ziB7fzrXBoh1HUPS6sVFn",
       "target": "7jy3rLJdDQY21OgRLCZ9sD",
       "kind": "similar",
       "weight": 1
@@ -966,30 +1062,6 @@
       "target": "0iHb0mCbqZTYeb4y9Pirrd",
       "kind": "similar",
       "weight": 2
-    },
-    {
-      "source": "65dGLGjkw3UbddUg2GKQoZ",
-      "target": "4XbPmAuePPr3JhIoN6WNGP",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "56ZTgzPBDge0OvCGgMO3OY",
-      "target": "3lzTKwFsOqxtp5cLJ2qbSD",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "6MxyNXnnmwQwdW2PD0gXYO",
-      "target": "27Owkm4TGlMqb0BqaEt3PW",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "5M52tdBnJaKSvOpJGz8mfZ",
-      "target": "2tRsMl4eGxwoNabM08Dm4I",
-      "kind": "similar",
-      "weight": 1
     },
     {
       "source": "5M52tdBnJaKSvOpJGz8mfZ",
@@ -1016,20 +1088,20 @@
       "weight": 1
     },
     {
-      "source": "17WostYl0Ep0nyJmA0m2ds",
-      "target": "4XbPmAuePPr3JhIoN6WNGP",
-      "kind": "similar",
-      "weight": 2
-    },
-    {
-      "source": "267VY6GX5LyU5c9M85ECZQ",
-      "target": "5rLsN2LxYaEPLa1N7I2mPB",
+      "source": "43sZBwHjahUvgbx1WNIkIz",
+      "target": "7jy3rLJdDQY21OgRLCZ9sD",
       "kind": "similar",
       "weight": 1
     },
     {
-      "source": "7jy3rLJdDQY21OgRLCZ9sD",
-      "target": "1w5Kfo2jwwIPruYS2UWh56",
+      "source": "5rLsN2LxYaEPLa1N7I2mPB",
+      "target": "3RTAXX6KGdljBsOIupyZgT",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "1Qp56T7n950O3EGMsSl81D",
+      "target": "2tRsMl4eGxwoNabM08Dm4I",
       "kind": "similar",
       "weight": 1
     },
@@ -1046,28 +1118,28 @@
       "weight": 1
     },
     {
-      "source": "06Q5VlSAku57lFzyME3HrM",
-      "target": "0ZCO8oVkMj897cKgFH7fRW",
+      "source": "6XyY86QOPPrYVGvF9ch6wz",
+      "target": "5eAWCfyUhZtHHtBdNk56l1",
       "kind": "similar",
       "weight": 1
     },
     {
       "source": "0T7JQxpy1Li93vLNirbv0Z",
-      "target": "0iHb0mCbqZTYeb4y9Pirrd",
+      "target": "5xUf6j4upBrXZPg6AI4MRK",
       "kind": "similar",
-      "weight": 2
+      "weight": 1
     },
     {
-      "source": "1w5Kfo2jwwIPruYS2UWh56",
-      "target": "0T7JQxpy1Li93vLNirbv0Z",
+      "source": "0T7JQxpy1Li93vLNirbv0Z",
+      "target": "2UazAtjfzqBF0Nho2awK4z",
       "kind": "similar",
-      "weight": 2
+      "weight": 1
     },
     {
-      "source": "1w5Kfo2jwwIPruYS2UWh56",
-      "target": "0iHb0mCbqZTYeb4y9Pirrd",
+      "source": "27Owkm4TGlMqb0BqaEt3PW",
+      "target": "5eAWCfyUhZtHHtBdNk56l1",
       "kind": "similar",
-      "weight": 2
+      "weight": 1
     },
     {
       "source": "5NXHXK6hOCotCF8lvGM1I0",
@@ -1082,10 +1154,28 @@
       "weight": 1
     },
     {
-      "source": "5xUf6j4upBrXZPg6AI4MRK",
-      "target": "0iHb0mCbqZTYeb4y9Pirrd",
+      "source": "0iHb0mCbqZTYeb4y9Pirrd",
+      "target": "2UazAtjfzqBF0Nho2awK4z",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "3zdrl0FdJvv4MC97zk8Qmo",
+      "target": "6uNoywBI6pGJedmCrlM7Eo",
       "kind": "similar",
       "weight": 2
+    },
+    {
+      "source": "4ZWex7Cr0HbNkpnTZPCcfO",
+      "target": "3RTAXX6KGdljBsOIupyZgT",
+      "kind": "similar",
+      "weight": 1
+    },
+    {
+      "source": "066X20Nz7iquqkkCW6Jxy6",
+      "target": "4Z8W4fKeB5YxbusRsdQVPb",
+      "kind": "similar",
+      "weight": 1
     }
   ],
   "scenes": [
@@ -1108,6 +1198,14 @@
     {
       "id": "s5",
       "name": "indie rock"
+    },
+    {
+      "id": "s6",
+      "name": "cumbia & tropical"
+    },
+    {
+      "id": "s7",
+      "name": "jazz rap & fusion"
     }
   ],
   "weeks": [
