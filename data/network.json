@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-25T18:49:51Z",
+  "generated_at": "2026-11-26T12:46:29Z",
   "nodes": [
     {
       "id": "1w5Kfo2jwwIPruYS2UWh56",
@@ -25,14 +25,6 @@
       "weight": 2,
       "favorite": true,
       "scene": "s3"
-    },
-    {
-      "id": "5PbpKlxQE0Ktl5lcNABoFf",
-      "name": "Car Seat Headrest",
-      "kind": "yours",
-      "weight": 2,
-      "favorite": false,
-      "scene": "s5"
     },
     {
       "id": "3zdrl0FdJvv4MC97zk8Qmo",
@@ -87,14 +79,6 @@
       "weight": 2,
       "favorite": true,
       "scene": "s9"
-    },
-    {
-      "id": "5xUf6j4upBrXZPg6AI4MRK",
-      "name": "Soundgarden",
-      "kind": "yours",
-      "weight": 2,
-      "favorite": true,
-      "scene": "s3"
     },
     {
       "id": "2yEwvVSSSUkcLeSTNyHKh8",
@@ -152,6 +136,13 @@
       "scene": "s7"
     },
     {
+      "id": "3OggS6Lzuzojyvd8t8ZAat",
+      "name": "Congelador",
+      "kind": "yours",
+      "weight": 1,
+      "favorite": false
+    },
+    {
       "id": "43sZBwHjahUvgbx1WNIkIz",
       "name": "Creed",
       "kind": "yours",
@@ -168,20 +159,19 @@
       "scene": "s2"
     },
     {
-      "id": "7jy3rLJdDQY21OgRLCZ9sD",
-      "name": "Foo Fighters",
-      "kind": "yours",
-      "weight": 1,
-      "favorite": true,
-      "scene": "s3"
-    },
-    {
       "id": "1Qp56T7n950O3EGMsSl81D",
       "name": "Ghost",
       "kind": "yours",
       "weight": 1,
       "favorite": true,
       "scene": "s4"
+    },
+    {
+      "id": "6CLbqb5cObaXRBi4qvcKmO",
+      "name": "Gnome",
+      "kind": "yours",
+      "weight": 1,
+      "favorite": false
     },
     {
       "id": "2tRsMl4eGxwoNabM08Dm4I",
@@ -194,13 +184,6 @@
     {
       "id": "4ZWex7Cr0HbNkpnTZPCcfO",
       "name": "Julius Popper",
-      "kind": "yours",
-      "weight": 1,
-      "favorite": true
-    },
-    {
-      "id": "066X20Nz7iquqkkCW6Jxy6",
-      "name": "LCD Soundsystem",
       "kind": "yours",
       "weight": 1,
       "favorite": true
@@ -237,6 +220,13 @@
       "scene": "s6"
     },
     {
+      "id": "1pdmhuBAqiOFaFuXRvLoyy",
+      "name": "Macha Y El Bloque Depresivo",
+      "kind": "yours",
+      "weight": 1,
+      "favorite": false
+    },
+    {
       "id": "0T7JQxpy1Li93vLNirbv0Z",
       "name": "Mad Season",
       "kind": "yours",
@@ -265,6 +255,14 @@
       "weight": 1,
       "favorite": false,
       "scene": "s9"
+    },
+    {
+      "id": "5xUf6j4upBrXZPg6AI4MRK",
+      "name": "Soundgarden",
+      "kind": "yours",
+      "weight": 1,
+      "favorite": true,
+      "scene": "s3"
     },
     {
       "id": "5eAWCfyUhZtHHtBdNk56l1",
@@ -734,12 +732,6 @@
     },
     {
       "source": "4DWX7u8BV0vZIQSpJQQDWU",
-      "target": "7jy3rLJdDQY21OgRLCZ9sD",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "4DWX7u8BV0vZIQSpJQQDWU",
       "target": "1w5Kfo2jwwIPruYS2UWh56",
       "kind": "similar",
       "weight": 1
@@ -765,12 +757,6 @@
     {
       "source": "2ziB7fzrXBoh1HUPS6sVFn",
       "target": "43sZBwHjahUvgbx1WNIkIz",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "2ziB7fzrXBoh1HUPS6sVFn",
-      "target": "7jy3rLJdDQY21OgRLCZ9sD",
       "kind": "similar",
       "weight": 1
     },
@@ -871,18 +857,6 @@
       "weight": 2
     },
     {
-      "source": "5PbpKlxQE0Ktl5lcNABoFf",
-      "target": "267VY6GX5LyU5c9M85ECZQ",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "5PbpKlxQE0Ktl5lcNABoFf",
-      "target": "3RTAXX6KGdljBsOIupyZgT",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
       "source": "5Wabl1lPdNOeIn0SQ5A1mp",
       "target": "2awB7Ol181cocZcLLNBBAh",
       "kind": "similar",
@@ -926,12 +900,6 @@
     },
     {
       "source": "43sZBwHjahUvgbx1WNIkIz",
-      "target": "7jy3rLJdDQY21OgRLCZ9sD",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "43sZBwHjahUvgbx1WNIkIz",
       "target": "1w5Kfo2jwwIPruYS2UWh56",
       "kind": "similar",
       "weight": 1
@@ -962,12 +930,6 @@
     },
     {
       "source": "5rLsN2LxYaEPLa1N7I2mPB",
-      "target": "5PbpKlxQE0Ktl5lcNABoFf",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "5rLsN2LxYaEPLa1N7I2mPB",
       "target": "3RTAXX6KGdljBsOIupyZgT",
       "kind": "similar",
       "weight": 1
@@ -983,30 +945,6 @@
       "target": "4tPyCwWrsvZ8OKYl7QRavL",
       "kind": "similar",
       "weight": 2
-    },
-    {
-      "source": "7jy3rLJdDQY21OgRLCZ9sD",
-      "target": "64tNsm6TnZe2zpcMVMOoHL",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "7jy3rLJdDQY21OgRLCZ9sD",
-      "target": "1w5Kfo2jwwIPruYS2UWh56",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "7jy3rLJdDQY21OgRLCZ9sD",
-      "target": "5xUf6j4upBrXZPg6AI4MRK",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "7jy3rLJdDQY21OgRLCZ9sD",
-      "target": "2UazAtjfzqBF0Nho2awK4z",
-      "kind": "similar",
-      "weight": 1
     },
     {
       "source": "1Qp56T7n950O3EGMsSl81D",
@@ -1365,12 +1303,6 @@
     {
       "source": "4ZWex7Cr0HbNkpnTZPCcfO",
       "target": "3RTAXX6KGdljBsOIupyZgT",
-      "kind": "similar",
-      "weight": 1
-    },
-    {
-      "source": "066X20Nz7iquqkkCW6Jxy6",
-      "target": "4Z8W4fKeB5YxbusRsdQVPb",
       "kind": "similar",
       "weight": 1
     }

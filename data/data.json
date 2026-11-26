@@ -1,18 +1,18 @@
 {
   "version": 9,
-  "generated_at": "2026-11-25T18:49:53Z",
+  "generated_at": "2026-11-26T12:46:31Z",
   "window": {
-    "start": "2026-11-18T18:49:53Z",
-    "end": "2026-11-25T18:49:53Z"
+    "start": "2026-11-19T12:46:31Z",
+    "end": "2026-11-26T12:46:31Z"
   },
   "stats": {
-    "tracks": 92,
-    "artists": 42,
+    "tracks": 100,
+    "artists": 43,
     "merged": 0
   },
   "totals": {
-    "tracks": 674,
-    "artists": 127,
+    "tracks": 688,
+    "artists": 128,
     "merged": 2,
     "since": "2026-10-14"
   },
@@ -54,7 +54,7 @@
   "next_batch": "2026-11-27",
   "graph": {
     "start": "2026-10-12",
-    "today": "2026-11-25",
+    "today": "2026-11-26",
     "weeks": [
       {
         "start": "2026-10-12",
@@ -252,22 +252,22 @@
             "favorite": true
           },
           {
-            "artist": "Bersuit Vergarabat",
+            "artist": "Macha Y El Bloque Depresivo",
+            "weight": 3,
+            "favorite": false
+          },
+          {
+            "artist": "Gnome",
             "weight": 2,
-            "favorite": true
+            "favorite": false
           },
           {
-            "artist": "Heilung",
-            "weight": 1,
-            "favorite": true
+            "artist": "Congelador",
+            "weight": 2,
+            "favorite": false
           },
           {
-            "artist": "Mother Love Bone",
-            "weight": 1,
-            "favorite": true
-          },
-          {
-            "artist": "System Of A Down",
+            "artist": "Bersuit Vergarabat",
             "weight": 1,
             "favorite": true
           }
