@@ -1,60 +1,60 @@
 {
   "version": 9,
-  "generated_at": "2026-11-26T12:46:31Z",
+  "generated_at": "2026-11-27T12:39:42Z",
   "window": {
-    "start": "2026-11-19T12:46:31Z",
-    "end": "2026-11-26T12:46:31Z"
+    "start": "2026-11-20T12:39:42Z",
+    "end": "2026-11-27T12:39:42Z"
   },
   "stats": {
-    "tracks": 100,
-    "artists": 43,
+    "tracks": 88,
+    "artists": 37,
     "merged": 0
   },
   "totals": {
-    "tracks": 688,
+    "tracks": 698,
     "artists": 128,
     "merged": 2,
     "since": "2026-10-14"
   },
   "batch": {
-    "id": "2026-11-25",
-    "kind": "wednesday"
+    "id": "2026-11-27",
+    "kind": "friday"
   },
-  "summary": "Your recent listening leaned heavily on Chilean spoken-word rock, Argentine cumbia, and mid-2000s post-grunge riffing.",
+  "summary": "You spent the last week leaning heavily into Argentine cumbia alongside classic art rock and modern prog metal.",
   "pending": false,
   "recommendations": [
     {
-      "type": "roots",
+      "type": "heirs",
       "slot": "main",
       "anchor": "Ke Personajes",
-      "reason": "While you have been streaming Ke Personajes regularly, Ráfaga offers another pillar of Argentine cumbia with uptempo brass arrangements and romantic hooks. Their energetic live sound aligns directly with your recent turn toward tropical rhythms.",
+      "reason": "Your heavy plays of Ke Personajes reflect a strong pull toward emotional, melodic Argentine cumbia. La Champions Liga builds on that same romantic cumbia tradition with distinctive synthesizer leads and passionate vocals.",
       "artists": [
         {
-          "artist": "Rafaga",
-          "artist_id": "0CBKUzrf6yGdTgxAQbUUHS",
-          "spotify_url": "https://open.spotify.com/artist/0CBKUzrf6yGdTgxAQbUUHS"
+          "artist": "La Champions Liga",
+          "artist_id": "4osqF39bEPXPsJfVUXeCh3",
+          "spotify_url": "https://open.spotify.com/artist/4osqF39bEPXPsJfVUXeCh3"
         }
       ]
     },
     {
-      "type": "heirs",
+      "type": "roots",
       "slot": "optional",
-      "anchor": "Soen",
-      "reason": "Beyond their rhythmic precision, Wheel excels at building dense, atmospheric soundscapes with haunting vocals and socio-political themes. Listening through tracks like 'Hyperion' reveals a cinematic, brooding edge that deepens their progressive metal sound.",
+      "anchor": "Pearl Jam",
+      "reason": "Lanegan's solo work moves past grunge into sparse, blues-infused dark folk that highlights his resonant baritone. His stripped-back arrangements offer a quiet, haunting contrast to Pearl Jam's arena-sized anthems.",
       "artists": [
         {
-          "artist": "Wheel",
-          "artist_id": "4msm1QtpV7zMReePhbEQ6H",
-          "spotify_url": "https://open.spotify.com/artist/4msm1QtpV7zMReePhbEQ6H"
+          "artist": "Mark Lanegan",
+          "artist_id": "1fpXM23IoNckJ7NDAm8YJQ",
+          "spotify_url": "https://open.spotify.com/artist/1fpXM23IoNckJ7NDAm8YJQ"
         }
       ],
       "second_look": true
     }
   ],
-  "next_batch": "2026-11-27",
+  "next_batch": "2026-11-30",
   "graph": {
     "start": "2026-10-12",
-    "today": "2026-11-26",
+    "today": "2026-11-27",
     "weeks": [
       {
         "start": "2026-10-12",
@@ -247,13 +247,18 @@
         "weight": 1,
         "top": [
           {
-            "artist": "Ghost",
+            "artist": "Pink Floyd",
             "weight": 3,
             "favorite": true
           },
           {
+            "artist": "Ghost",
+            "weight": 2,
+            "favorite": true
+          },
+          {
             "artist": "Macha Y El Bloque Depresivo",
-            "weight": 3,
+            "weight": 2,
             "favorite": false
           },
           {
@@ -263,13 +268,8 @@
           },
           {
             "artist": "Congelador",
-            "weight": 2,
-            "favorite": false
-          },
-          {
-            "artist": "Bersuit Vergarabat",
             "weight": 1,
-            "favorite": true
+            "favorite": false
           }
         ]
       }
@@ -515,8 +515,8 @@
           }
         ],
         "created": "2026-11-09",
-        "end": null,
-        "status": "open"
+        "end": "2026-11-27",
+        "status": "paused"
       },
       {
         "type": "discovery",
@@ -656,7 +656,7 @@
         ],
         "created": "2026-11-18",
         "end": null,
-        "status": "open"
+        "status": "second look"
       },
       {
         "type": "discovery",
@@ -753,6 +753,20 @@
           }
         ],
         "created": "2026-11-25",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "heirs",
+        "slot": "main",
+        "artists": [
+          {
+            "name": "La Champions Liga",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-27",
         "end": null,
         "status": "open"
       }
