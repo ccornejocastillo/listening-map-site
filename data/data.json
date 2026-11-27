@@ -1,9 +1,9 @@
 {
   "version": 9,
-  "generated_at": "2026-11-27T12:39:42Z",
+  "generated_at": "2026-11-27T15:24:51Z",
   "window": {
-    "start": "2026-11-20T12:39:42Z",
-    "end": "2026-11-27T12:39:42Z"
+    "start": "2026-11-20T15:24:51Z",
+    "end": "2026-11-27T15:24:51Z"
   },
   "stats": {
     "tracks": 88,
@@ -20,19 +20,19 @@
     "id": "2026-11-27",
     "kind": "friday"
   },
-  "summary": "You spent the last week leaning heavily into Argentine cumbia alongside classic art rock and modern prog metal.",
+  "summary": "Your recent listening focused heavily on cumbia, progressive rock, and grunge.",
   "pending": false,
   "recommendations": [
     {
       "type": "heirs",
       "slot": "main",
-      "anchor": "Ke Personajes",
-      "reason": "Your heavy plays of Ke Personajes reflect a strong pull toward emotional, melodic Argentine cumbia. La Champions Liga builds on that same romantic cumbia tradition with distinctive synthesizer leads and passionate vocals.",
+      "anchor": "TOOL",
+      "reason": "Caligula's Horse builds complex, rhythmically intricate progressive metal with dynamic vocal shifts and dense guitar arrangements. If TOOL's calculated, expansive compositions appeal to you, their melodic yet heavy soundscapes fit right in.",
       "artists": [
         {
-          "artist": "La Champions Liga",
-          "artist_id": "4osqF39bEPXPsJfVUXeCh3",
-          "spotify_url": "https://open.spotify.com/artist/4osqF39bEPXPsJfVUXeCh3"
+          "artist": "Caligula's Horse",
+          "artist_id": "6Zd7AjXsoLaweP9FHyudVC",
+          "spotify_url": "https://open.spotify.com/artist/6Zd7AjXsoLaweP9FHyudVC"
         }
       ]
     },
@@ -40,7 +40,7 @@
       "type": "roots",
       "slot": "optional",
       "anchor": "Pearl Jam",
-      "reason": "Lanegan's solo work moves past grunge into sparse, blues-infused dark folk that highlights his resonant baritone. His stripped-back arrangements offer a quiet, haunting contrast to Pearl Jam's arena-sized anthems.",
+      "reason": "Beyond grunge, his solo catalog explores dark folk and blues that echo the introspective acoustic moments of Pearl Jam. His raspy, weathered voice brings a raw emotional weight that strips rock down to its essentials.",
       "artists": [
         {
           "artist": "Mark Lanegan",
@@ -49,6 +49,32 @@
         }
       ],
       "second_look": true
+    },
+    {
+      "type": "heirs",
+      "slot": "extra",
+      "anchor": "El Mató a un Policía Motorizado",
+      "reason": "Bestia Bebé carries the same driving guitar hooks and earnest indie rock spirit found in El Mató a un Policía Motorizado. Their songs blend steady motorik rhythms with warm, melodic choruses.",
+      "artists": [
+        {
+          "artist": "Bestia Bebé",
+          "artist_id": "3j7kmtxJ0aptdHr9ZCnEkp",
+          "spotify_url": "https://open.spotify.com/artist/3j7kmtxJ0aptdHr9ZCnEkp"
+        }
+      ]
+    },
+    {
+      "type": "roots",
+      "slot": "extra",
+      "anchor": "Radiohead",
+      "reason": "Portishead crafts cinematic trip-hop built on vinyl samples, dense atmospheres, and haunting vocals. Moving away from rock, their tense production connects directly to the moody electronic textures of Radiohead.",
+      "artists": [
+        {
+          "artist": "Portishead",
+          "artist_id": "6liAMWkVf5LH7YR9yfFy1Y",
+          "spotify_url": "https://open.spotify.com/artist/6liAMWkVf5LH7YR9yfFy1Y"
+        }
+      ]
     }
   ],
   "next_batch": "2026-11-30",
@@ -761,7 +787,35 @@
         "slot": "main",
         "artists": [
           {
-            "name": "La Champions Liga",
+            "name": "Caligula's Horse",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-27",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "heirs",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Bestia Bebé",
+            "played": false,
+            "last_played": null
+          }
+        ],
+        "created": "2026-11-27",
+        "end": null,
+        "status": "open"
+      },
+      {
+        "type": "roots",
+        "slot": "extra",
+        "artists": [
+          {
+            "name": "Portishead",
             "played": false,
             "last_played": null
           }
